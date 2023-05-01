@@ -1,0 +1,26 @@
+body {
+    background-color: #212A3E;
+    background-position: top 5% center;
+    color: #9BA4B5;
+    font-family: Helvetica, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+header {
+    text-align: center;
+    margin-top: 50px;
+}
+
+a {
+    display: block;
+    padding: 10px 20px;
+    background-color: #394867;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+a:hover {
+    background-color: #B7D3DF;
+}
