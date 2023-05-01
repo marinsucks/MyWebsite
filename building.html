@@ -5,26 +5,38 @@
   <title>403 :(</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" href="media/hireme2.0.gif">
-  <link rel="stylesheet" type="text/css" href="style.css" href="fonts/Calistoga/Calistoga-Regular.ttf" href="fonts/Secular_One/SecularOne-Regular.ttf">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Calistoga&display=swap">
   <style>
-    .discreet-text{
-        font-size: 0.7em;
-        color: #66666696;
-    }
 
     button {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      border: none;
-      border-radius: 50%;
-      padding: 0;
-      background: transparent;
+      width: 60%;
+      background-color: #FDF4DD;
+      border: 5px solid #FACB7F;
+      border-radius: 20px;
+      font-size: 2em;
+      padding: 10px 20px;
+      transition-duration: 0.3s;
+    }
+
+    button:hover {
+      background-color: #FACB7F;
+      color: #FDF4DD;
       cursor: pointer;
     }
 
+    button:active {
+      box-shadow: 0 2px #FACB7F;
+      transform: translateY(3px);
+    }
+
     #dvd-loop {
-      border: 2px solid #333;
+      border: 5px solid #ededed;
       border-radius: 10px;
     }
   </style>
@@ -34,8 +46,12 @@
   <p>Cette page est encore en cours de construction...</p>
   <p>Ne vous en faites pas, vous n'avez pas besoin de rester ici à attendre que je finisse de bricoler.</p> 
   <p>Vous pouvez en profiter pour sortir de chez vous, découvrir toutes les merveilles que ce monde a à vous offrir et vous rendre compte que la vie est trop courte pour perdre votre temps sur Internet !</p>
+
+  <div style="height: 30px;"></div>
+
   <button onclick="history.back()">
-    <img src="media/back.png" alt="back" style="width: 20%; opacity: 55%;">
+    <!--<img src="media/back.png" alt="back" style="width: 20%; opacity: 55%;">-->
+    Back
   </button> 
   
   <div style="height: 500px;"></div>
