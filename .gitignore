@@ -1,0 +1,7 @@
+#Directories :
+test/
+media/MediaArchive/
+archive/
+
+#Useless files
+.DS_Store
