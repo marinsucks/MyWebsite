@@ -105,7 +105,6 @@ section {
     font-weight: 600;
 }
 
-
 .grid-container {
     display: grid;
     grid-template-columns: repeat(20, minmax(0, 1fr));
