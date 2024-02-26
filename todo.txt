@@ -1,4 +1,7 @@
 TODO:
+
+- A SCHEME FOR THE WHOLE WEBSITE BEFORE ANYTHING ELSE
+
 - create missing pages: about, porftolio etc.
 - animate missing pages : porftolio for example.
 - handle darkmode better: cache storage, button behaviours, cleaner css.

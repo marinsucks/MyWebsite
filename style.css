@@ -9,6 +9,13 @@
     https://realtimecolors.com/?colors=141919-f1efdf-a6deca-f1c8c6-9ca1c9
 
 */
+:root {
+	--background: #f1efdf;
+	--text: #141919;
+	--primary: #a6deca;
+	--secondary: #f1c8c6;
+	--accent: #9ca1c9;
+}
 
 * {
     margin: 0;
@@ -20,27 +27,31 @@
     
     /*border: solid;
     border-width: 0.1px;*/
-}   
+}
 
 body {
     margin: 1px;
-    background-color: #f1efdf;
-    color: #141919;
+    background-color: var(--background);
+    color: var(--text);
 }
 
 .dark-mode {
-    background-color: #141919;
-    border-color: #f1efdf;
-    color: #f1efdf;
+	background-color: var(--text);
+    border-color: var(--background);
+    color: var(--background);
 }
 
 
 header, section, footer {
-    padding: 10px;
+	padding: 10px;
 }
 
 .container {
-    overflow-x: hidden;
+	overflow-x: hidden;
+}
+
+div img {
+	max-height: 100%;
 }
 
 
@@ -51,15 +62,15 @@ header {
     height: 70px;
     justify-content: right;
     align-items: center;
-    color: #141919;
+    color: var(--text);
 }
 
-.headerdiv {
+header div, header div a {
     height: 100%;
     display: flex;
     align-items: center;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 7px;
+    padding-right: 7px;
 }
 
 .homebutton {
@@ -67,12 +78,9 @@ header {
     padding: 4px;
 }
 
-div img {
-    max-height: 100%;
-}
 
 header a, footer a {
-    color: #141919;
+    color: var(--text);
 }
 
 
@@ -92,10 +100,6 @@ section {
     flex-direction: column;
     align-items: center;
     text-align: center;
-}
-
-.my-name {
-    padding-bottom: 0%;
 }
 
 .line-through {
@@ -190,19 +194,19 @@ footer {
 button {
     align-items: center;
     justify-content: center;
-    border: 5px solid #141919;
+    border: 5px solid var(--text);
     border-radius: 20px;
     
     font-size: 2em;
-    color: #141919;
-    background-color: #f1efdf;
+    color: var(--text);
+    background-color: var(--background);
     padding: 10px 20px;
     transition-duration: 0.15s;
 }
 
 button:hover {
-    background-color: #141919;
-    color: #f1efdf;
+    background-color: var(--text);
+    color: var(--background);
     cursor: pointer;
 }
 

@@ -12,33 +12,33 @@
     <link href="https://fonts.googleapis.com/css2?family=Geologica:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
     <script defer src="animateOnScroll.js"></script>
-    <script src="darkMode.js"></script>
+	<script defer src="darkMode2.js">
+		document.addEventListener("DOMContentLoaded", function() {
+			console.log("darkMode2.js loaded");
+			setMode();
+		});
+	</script>
 </head>
 
 <body>
     <header>
-        <div class="headerdiv homebutton">
-            <a href="index.html" class="headerdiv">
-                <img src="media/HomeDark.png" alt="Home">
+        <div class="homebutton">
+            <a href="index.html">
+                <img src="media/yoLogo-light.png" alt="Home">
             </a>
         </div>
-        <div class="headerdiv">
+        <div>            
             <a href="building.html">
-                contact
+                projects
             </a>
         </div>
-        <div class="headerdiv">            
-            <a href="building.html">
-                portfolio
-            </a>
-        </div>
-        <div class="headerdiv">
+        <div>
             <a href="building.html">
                 about
             </a>
         </div>
         <div>
-            <button onclick="toggleDarkMode()" style="border: none; font-size: inherit; color: #eb5149;">dark/light</button>
+            <button onclick="toggleMode()" style="border: none; font-size: inherit; color: #eb5149;">dark/light</button>
         </div>
     </header>
 
@@ -46,7 +46,7 @@
         <div>
             <h2>Hello World !</h2>
         </div>
-        <div class="my-name">
+        <div>
             <h1>I'm Marin Becker.</h1>
         </div>
         <div>
@@ -55,34 +55,16 @@
     </section>
 
     <section class="welcome">
-        <!--        
-            <button class="hire-me-button">Help me remove this red text</button>
-        -->
+               
+            <!--<button class="hire-me-button">Help me remove this red text</button>-->
+       
         <p>Welcome to my personal webpage !</p> 
     </section>
-
-    <!--SECTIONS EN FRANÇAIS
-        <section class="paragraph">
-            <div>
-                <p>Je suis Marin Becker, un passionné de technologie et de musique. Quand je ne suis pas en train de coder, vous me trouverez probablement en train de jouer de la basse et de me délecter des harmonies sombres et mélancoliques. Je suis aussi quelqu'un de très sociable, alors n'hésitez pas à me contacter pour discuter de musique ou de développement web !</p>
-            </div>
-        </section>
-        <section class="paragraph">
-            <div>
-                <p>Mon objectif professionnel est de devenir un développeur frontend et mobile. Je suis fasciné par l'aspect graphique du développement web et j'ai un penchant pour les logiciels de montage. D'ailleurs, si vous voulez que je code votre site web et que vous ayez besoin d'un relooking brutal, je suis votre homme.</p>
-            </div>
-        </section>
-        <section class="paragraph">
-            <div>
-                <p>En ce moment, je me perfectionne en Javascript et en C. J'ai l'intention de maîtriser ces langages pour créer des expériences interactives et des applications étonnantes. Si vous avez des suggestions ou des projets intéressants, n'hésitez pas à me les faire connaître !</p>
-            </div>
-        </section>
-    -->
 
     <div class="container">    
         <section class="grid-container">
             <div class="grid-logo">
-                <img src="media/wwwDark.png">
+                <img src="media/www-light.png">
             </div>
             <div class="hidden grid-text">
                 <p>
@@ -94,7 +76,7 @@
 
         <section class="grid-container">
             <div class="grid-logo-toleft">
-                <img src="media/PaletteDark.png">
+                <img src="media/Palette-light.png">
             </div>
             <div class="hidden grid-text-toleft">
                 <p>
@@ -107,7 +89,7 @@
 
         <section class="grid-container">
             <div class="grid-logo">
-                <img src="media/CurlyDark.png">
+                <img src="media/Curly-light.png">
             </div>
             <div class="hidden grid-text">
                 <p>
