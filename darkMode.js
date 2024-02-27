@@ -1,37 +1,49 @@
-function toggleDarkMode() {
-    var elements = document.querySelectorAll("body, header, div, a, button");
+let prefMode = localStorage.getItem('prefMode');
 
-    elements.forEach(function(element) 
-	{
-        element.classList.toggle("dark-mode");
-    });
+document.addEventListener("DOMContentLoaded", function() {
+	setMode();
+});
 
-    var image = document.querySelector(".headerdiv.homebutton img");
-    var currentSrc = image.getAttribute("src");
-
-    if (currentSrc === "media/yoLogoDark.png") 
+function setMode() {
+	if (prefMode === null) {
+		prefMode = 'light';
+		localStorage.setItem('prefMode', prefMode);
+	}
+	console.log(prefMode);
+	if (prefMode === 'dark')
 	{
-        image.setAttribute("src", "media/yoLogoLight.png");
-        localStorage.setItem("darkModeEnabled", "true");
-    } else 
-	{
-        image.setAttribute("src", "media/yoLogoDark.png");
-        localStorage.removeItem("darkModeEnabled");
-    }
-    
-    var sections = document.querySelectorAll("section");
-    sections.forEach(function(section) 
-	{
-        var image = section.querySelector("img");
-        if (image)
-		{
-            var currentSrc = image.getAttribute("src");
-            if (currentSrc.includes("Dark")) 
-			{
-                var newSrc = currentSrc.replace("Dark", "Light");
-                image.setAttribute("src", newSrc);
-            }
-        }
-    });
+		switchCSSMode();
+		setImagesMode(prefMode);
+		localStorage.setItem('prefMode', 'dark');
+	}
 }
 
+function switchCSSMode(){
+	const root = document.documentElement;
+	const background = getComputedStyle(root).getPropertyValue('--background');
+	const text = getComputedStyle(root).getPropertyValue('--text');
+	root.style.setProperty('--background', text);
+	root.style.setProperty('--text', background);
+}
+
+function setImagesMode(newMode){
+	let oldMode = newMode === 'dark' ? 'light' : 'dark';
+
+	const images = document.querySelectorAll('img');
+	images.forEach((image) => {
+		const src = image.getAttribute('src');
+		console.log("replacing ", oldMode, " with ", newMode, " in ", src);
+		const newSrc = src.replace(oldMode, newMode);
+		image.setAttribute('src', newSrc);
+	});
+}
+
+function switchMode() {	
+	let newMode = prefMode === 'dark' ? 'light' : 'dark';
+	setImagesMode(newMode);
+	switchCSSMode();
+	console.log("ex theme :", prefMode);
+	prefMode = newMode;
+	localStorage.setItem('prefMode', prefMode);
+	console.log("new theme :", prefMode);
+}
