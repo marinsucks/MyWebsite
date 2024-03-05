@@ -1,107 +1,116 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Welcome :)</title>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Welcome :)</title>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <link rel="stylesheet" type="text/css" href="cool_anims.css">
-    <link rel="icon" type="image/png" href="media/favicon-dark.png" sizes="590x948">
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Geologica:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" type="text/css" href="cool_anims.css">
+	<link rel="icon" type="image/png" href="media/favicon-dark.png" sizes="590x948">
+	
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Geologica:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-    <script defer src="animateOnScroll.js"></script>
+	<script defer src="animateOnScroll.js"></script>
 	<script defer src="darkMode.js"></script>
 </head>
 
 <body>
-    <header>
-        <div class="homebutton">
-            <a href="index.html" class="rotating" alt="Home">
-                <img src="media/yoLogo-dark.png" alt="Home">
-            </a>
-        </div>
-        <div>            
-            <a href="building.html">
-                projects
-            </a>
-        </div>
-        <div>
-            <a href="building.html">
-                about
-            </a>
-        </div>
-        <div>
-            <button onclick="switchMode()" style="border: none; font-size: inherit; color: #eb5149;">dark/light</button>
-        </div>
-    </header>
+	<header>
+		<div class="homediv">
+			<a href="index.html" alt="Home">
+				<img class="homebutton" src="media/yoLogo-dark.png" alt="Home">
+			</a>
+		</div>
+		<div>            
+			<a href="building.html">
+				projects
+			</a>
+		</div>
+		<div>
+			<a href="building.html">
+				about
+			</a>
+		</div>
+		<div>
+			<button onclick="switchMode()" style="border: none; font-size: inherit; color: #eb5149;">dark/light</button>
+		</div>
+	</header>
 
-    <section class="main-title">
-        <div>
-            <h2>Hello World !</h2>
-        </div>
-        <div>
-            <h1>I'm Marin Becker.</h1>
-        </div>
-        <div>
-            <h3>I'm a <span class="line-through">developer</span> <span style="color: #eb5149; font-weight: 600;">student</span>.</h3>
-        </div>
-    </section>
+	<section class="main-title">
+		<div>
+			<h2>Hello World !</h2>
+		</div>
+		<div>
+			<h1>I'm Marin Becker.</h1>
+		</div>
+		<div>
+			<h3>I'm a <span class="line-through">developer</span> <span style="color: #eb5149; font-weight: 600;">student</span>.</h3>
+		</div>
+	</section>
 
-    <section class="welcome">
-               
-            <!--<button class="hire-me-button">Help me remove this red text</button>-->
-       
-        <p>Welcome to my personal webpage !</p> 
+	<section class="welcome">
+		<p>Welcome to my personal webpage !</p> 
+	</section>
+
+	<div class="container">    
+		<section class="grid-container">
+			<div class="grid-logo">
+				<img src="media/www-light.png">
+			</div>
+			<div class="hidden grid-text">
+				<p>
+					In the world of web development, I immerse myself in crafting captivating 
+					websites that seamlessly blend aesthetics and functionality.
+				</p>        
+			</div>
 		</section>
 
-    <div class="container">    
-        <section class="grid-container">
-            <div class="grid-logo">
-                <img src="media/www-light.png">
-            </div>
-            <div class="hidden grid-text">
-                <p>
-                    In the world of web development, I immerse myself in crafting captivating 
-                    websites that seamlessly blend aesthetics and functionality.
-                </p>        
-            </div>
-        </section>
+		<section class="grid-container">
+			<div class="grid-logo-toleft">
+				<img src="media/Palette-light.png">
+			</div>
+			<div class="hidden grid-text-toleft">
+				<p>
+					My professional goal is to become a full-stack developer.
+					I'm fascinated by web visuals, and I excel in editing software. 
+					Need a brutal website makeover? I'm your guy!
+				</p>
+			</div>
+		</section>
 
-        <section class="grid-container">
-            <div class="grid-logo-toleft">
-                <img src="media/Palette-light.png">
-            </div>
-            <div class="hidden grid-text-toleft">
-                <p>
-                    My professional goal is to become a full-stack developer.
-                    I'm fascinated by web visuals, and I excel in editing software. 
-                    Need a brutal website makeover? I'm your guy!
-                </p>
-            </div>
-        </section>
+		<section class="grid-container">
+			<div class="grid-logo">
+				<img src="media/Curly-light.png">
+			</div>
+			<div class="hidden grid-text">
+				<p>
+					Currently, I'm building my skills at 42 to create interactive experiences 
+					and amazing applications. Any interesting projects? Please let me know!
+				</p>
+			</div>
+		</section>
+	</div>
 
-        <section class="grid-container">
-            <div class="grid-logo">
-                <img src="media/Curly-light.png">
-            </div>
-            <div class="hidden grid-text">
-                <p>
-                    Currently, I'm building my skills at 42 to create interactive experiences 
-                    and amazing applications. Any interesting projects? Please let me know!
-                </p>
-            </div>
-        </section>
-
-    <footer>
-        <div><a href="mailto:marin.becker@yahoo.fr" title="marin.becker@yahoo.fr">Email</a></div>
-        <div><a href="https://github.com/marinsucks" title="@marinsucks">GitHub</a></div>
-        <div><a href="https://www.instagram.com/marinsucks/" title="@marinsuckss">Insta</a></div>
-        </div>
-    </footer>
+	<footer>
+		<div class="footerdiv">
+			<a href="mailto:marin.becker@yahoo.fr" title="marin.becker@yahoo.fr">
+				Email
+			</a>
+		</div>
+		<div class="footerdiv">
+			<a href="https://github.com/marinsucks" title="@marinsucks">
+				GitHub
+			</a>
+		</div>
+		<div class="footerdiv">
+			<a href="https://www.instagram.com/marinsucks/" title="@marinsuckss">
+				Insta
+			</a>
+		</div>
+	</footer>
 </body>
 </html>

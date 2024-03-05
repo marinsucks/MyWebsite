@@ -18,27 +18,27 @@
 }
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Geologica", 'Trebuchet MS', Helvetica, sans-serif, Arial, sans-serif;
-    font-weight: 400;
-    text-decoration: none;
-    
-    /*border: solid;
-    border-width: 0.1px;*/
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: "Geologica", 'Trebuchet MS', Helvetica, sans-serif, Arial, sans-serif;
+	font-weight: 400;
+	text-decoration: none;
+
+	/*border: solid;
+	border-width: 0.1px;*/
 }
 
 body {
-    margin: 1px;
-    background-color: var(--background);
-    color: var(--text);
+	margin: 1px;
+	background-color: var(--background);
+	color: var(--text);
 }
 
 .dark-mode {
 	background-color: var(--text);
-    border-color: var(--background);
-    color: var(--background);
+	border-color: var(--background);
+	color: var(--background);
 }
 
 
@@ -58,81 +58,68 @@ div img {
 /****HEADER****/
 
 header {
-    display: flex;
-    height: 70px;
-    justify-content: right;
-    align-items: center;
-    color: var(--text);
+	display: flex;
+	height: 70px;
+	justify-content: right;
+	align-items: center;
+	color: var(--text);
 }
 
 header div, header div a {
-    height: 100%;
-    display: flex;
-    align-items: center;
-    padding-left: 7px;
-    padding-right: 7px;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	padding-left: 7px;
+	padding-right: 7px;
 }
-
-.homebutton {
-	flex-grow: 1;
-	padding: 4px;
-	transition: transform 1s;
-}
-
 
 header a, footer a {
-    color: var(--text);
+	color: var(--text);
 }
+
+.homediv {
+	flex-grow: 1;
+	padding: 4px;
+}
+
+.homebutton { transition: transform 0.5s; }
+.homebutton:hover { transform: scale(1.2); }
 
 
 
 /**** SECTIONS ****/
 
 section {
-    display: grid;
-    place-items: center;
-    align-items: center;
-    min-height: 30vh;
+	display: grid;
+	place-items: center;
+	align-items: center;
 }
-
 
 .grid-container {
 	display: grid;
-    grid-template-columns: repeat(20, minmax(0, 1fr));
-    grid-template-rows: repeat(10, minmax(0, 1fr));
-    height: 50vh; 
-    width: 100vw; 
+	grid-template-columns: repeat(20, minmax(0, 1fr));
+	grid-template-rows: repeat(10, minmax(0, 1fr));
+	height: 50vh; 
+	width: 100vw; 
 }
 
-.grid-logo {
-	width: 100%;
-    height: 100%;
-    grid-area: 1 / 15 / 8 / 19;       
-    z-index: 0;
-}
+.grid-logo { grid-area: 1 / 15 / 8 / 19; }
 
-.grid-logo-toleft {
-	width: 100%;
-    height: 100%;
-    grid-area: 1 / 4 / 8 / 8;       
-    z-index: 0;
-}
+.grid-logo-toleft { grid-area: 1 / 4 / 8 / 8; }
 
 .grid-logo img, .grid-logo-toleft img {
 	width: 100%;
-    height: 100%;
-    object-fit: scale-down;
-    opacity: 0.25;
+	opacity: 0.25;
 }
 
 .grid-text {
 	grid-area: 4 / 5 / 10 / 15;
-    z-index: 1;
+	z-index: 1;
 }
 
 .grid-text-toleft {
 	grid-area: 4 / 8 / 10 / 19;
-    z-index: 1;
+	z-index: 1;
 }
 
 	/**** SECTIONS - TITLE ****/
@@ -158,9 +145,9 @@ section {
 
 footer {
 	display: flex;
-    height: 150px;
-    justify-content: space-evenly;
-    align-items: center;
+	height: 150px;
+	justify-content: space-evenly;
+	align-items: center;
 }
 
 
@@ -186,21 +173,21 @@ footer {
 
 button {
 	align-items: center;
-    justify-content: center;
-    border: 5px solid var(--text);
-    border-radius: 20px;
-    
-    font-size: 2em;
-    color: var(--text);
-    background-color: var(--background);
-    padding: 10px 20px;
-    transition-duration: 0.15s;
+	justify-content: center;
+	border: 5px solid var(--text);
+	border-radius: 20px;
+
+	font-size: 2em;
+	color: var(--text);
+	background-color: var(--background);
+	padding: 10px 20px;
+	transition-duration: 0.15s;
 }
 
 button:hover {
 	background-color: var(--text);
-    color: var(--background);
-    cursor: pointer;
+	color: var(--background);
+	cursor: pointer;
 }
 
 button:active {
@@ -211,27 +198,28 @@ button:active {
 /****TEXT****/
 
 h1 {
+	text-align: center;
 	font-size: 4rem;
-    font-weight: 800;
+	font-weight: 800;
 }
 
 h2 {
 	font-size: 3rem;
-    font-weight: 700;
+	font-weight: 700;
 }
 
 h3 {
 	font-size: 2rem ;
-    font-weight: 700;
+	font-weight: 700;
 }
 
 h4 {
 	font-size: 1.5rem ;
-    font-weight: 700;
+	font-weight: 700;
 }
 
 p {
 	font-size: 1.25rem;
-    font-weight: 400;
-    margin: 10px;
+	font-weight: 400;
+	margin: 10px;
 }

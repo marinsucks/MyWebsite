@@ -5,3 +5,6 @@ TODO:
 - create missing pages: about, porftolio etc.
 - animate missing pages : porftolio for example.
 - handle darkmode better: cache storage, button behaviours, cleaner css.
+
+
+Une serie présentant les projets sous forme de menu déroulant : imdb

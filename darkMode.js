@@ -10,10 +10,10 @@ function setMode() {
 		localStorage.setItem('prefMode', prefMode);
 	}
 	console.log(prefMode);
+	setImagesMode(prefMode);
 	if (prefMode === 'dark')
 	{
 		switchCSSMode();
-		setImagesMode(prefMode);
 		localStorage.setItem('prefMode', 'dark');
 	}
 }

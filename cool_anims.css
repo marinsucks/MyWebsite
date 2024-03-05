@@ -1,50 +1,69 @@
-/********* ROTATION *********/
+/******** ROTATE ********/
 
-.rotating {
+.rotate {
 	animation: rotate 3s linear infinite;
 	animation-play-state: paused;
 }
-
-.rotating:hover {
-	animation-play-state: running;
-}
+.rotate:hover { animation-play-state: running; }
 
 @keyframes rotate {
+	0% { transform: rotate(0deg); }
+	100% { transform: rotate(360deg); }
+}
+
+/********* PULSE *********/
+
+.pulse { animation: pulse 1s ease-in-out infinite; }
+
+@keyframes pulse {
+	0%, 100% { transform: scale(1); }
+	50% { transform: scale(1.2); }
+}
+
+/********* SLIDE-IN *********/
+
+.slide-in {
+	animation: slide-in 1s ease-in-out;
+}
+
+@keyframes slide-in {
 	0% {
-		transform: rotate(0deg);
+		transform: translateX(-100%);
+		opacity: 0;
 	}
 	100% {
-		transform: rotate(360deg);
+		transform: translateX(0);
+		opacity: 1;
 	}
 }
+
 
 
 
 /********* ANIMATE ON SCROLL *********/
 .hidden {
-    opacity: 0;
-    filter: blur(5px);
-    transform: translateX(-30%);    
-    transition: all 1s;
+	opacity: 0;
+	filter: blur(5px);
+	transform: translateX(-30%);    
+	transition: all 1s;
 }
 
 .hidden.alternate {
-    transform: translateX(30%); 
+	transform: translateX(30%); 
 }
 
 @media(prefer-reduced-motion) {
-    .hidden {
-        transition: none;
-    }
+	.hidden {
+		transition: none;
+	}
 }
 
 .show {
-    opacity: 1;
-    filter: blur(0);
-    transform: translateX(0);
+	opacity: 1;
+	filter: blur(0);
+	transform: translateX(0);
 }
 
 .show-right {
-    transform: translateX(0) !important; 
+	transform: translateX(0) !important; 
 }
-
