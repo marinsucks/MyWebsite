@@ -22,8 +22,22 @@ function switchCSSMode(){
 	const root = document.documentElement;
 	const background = getComputedStyle(root).getPropertyValue('--background');
 	const text = getComputedStyle(root).getPropertyValue('--text');
+
+	const buttons = document.querySelectorAll('button');
+	let transitionValue;
+	buttons.forEach((button) => {
+		transitionValue = getComputedStyle(button).getPropertyValue('transition');
+		button.style.setProperty('transition', 'none');
+	});
+
 	root.style.setProperty('--background', text);
 	root.style.setProperty('--text', background);
+
+	buttons.forEach((button) => {
+		setTimeout(() => {
+			button.style.setProperty('transition', transitionValue);
+		}, 0);
+	});
 }
 
 function setImagesMode(newMode){
@@ -38,7 +52,7 @@ function setImagesMode(newMode){
 	});
 }
 
-function switchMode() {	
+function switchMode() {
 	let newMode = prefMode === 'dark' ? 'light' : 'dark';
 	setImagesMode(newMode);
 	switchCSSMode();

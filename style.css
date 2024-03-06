@@ -7,8 +7,8 @@
     Accent: #9ca1c9 lightened #CACEE2
 
     https://realtimecolors.com/?colors=17181a-f1efdf-a6deca-f1c8c6-9ca1c9
-
 */
+
 :root {
 	--background: #f1efdf;
 	--text: #17181a;
@@ -82,8 +82,8 @@ header a, footer a {
 	padding: 4px;
 }
 
-.homebutton { transition: transform 0.5s; }
-.homebutton:hover { transform: scale(1.2); }
+.homebutton { transition: transform 0.3s; }
+.homebutton:hover { transform: scale(1.3); }
 
 
 
@@ -93,6 +93,11 @@ section {
 	display: grid;
 	place-items: center;
 	align-items: center;
+}
+
+.welcome {
+	padding-top: 5vh;
+	padding-bottom: 20vh;
 }
 
 .grid-container {
@@ -121,6 +126,8 @@ section {
 	grid-area: 4 / 8 / 10 / 19;
 	z-index: 1;
 }
+
+.grid-text p, .grid-text-toleft p { text-align: left; }
 
 	/**** SECTIONS - TITLE ****/
 
@@ -176,13 +183,12 @@ button {
 	justify-content: center;
 	border: 5px solid var(--text);
 	border-radius: 20px;
-
-	font-size: 2em;
+	font-size: 2em;  
 	color: var(--text);
 	background-color: var(--background);
 	padding: 10px 20px;
-	transition-duration: 0.15s;
-}
+	transition: 0.20s;
+} 
 
 button:hover {
 	background-color: var(--text);
@@ -190,9 +196,7 @@ button:hover {
 	cursor: pointer;
 }
 
-button:active {
-	transform: translateY(3px);
-}
+button:active { transform: translateY(3px); }
 
 
 /****TEXT****/
@@ -221,5 +225,6 @@ h4 {
 p {
 	font-size: 1.25rem;
 	font-weight: 400;
+	text-align: center;
 	margin: 10px;
 }
