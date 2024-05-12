@@ -67,3 +67,39 @@
 .show-right {
 	transform: translateX(0) !important; 
 }
+
+/********* SNOW *********/
+
+#snow{
+	background-image: url('media/snow/snowtile1.1.png'), url('media/snow/snowtile0.1.png'), url('media/snow/snowtile2.1.png');
+	left: 0;
+	position: absolute;
+	top: 0;
+	width: 100%;
+	z-index:1;
+	-webkit-animation: snow 1000s linear infinite;
+	-moz-animation: snow 1000s linear infinite;
+	-ms-animation: snow 1000s linear infinite;
+	animation: snow 1000s linear infinite;
+	-webkit-transform: translate3d(0,0,0);
+	-moz-transform: translate3d(0,0,0);
+	-ms-transform: translate3d(0,0,0);
+	-o-transform: translate3d(0,0,0);
+	transform: translate3d(0,0,0);
+}
+@keyframes snow {
+0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
+100% {background-position: 50000px 50000px, 10000px 20000px, -10000px 15000px;}          
+}
+@-moz-keyframes snow {
+0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
+100% {background-position: 50000px 50000px, 10000px 20000px, -10000px 15000px;}          
+}
+@-webkit-keyframes snow {
+0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
+100% {background-position: 50000px 50000px, 10000px 20000px, -10000px 15000px;}          
+}
+@-ms-keyframes snow {
+0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
+100% {background-position: 50000px 50000px, 10000px 20000px, -10000px 15000px;}          
+}  

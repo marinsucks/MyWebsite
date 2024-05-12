@@ -10,10 +10,10 @@
 */
 
 :root {
-	--background: #f1efdf;
-	--text: #17181a;
+	--text: #f1efdf;
+	--background: #17181a;
 	--primary: #a6deca;
-	--secondary: #f1c8c6;
+	--secondary: #eb5149; /*#f1c8c6;*/
 	--accent: #9ca1c9;
 }
 
@@ -29,18 +29,16 @@
 	border-width: 0.1px;*/
 }
 
-body {
-	margin: 1px;
+html {
 	background-color: var(--background);
+}
+
+body, html {
+	height: 100%;
+	width: 100%;
+	padding: 1px;
 	color: var(--text);
 }
-
-.dark-mode {
-	background-color: var(--text);
-	border-color: var(--background);
-	color: var(--background);
-}
-
 
 header, section, footer {
 	padding: 10px;
@@ -51,7 +49,16 @@ header, section, footer {
 }
 
 div img {
-	max-height: 100%;
+	max-height: 100%; /*Example: homebutton*/
+}
+
+a {
+	text-decoration: none;
+	color: var(--text);
+}
+
+.inline-link {
+	font-weight: bold;
 }
 
 
@@ -90,44 +97,63 @@ header a, footer a {
 /**** SECTIONS ****/
 
 section {
-	display: grid;
+	display: flex;
 	place-items: center;
 	align-items: center;
+	justify-content: center;
 }
 
-.welcome {
+@media (max-width: 1200px) {
+	section.text-with-img {
+		flex-wrap: wrap;
+	}
+}
+
+.welcome { /* REMOVE THIS CLASS WHEN FINISHED */
 	padding-top: 5vh;
-	padding-bottom: 20vh;
+	padding-bottom: 10vh; 
+	text-align: center;
 }
 
-.grid-container {
-	display: grid;
-	grid-template-columns: repeat(20, minmax(0, 1fr));
-	grid-template-rows: repeat(10, minmax(0, 1fr));
-	height: 50vh; 
-	width: 100vw; 
+.text-box p, .text-box h1, .text-box h2, .text-box h3, .text-box h4 {
+	text-align: left;
+	padding: 10px;
 }
 
-.grid-logo { grid-area: 1 / 15 / 8 / 19; }
-
-.grid-logo-toleft { grid-area: 1 / 4 / 8 / 8; }
-
-.grid-logo img, .grid-logo-toleft img {
-	width: 100%;
-	opacity: 0.25;
+.text-box div p {
+	margin-left: 15px;
 }
 
-.grid-text {
-	grid-area: 4 / 5 / 10 / 15;
-	z-index: 1;
+.centered, .centered p, .centered h1, .centered h2, .centered h3, .centered h4{
+	text-align: center;
+	align-items: center;
+	justify-content: center;
 }
 
-.grid-text-toleft {
-	grid-area: 4 / 8 / 10 / 19;
-	z-index: 1;
-}
+	/**** SECTIONS - GRIDS ****/
 
-.grid-text p, .grid-text-toleft p { text-align: left; }
+	.grid-container {
+		display: grid;
+		grid-template-columns: repeat(20, minmax(0, 1fr));
+		grid-template-rows: repeat(10, minmax(0, 1fr));
+		/*height: 50vh;*/
+		width: 100vw; 
+	}
+	.grid-logo { grid-area: 1 / 15 / 8 / 19; }
+	.grid-logo-toleft { grid-area: 1 / 4 / 8 / 8; }
+	.grid-logo img, .grid-logo-toleft img {
+		width: 100%;
+		opacity: 0.25;
+	}
+	.grid-text {
+		grid-area: 4 / 5 / 10 / 15;
+		z-index: 1;
+	}
+	.grid-text-toleft {
+		grid-area: 4 / 8 / 10 / 19;
+		z-index: 1;
+	}
+	.grid-text p, .grid-text-toleft p { text-align: left; }
 
 	/**** SECTIONS - TITLE ****/
 
@@ -139,9 +165,8 @@ section {
 		text-align: center;
 	}
 
-
 	.line-through {
-		text-decoration:line-through; 
+		text-decoration: line-through; 
 		text-decoration-thickness: calc(2.5px);
 		text-decoration-color: #eb5149;
 		font-weight: 600;
@@ -158,24 +183,6 @@ footer {
 }
 
 
-/**** SMARTPHONE ****/
-
-@media screen and (max-width: 594px) {
-	.main-title {
-		padding-top: 5vh;
-		padding-bottom: 7vh;
-	}
-	
-	.main-title div h1 {
-		margin: 5%;
-	}
-	
-	h1 {
-		line-height: 0.9;
-	}
-}
-
-
 /****BUTTON****/
 
 button {
@@ -185,10 +192,10 @@ button {
 	border-radius: 20px;
 	font-size: 2em;  
 	color: var(--text);
-	background-color: var(--background);
+	background-color: transparent;
 	padding: 10px 20px;
 	transition: 0.20s;
-} 
+}
 
 button:hover {
 	background-color: var(--text);
@@ -203,28 +210,35 @@ button:active { transform: translateY(3px); }
 
 h1 {
 	text-align: center;
-	font-size: 4rem;
+	font-size: 64px;
 	font-weight: 800;
 }
 
 h2 {
-	font-size: 3rem;
+	font-size: 48px;
 	font-weight: 700;
 }
 
 h3 {
-	font-size: 2rem ;
+	font-size: 32px ;
 	font-weight: 700;
 }
 
 h4 {
-	font-size: 1.5rem ;
+	font-size: 24px ;
 	font-weight: 700;
 }
 
 p {
-	font-size: 1.25rem;
+	font-size: 20px;
 	font-weight: 400;
 	text-align: center;
-	margin: 10px;
+}
+
+.text-with-img img {
+	max-height: 500px;
+}
+
+.text-with-img div {
+	margin: 5vh;
 }

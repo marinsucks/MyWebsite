@@ -1,10 +1,5 @@
-TODO:
+Idees:
 
-- A SCHEME FOR THE WHOLE WEBSITE BEFORE ANYTHING ELSE
-
-- create missing pages: about, porftolio etc.
-- animate missing pages : porftolio for example.
-- handle darkmode better: cache storage, button behaviours, cleaner css.
-
-
-Une serie présentant les projets sous forme de menu déroulant : imdb
+Une serie présentant les projets sous forme de menu déroulant : imdb.
+On repeat spotify.
+nuage de logos comme corndog.io
