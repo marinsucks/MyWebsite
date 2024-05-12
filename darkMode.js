@@ -1,42 +1,40 @@
-function toggleDarkMode() {
-    var elements = document.querySelectorAll("body, header, div, a, button");
+function switchCSSMode(){
+	const root = document.documentElement;
+	const background = getComputedStyle(root).getPropertyValue('--background');
+	const text = getComputedStyle(root).getPropertyValue('--text');
 
-    elements.forEach(function(element) {
-        element.classList.toggle("dark-mode");
-    });
+	const buttons = document.querySelectorAll('button');
+	let transitionValue;
+	buttons.forEach((button) => {
+		transitionValue = getComputedStyle(button).getPropertyValue('transition');
+		button.style.setProperty('transition', 'none');
+	});
 
-    var image = document.querySelector(".headerdiv.homebutton img");
-    var currentSrc = image.getAttribute("src");
+	root.style.setProperty('--background', text);
+	root.style.setProperty('--text', background);
 
-    if (currentSrc === "media/HomeDark.png") {
-        image.setAttribute("src", "media/HomeLight.png");
-        //localStorage.setItem("darkModeEnabled", "true");
-    } else {
-        image.setAttribute("src", "media/HomeDark.png");
-        //localStorage.removeItem("darkModeEnabled");
-    }
-    
-    var sections = document.querySelectorAll("section");
-    sections.forEach(function(section) {
-        var image = section.querySelector("img");
-        if (image) {
-            var currentSrc = image.getAttribute("src");
-            if (currentSrc.includes("Dark")) {
-                var newSrc = currentSrc.replace("Dark", "Light");
-                image.setAttribute("src", newSrc);
-            }
-        }
-    });
+	buttons.forEach((button) => {
+		setTimeout(() => {
+			button.style.setProperty('transition', transitionValue);
+		}, 0);
+	});
 }
 
-/*DARK MODE
+function setImagesMode(newMode){
+	let oldMode = newMode === 'dark' ? 'light' : 'dark';
 
-function applyDarkModePreference() {
-    var darkModeEnabled = localStorage.getItem("darkModeEnabled");
-    
-    if (darkModeEnabled === "true") {
-        toggleDarkMode();
-    }
+	const images = document.querySelectorAll('img');
+	images.forEach((image) => {
+		const src = image.getAttribute('src');
+		const newSrc = src.replace(oldMode, newMode);
+		image.setAttribute('src', newSrc);
+	});
 }
 
-applyDarkModePreference();*/
+function switchMode() {
+	let newMode = colorMode === 'dark' ? 'light' : 'dark';
+	setImagesMode(newMode);
+	switchCSSMode();
+	colorMode = newMode;
+	localStorage.setItem('colorMode', colorMode);
+}
