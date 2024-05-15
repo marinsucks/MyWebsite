@@ -1,5 +1,9 @@
 RewriteEngine On
 
+# Redirect index.html to /
+RewriteCond %{REQUEST_URI} index\.html
+RewriteRule ^(.*)index\.html$ /$1 [R=301,L]
+
 RewriteCond %{THE_REQUEST} /([^.]+)\.html [NC]
 RewriteRule ^ /%1 [NC,L,R]
 
