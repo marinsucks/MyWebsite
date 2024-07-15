@@ -18,8 +18,9 @@ window.addEventListener('keydown', function(event) {
 });
 
 // Écouteur d'événements pour les clics sur autre chose qu'un lien sur un smartphone
-window.addEventListener('touchend', function(event) {
-  if (event.target.tagName !== 'A' && event.target.tagName !== 'BUTTON') {
-    toggleSnow();
-  }
-});
+// TODO: Handle touch events on iphone when NOT scrolling
+//window.addEventListener('touchend', function(event) {
+//  if (event.target.tagName !== 'A' && event.target.tagName !== 'BUTTON') {
+//    toggleSnow();
+//  }
+//});
