@@ -2,6 +2,8 @@ function switchCSSMode(){
 	const root = document.documentElement;
 	const background = getComputedStyle(root).getPropertyValue('--background');
 	const text = getComputedStyle(root).getPropertyValue('--text');
+	const background_dimmed = getComputedStyle(root).getPropertyValue('--background-dimmed');
+	const text_dimmed = getComputedStyle(root).getPropertyValue('--text-dimmed');
 
 	const buttons = document.querySelectorAll('button');
 	let transitionValue;
@@ -11,7 +13,9 @@ function switchCSSMode(){
 	});
 
 	root.style.setProperty('--background', text);
+	root.style.setProperty('--background-dimmed', text_dimmed);
 	root.style.setProperty('--text', background);
+	root.style.setProperty('--text-dimmed', background_dimmed);
 
 	buttons.forEach((button) => {
 		setTimeout(() => {
