@@ -8,37 +8,50 @@ $(document).ready(function() {
 
 		let delay = 0;
 
-		elements.forEach((el) => {
-			if (el.nodeType === Node.TEXT_NODE) {
+		elements.forEach((el) => 
+		{
+			if (el.nodeType === Node.TEXT_NODE) 
+			{
 				// For text, display each letter with a delay
-				[...el.textContent].forEach((char) => {
-					setTimeout(() => {
+				[...el.textContent].forEach((char) => 
+				{
+					setTimeout(() => 
+					{
 						codeElement.append(document.createTextNode(char));
 					}, delay);
 					delay += 30; // Increment the delay for the next letter
 				});
-			} else if (el.tagName === 'SPAN') {
+			} 
+			else if (el.tagName === 'SPAN') 
+			{
 				// For <span>, display it directly without delay
 				const newSpan = document.createElement('span');
 				newSpan.innerHTML = el.innerHTML;
 				newSpan.className = el.className; // Add the class of the original span
-				setTimeout(() => {
+				setTimeout(() => 
+				{
 					codeElement.appendChild(newSpan);
 				}, delay);
-			} else if (el.tagName === 'BR') {
+			} 
+			else if (el.tagName === 'BR') 
+			{
 				// For <br>, insert it directly
-				setTimeout(() => {
+				setTimeout(() => 
+				{
 					codeElement.appendChild(document.createElement('br'));
 				}, delay);
 			}
 		});
-		setTimeout(() => {
+	
+		setTimeout(() => 
+		{
 			const cursorElement = document.createElement('span');
 			cursorElement.className = 'cursor';
 			cursorElement.textContent = '█';
 			codeElement.appendChild(cursorElement);
 
-			setInterval(() => {
+			setInterval(() => 
+			{
 				cursorElement.style.visibility = cursorElement.style.visibility === 'hidden' ? 'visible' : 'hidden';
 			}, 500);
 		}, delay);

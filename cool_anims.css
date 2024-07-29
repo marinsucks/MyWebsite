@@ -78,6 +78,21 @@
 }
 
 
+
+/********* COLOR PULSE *********/
+
+.color-pulse:hover {
+	animation: color-pulse 1.5s ease-in-out infinite;
+	cursor: help;
+}
+
+@keyframes color-pulse {
+	0% { color: inherit; }
+	60% { color: #eb5149; }
+	100% { color: inherit; }	
+}
+
+
 /********* ANIMATE ON SCROLL *********/
 .hidden {
 	opacity: 0;

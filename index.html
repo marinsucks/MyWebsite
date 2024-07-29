@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" id="snow">
 <head >
-	<title>Welcome :)</title>
+	<title>Marin Becker</title>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<link rel="stylesheet" type="text/css" href="phone.css">
+	<link rel="stylesheet" type="text/css" href="cards.css">
 	<link rel="stylesheet" type="text/css" href="cool_anims.css">
 	<link rel="icon" type="image/png" href="media/favicon-dark.png" sizes="590x948">
 	
@@ -23,10 +24,11 @@
 		});
 	</script>
 
-	<script defer src="animateOnScroll.js"></script>
-	<script src="darkMode.js"></script>
-	<script src="snowAnim.js"></script>
-	<script src="setPreferences.js"></script>
+	<script type="text/javascript"  defer src="animateOnScroll.js"></script>
+	<script type="text/javascript"  src="darkMode.js"></script>
+	<script type="text/javascript"  src="snowAnim.js"></script>
+	<script type="text/javascript"  src="setPreferences.js"></script>
+	<script type="text/javascript"  src="revealAnim.js"></script>
 
 </head>
 
@@ -40,59 +42,97 @@
 			<h2>Hello World !</h2>
 		</div>
 		<div>
-			<h1>I'm Marin Becker.</h1>
+			<h1>I'm <span class="color-pulse">Marin Becker</span>.</h1>
 		</div>
 		<div>
 			<h3>I'm a <span class="line-through">developer</span> <span style="color: #eb5149; font-weight: 600;">student</span>.</h3>
 		</div>
+		<!--<div class="main-message text-box centered">
+			<p>Welcome to my personal webpage!</p> 
+		</div>-->
 	</section>
 
-	<section class="welcome">
-		<div class="text-box centered">
-			<p>Welcome to my personal webpage!</p>
-			<p>This website is not finished yet 😳</p>
-			<p>If you want to see the final version, please come back in a few weeks!</p> 
+	<!--<section>
+		<div>
+			<button>
+				✨ Checkout my latest project! ✨
+			</button>
 		</div>
+	</section>-->
+
+	<section>
+		<div class="card-container">
+			<a class="cards card1" href="https://marinbecker.me">
+				<div class="card-header">
+					<div class="card-tag c-tag">
+						<h3>C</h3>
+					</div>
+					<div class="card-title">
+						<h4>so_long</p>
+					</div>
+				</div>
+				<div class="card-anim">
+					<img src="media/so_long.gif" alt="">
+				</div>
+			</a>
+
+			<a class="cards card2" href="https://marinbecker.me">
+				<div class="card-header">
+					<div class="card-tag c-tag">
+						<h3>C</h3>
+					</div>
+					<div class="card-title">
+						<h4>minishell</p>
+					</div>
+				</div>
+				<div class="card-anim">
+					<code class="reveal">
+						<span class="msh-prompt">msh> </span> echo Hello "$USER"!
+						<br>
+						Hello marin!
+						<br>
+						<span class="msh-prompt">msh> </span> cat secret_diary.txt | grep Xavier
+						<br>
+						Last night I dreamt of Xavier again...
+						<br>
+						<span class="msh-prompt">msh> </span>
+					</code>
+				</div>
+			</a>
+
+			<a class="cards card3" href="https://marinbecker.me">
+				<div class="card-header">
+					<div class="card-tag web-tag">
+						<h3>Web</h3>
+					</div>
+					<div class="card-title">
+						<h4>Transcendance</p>
+						</div>
+					</div>
+					<div class="card-anim">
+						<div>
+							<p class="pulse">🚧 Work In Progress 🚧</p>
+						</div>
+					</div>
+				</a>
+
+				<a class="cards card4" href="https://marinbecker.me">
+					<div class="card-header">
+						<div class="card-tag it-tag">
+							<h3>Dev Ops</h3>
+						</div>
+						<div class="card-title">
+							<h4>Inception</p>
+						</div>
+					</div>
+					<div class="card-anim">
+						<div>
+							<p class="pulse">🚧 Work In Progress 🚧</p>
+						</div>
+					</div>
+				</a>
+			</div>
 	</section>
-<!--
-	<div class="container">    
-		<section class="grid-container">
-			<div class="grid-logo">
-				<img src="media/www-dark.png">
-			</div>
-			<div class="hidden grid-text">
-				<p>
-					In the world of web development, I immerse myself in crafting captivating 
-					websites that seamlessly blend aesthetics and functionality.
-				</p>        
-			</div>
-		</section>
-
-		<section class="grid-container">
-			<div class="grid-logo-toleft">
-				<img src="media/Palette-dark.png">
-			</div>
-			<div class="hidden grid-text-toleft">
-				<p>
-					My professional goal is to become a full-stack developer.
-					I'm fascinated by web visuals, and I excel in editing software. 
-					Need a brutal website makeover? I'm your guy!
-				</p>
-			</div>
-		</section>
-
-		<section class="grid-container">
-			<div class="grid-logo">
-				<img src="media/Curly-dark.png">
-			</div>
-			<div class="hidden grid-text">
-				<p>
-					Currently, I'm building my skills at 42 to create interactive experiences 
-					and amazing applications. Any interesting projects? Please let me know!
-				</p>
-			</div>
-		</section>
-	</div>-->
 
 	<div id="footer"></div>
 
