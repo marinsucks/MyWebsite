@@ -2,31 +2,33 @@
 
 @media screen and (max-width: 600px) {
 	.main-title {
-		padding-top: 5vh;
-		padding-bottom: 7vh;
+		margin-top: 5vh;
+		margin-bottom: 7vh;
 	}
 	
-	.main-title div h1 { margin: 5%; }
+	.main-title div h1 { 
+		margin: 5%; 
+	}
 	
 	h1 { 
 		line-height: 0.9; 
-		font-size: 57.6px; /* 64px * 0.9 */
+		font-size: 3em; /* 64px * 0.8 */
 	}
 	
 	h2 {
-		font-size: 43.2px; /* 48px * 0.9 */
+		font-size: 2em; /* 48px * 0.8 */
 	}
 	
 	h3 {
-		font-size: 28.8px ; /* 32px * 0.9 */
+		font-size: 1.6em ; /* 32px * 0.8 */
 	}
 
 	h4 {
-		font-size: 21.6px ; /* 24px * 0.9 */
+		font-size: 1.4em ; /* 24px * 0.8 */
 	}
 
 	p {
-		font-size: 18px; /* 20px * 0.9 */
+		font-size: 1.2em; /* 20px * 0.8 */
 	}
 
 	footer {
