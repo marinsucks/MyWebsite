@@ -83,7 +83,7 @@
 
 .color-pulse:hover {
 	animation: color-pulse 1.5s ease-in-out infinite;
-	cursor: help;
+	cursor: url('media/favicon_32x32-dark.png'), auto;
 }
 
 @keyframes color-pulse {

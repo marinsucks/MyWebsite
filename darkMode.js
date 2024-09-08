@@ -30,8 +30,10 @@ function setImagesMode(newMode){
 	const images = document.querySelectorAll('img');
 	images.forEach((image) => {
 		const src = image.getAttribute('src');
-		const newSrc = src.replace(oldMode, newMode);
-		image.setAttribute('src', newSrc);
+		if (src.includes('-light') || src.includes('-dark')) {
+			const newSrc = src.replace(oldMode, newMode);
+			image.setAttribute('src', newSrc);
+		}
 	});
 }
 
