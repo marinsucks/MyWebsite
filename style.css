@@ -17,6 +17,9 @@
 	--primary: #a6deca;
 	--accent: #eb5149; /*#f1c8c6;*/
 	--secondary: #9ca1c9;
+
+	--header-height: 4.5em;
+	--footer-height: 9.5em;
 }
 
 * {
@@ -68,7 +71,7 @@ a img {
 
 header {
 	display: flex;
-	height: 4.5em;
+	height: var(--header-height);
 	justify-content: right;
 	align-items: center;
 	color: var(--text);
@@ -130,7 +133,12 @@ header a, footer a {
 }
 
 
-/**** SECTIONS ****/
+/**** MAIN ****/
+
+#main {
+	min-height: calc(100% - var(--header-height) - var(--footer-height) - 5vh );
+}
+
 
 section {
 	display: flex;
@@ -204,7 +212,7 @@ section {
 
 footer {
 	display: flex;
-	height: 9.5em;
+	height: var(--footer-height);
 	margin-top: 5vh;
 	justify-content: space-evenly;
 	align-items: center;

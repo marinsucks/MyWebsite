@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" id="snow">
-<head>
-	<title>🚧 WIP 🚧</title>
+<head >
+	<title>Marin Becker</title>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,6 +13,7 @@
 
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<link rel="stylesheet" type="text/css" href="phone.css">
+	<link rel="stylesheet" type="text/css" href="projects.css">
 	<link rel="stylesheet" type="text/css" href="cool_anims.css">
 
 	<link rel="icon" type="image/png" href="media/favicon_rc-dark.png" sizes="64x64">
@@ -29,17 +30,11 @@
 		});
 	</script>
 
-	<script defer src="animateOnScroll.js"></script>
-	<script src="darkMode.js"></script>
-	<script src="snowAnim.js"></script>
-	<script src="setPreferences.js"></script>
-
-	<style>
-		.project_button {
-			font-size: 2em;
-			width: 40%;
-		}
-	</style>
+	<script type="text/javascript"  defer src="animateOnScroll.js"></script>
+	<script type="text/javascript"  src="darkMode.js"></script>
+	<script type="text/javascript"  src="snowAnim.js"></script>
+	<script type="text/javascript"  src="setPreferences.js"></script>
+	<script type="text/javascript"  src="revealAnim.js"></script>
 
 </head>
 
@@ -48,35 +43,23 @@
 	<!--<?php include 'header.html'; ?>-->
 	<div id="header"></div>
 
-	<section class="main-title">
-		<h2>Work in progress!</h2>
-	</section>
-	<section>
-		<div class="text-box centered" style="width: 75%; margin-bottom: 5%">
-			<p>🚧 This page is still under construction... 🚧</p>
-			<p>Don't worry, you don't need to stay here waiting for me to finish tinkering.</p>
-			<p>You can take this opportunity to step outside, explore all the wonders that this world has to offer, and realize that life is too short to waste your time on the Internet!</p>
+	<div id="main">
+		<div class="main-title">
+			<h1>My Projects</h1>
 		</div>
-	</section>
+		
+		<div class="projects-tag">
+			<button>C</button>
+			<button>IT</button>
+			<button>Web</button>
+		</div>
 
-	<section>	
-		<div style="height: 30px;"></div>
+		<div class="project">
 
-		<button onclick="window.location.href='/'" class="project_button">
-			Home
-		</button> 
-	</section>
-
-	<div style="height: 1000px;"></div>
-
-	<section>
-			<p>Still here ?! Anyways it's getting late...</p>
-	</section>
-	
-	<section>
-		<img src="media/getting_late.jpeg" style="width: 60%; max-width: 300px;" alt="cool meme"></img>
-	</section>
+		</div>
+	</div>
 
 	<div id="footer"></div>
+
 </body>
 </html>
