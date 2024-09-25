@@ -13,6 +13,7 @@
 
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<link rel="stylesheet" type="text/css" href="phone.css">
+	<link rel="stylesheet" type="text/css" href="cards.css">
 	<link rel="stylesheet" type="text/css" href="projects.css">
 	<link rel="stylesheet" type="text/css" href="cool_anims.css">
 
@@ -35,7 +36,7 @@
 	<script type="text/javascript"  src="snowAnim.js"></script>
 	<script type="text/javascript"  src="setPreferences.js"></script>
 	<script type="text/javascript"  src="revealAnim.js"></script>
-
+	<script type="text/javascript"  src="toggleTags.js"></script>
 </head>
 
 <body>
@@ -47,12 +48,36 @@
 		<div class="main-title">
 			<h1>My Projects</h1>
 		</div>
-		
-		<div class="projects-tag">
-			<button>C</button>
-			<button>IT</button>
-			<button>Web</button>
-		</div>
+
+		<section>
+			<div class="projects-tag">
+				<button onclick="toggleProject('c')" class="c-button">C</button>
+				<button onclick="toggleProject('it')" class="it-button">IT</button>
+				<button onclick="toggleProject('web')" class="web-button">Web</button>
+
+			</div>
+		</section>
+
+		<section>
+			<div class="projects-container">
+				<div class="c-project">
+					<div class="project-title">
+						<h2>C project</h2>
+					</div>
+				</div>
+				<div class="it-project">
+					<div class="project-title">
+						<h2>IT project</h2>
+					</div>
+				</div>
+				<div class="web-project">
+					<div class="project-title">
+						<h2>Web project</h2>
+					</div>
+				</div>
+			</div>
+			
+		</section>
 
 		<div class="project">
 

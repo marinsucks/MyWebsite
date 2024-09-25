@@ -18,6 +18,10 @@
 	--accent: #eb5149; /*#f1c8c6;*/
 	--secondary: #9ca1c9;
 
+	--c-tag: #6794c3;
+	--it-tag: #599267;
+	--web-tag: #e6a91c;
+
 	--header-height: 4.5em;
 	--footer-height: 9.5em;
 }
@@ -160,6 +164,7 @@ section {
 	text-align: center;
 	align-items: center;
 	justify-content: center;
+	width: 100%;
 }
 
 	/**** SECTIONS - GRIDS ****/
@@ -242,7 +247,7 @@ button {
 	align-items: center;
 	justify-content: center;
 	border: 4px solid var(--text);
-	border-radius: 20px;
+	border-radius: 25px;
 	/*font-size: 2em; */
 	color: var(--text);
 	background-color: var(--background-dimmed);
