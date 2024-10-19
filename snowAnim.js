@@ -1,24 +1,32 @@
-// Fonction pour activer/désactiver l'ID "snow"
+// Function to toggle the ID "snow"
 function toggleSnow() {
-  const htmlElement = document.querySelector('html');
-  if (htmlElement.id === 'snow') {
+	const htmlElement = document.querySelector('html');
+	if (htmlElement.id === 'snow') {
 		htmlElement.id = '';
 		localStorage.setItem('snowAnim', 'false');
-  } else {
+	} else {
 		htmlElement.id = 'snow';
 		localStorage.setItem('snowAnim', 'true');
-  }
+	}
 }
 
-// Écouteur d'événements pour la touche espace
+// Event listener for the space key
 window.addEventListener('keydown', function(event) {
-  if (event.code === 'Space') {
-    toggleSnow();
-  }
+	if (event.code === 'KeyH') {
+		toggleSnow();
+	}
 });
 
-// Écouteur d'événements pour les clics sur autre chose qu'un lien sur un smartphone
-// TODO: Handle touch events on iphone when NOT scrolling
+// Disable snow animation if the user prefers reduced motion
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+if (prefersReducedMotion.matches) {
+	const htmlElement = document.querySelector('html');
+	htmlElement.id = '';
+	localStorage.setItem('snowAnim', 'false');
+}
+
+// Event listener for clicks on anything other than a link on a smartphone
+// TODO: Handle touch events on iPhone when NOT scrolling
 //window.addEventListener('touchend', function(event) {
 //  if (event.target.tagName !== 'A' && event.target.tagName !== 'BUTTON') {
 //    toggleSnow();
