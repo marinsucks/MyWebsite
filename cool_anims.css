@@ -96,16 +96,21 @@
 .hidden {
 	opacity: 0;
 	filter: blur(5px);
-	transform: translateX(-30%);
-	transition: all 1s;
+	transform: translateY(-30%);
+	transition: all 0.5s;
 }
 
-.hidden.alternate {
-	transform: translateX(30%); 
+.visible {
+	opacity: 1;
+	transform: translateY(30%);
+	transition: all 0.5s;
 }
 
 @media(prefer-reduced-motion) {
 	.hidden {
+		transition: none;
+	}
+	.visible {
 		transition: none;
 	}
 }
@@ -122,7 +127,7 @@
 
 /********* SNOW *********/
 
-#snow{
+#snow {
 	background-image: url('media/snow/snowtile1.1.png'), url('media/snow/snowtile0.1.png'), url('media/snow/snowtile2.1.png');
 	left: 0;
 	position: absolute;

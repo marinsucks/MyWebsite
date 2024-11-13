@@ -22,6 +22,7 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Geologica:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
 
 	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 	<script> 
@@ -41,7 +42,7 @@
 
 <body>
 	<!--TODO REPLACE HEADER AND FOOTER WITH SERVERSIDE SUPPORT -->
-	<!--<?php include 'header.html'; ?>-->
+  <!--#include virtual="header.html" -->
 	<div id="header"></div>
 
 	<div id="main">
@@ -52,39 +53,99 @@
 		<section>
 			<div class="projects-tag">
 				<button onclick="toggleProject('c')" class="c-button">C</button>
+				<button onclick="toggleProject('cpp')" class="cpp-button">C++</button>
 				<button onclick="toggleProject('it')" class="it-button">IT</button>
 				<button onclick="toggleProject('web')" class="web-button">Web</button>
-
 			</div>
 		</section>
 
 		<section>
+
 			<div class="projects-container">
-				<div class="c-project">
+
+				<div class="visible project c-project">
 					<div class="project-title">
-						<h2>C project</h2>
+						<h2>cub3D</h2>
+					</div>
+					<div class="project-desc">
+						<video src="media/vids/sample.mp4" controls></video>
+						<!--<img src="media/vids/cub3d_basement.gif" alt="cub3D demo gif">-->
 					</div>
 				</div>
-				<div class="it-project">
+
+				<div class="visible project it-project">
 					<div class="project-title">
-						<h2>IT project</h2>
+						<h2>Born2beroot</h2>
+					</div>
+					<div class="project-desc">
+						<p>
+							Lorem 
+						</p>
 					</div>
 				</div>
-				<div class="web-project">
+
+				<div class="visible project web-project">
 					<div class="project-title">
-						<h2>Web project</h2>
+						<h2>Transcendance</h2>
+					</div>
+					<div class="project-desc">
+						<p>
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eum perspiciatis ea voluptatem error quisquam architecto rerum, hic nesciunt ipsam ullam voluptas dicta sit iusto? Molestiae aperiam asperiores similique at ullam!
+						</p>
 					</div>
 				</div>
+
+				<div class="visible project cpp-project">
+					<div class="project-title">
+						<h2>webserv</h2>
+					</div>
+					<div class="project-desc">
+						<p>
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eum perspiciatis ea voluptatem error quisquam architecto rerum, hic nesciunt ipsam ullam voluptas dicta sit iusto? Molestiae aperiam asperiores similique at ullam!
+						</p>
+					</div>
+				</div>
+
+				<div class="visible project it-project">
+					<div class="project-title">
+						<h2>Inception</h2>
+					</div>
+					<div class="project-desc">
+						<p>
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eum perspiciatis ea voluptatem error quisquam architecto rerum, hic nesciunt ipsam ullam voluptas dicta sit iusto? Molestiae aperiam asperiores similique at ullam!
+						</p>
+					</div>
+				</div>
+
+				<div class="visible project c-project">
+					<div class="project-title">
+						<h2>minishell</h2>
+					</div>
+					<div class="project-desc">
+						<p>
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eum perspiciatis ea voluptatem error quisquam architecto rerum, hic nesciunt ipsam ullam voluptas dicta sit iusto? Molestiae aperiam asperiores similique at ullam!
+						</p>
+					</div>
+				</div>
+
+				<div class="visible project cpp-project">
+					<div class="project-title">
+						<h2>CPP Modules</h2>
+					</div>
+					<div class="project-desc">
+						<p>
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eum perspiciatis ea voluptatem error quisquam architecto rerum, hic nesciunt ipsam ullam voluptas dicta sit iusto? Molestiae aperiam asperiores similique at ullam!
+						</p>
+					</div>
+				</div>
+
 			</div>
-			
+
 		</section>
-
-		<div class="project">
-
-		</div>
 	</div>
 
 	<div id="footer"></div>
+	<!--#include virtual="footer.html" -->
 
 </body>
 </html>

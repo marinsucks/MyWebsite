@@ -18,7 +18,11 @@
 	--accent: #eb5149; /*#f1c8c6;*/
 	--secondary: #9ca1c9;
 
+	--title-font: 'Geologica', 'Trebuchet MS', Helvetica, sans-serif;
+	--text-font: 'Nunito', 'Trebuchet MS', Helvetica, sans-serif;
+
 	--c-tag: #6794c3;
+	--cpp-tag: #936abe;
 	--it-tag: #599267;
 	--web-tag: #e6a91c;
 
@@ -30,9 +34,10 @@
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
-	font-family: "Geologica", 'Trebuchet MS', Helvetica, sans-serif, Arial, sans-serif;
+	font-family: var(--text-font);
 	font-weight: 400;
 	text-decoration: none;
+	color: var(--text);
 
 	/*border: solid;
 	border-width: 0.1px;*/
@@ -40,13 +45,12 @@
 
 html {
 	background-color: var(--background);
-}
-
-body, html {
 	height: 100%;
 	width: 100%;
-	padding: 1px;
-	color: var(--text);
+}
+
+body {
+	backdrop-filter: blur(3px);
 }
 
 header, section, footer {
@@ -87,10 +91,12 @@ header div, header div a {
 	align-items: center;
 	padding-left: 7px;
 	padding-right: 7px;
+	font-family: var(--title-font);
 }
 
 header a, footer a {
 	color: var(--text);
+	font-family: var(--title-font);
 }
 
 .homediv {
@@ -118,11 +124,14 @@ header a, footer a {
 .colormode-button {
 	border: none; 
 	font-size: inherit; 
-	color: #da5c50;
 	background-color: transparent;
 	display: flex;
 	align-items: center;
 	justify-content: center;
+}
+
+.colormode-button p {
+	color: #da5c50;
 }
 
 .colormode-button img {
@@ -248,8 +257,8 @@ button {
 	justify-content: center;
 	border: 4px solid var(--text);
 	border-radius: 25px;
-	/*font-size: 2em; */
 	color: var(--text);
+	font-family: var(--title-font);
 	background-color: var(--background-dimmed);
 	padding: 10px;
 	transition: 0.20s;
@@ -265,6 +274,10 @@ button:active { transform: translateY(3px); }
 
 
 /****TEXT****/
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: var(--title-font);
+}
 
 h1, h1 span {
 	text-align: center;
@@ -289,8 +302,13 @@ h4 {
 
 p {
 	font-size: 20px;
-	font-weight: 400;
 	text-align: center;
+}
+
+span {
+	font-family: inherit;
+	font-size: inherit;
+	font-weight: inherit;
 }
 
 .text-with-img img {

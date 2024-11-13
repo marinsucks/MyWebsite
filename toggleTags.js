@@ -9,25 +9,37 @@ function setButtonColor(tag, setting)
 
 function hideTag(tag) 
 {
+	console.log('hideTag() called with param: `' + tag + '`');
 	let selector = tag ? `.${tag}-project` : '[class*="-project"]';
 	let elements = document.querySelectorAll(selector);
-	elements.forEach((element) => {
-		element.style.display = 'none';
+	elements.forEach((element, index) => {
+		setTimeout(() => {
+			element.classList.remove('visible');
+			element.classList.add('hidden');
+		}, index * 100);
 	});
 	if (tag)
 	{
 		toggled_tags = toggled_tags.filter(str => str !== tag);
 		setButtonColor(tag, '--background-dimmed');
 	}	
+	console.log('hideTag() finished.');
 }
 
 function showTag(tag)
 {
+	console.log('showTag() called with param: `' + tag + '`');
 	let selector = tag ? `.${tag}-project` : '[class*="-project"]';
 	let elements = document.querySelectorAll(selector);
 	let was_found = false;
+
 	elements.forEach((element) => {
-		element.style.display = 'block';
+		console.log('showTag(): ' + element.className + ', ' + element.innerHTML.split('\n')[2].trim());
+		element.classList.remove('hidden');
+		element.classList.add('visible');
+		//element.addEventListener('transitionend', () => {
+		//	element.style.display = 'flex';
+		//}, { once: true });
 		was_found = true;
 	});
 	if (tag && was_found)
@@ -37,6 +49,7 @@ function showTag(tag)
 	}	
 	else if (tag && !was_found)
 		console.log('showTag(): `' + tag + '` not found.');
+	console.log('showTag() finished.');
 }
 
 function toggleProject(tag) 

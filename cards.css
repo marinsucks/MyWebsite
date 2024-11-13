@@ -69,6 +69,10 @@
 	background-color: var(--c-tag);
 }
 
+.cpp-tag {
+	background-color: var(--cpp-tag);
+}
+
 .it-tag {
 	background-color: var(--it-tag);
 }
