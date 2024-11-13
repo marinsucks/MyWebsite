@@ -1,6 +1,8 @@
-$(document).ready(function() {
+$(document).ready(function() 
+{
 	const codeElement = document.querySelector('code.reveal');
-	if (codeElement) {
+	if (codeElement) 
+	{
 		// Clone the content to manipulate it without altering the original
 		const clonedCodeElement = codeElement.cloneNode(true);
 		const elements = Array.from(clonedCodeElement.childNodes);
