@@ -128,7 +128,7 @@
 /********* SNOW *********/
 
 #snow {
-	background-image: url('media/snow/snowtile1.1.png'), url('media/snow/snowtile0.1.png'), url('media/snow/snowtile2.1.png');
+	background-image: url('/media/snow/snowtile1.1.png'), url('/media/snow/snowtile0.1.png'), url('/media/snow/snowtile2.1.png');
 	left: 0;
 	position: absolute;
 	top: 0;
