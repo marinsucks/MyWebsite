@@ -61,9 +61,9 @@
 	content: "";
 	display: flex;
 	align-items: right;
-	height: 5px;
+	height: 5px; 
 	width: 100%;
-	max-width: 80px;
+	max-width: 1.7em;
 }
 
 .c-project div.project-title h2::after {
@@ -105,4 +105,20 @@
 
 .hide {
 	display: none;
+}
+
+@media (max-width: 1120px) {
+	.project {
+		flex-direction: column;
+	}
+
+	.project-title {
+		width: 100%;
+		padding-left: 3em;
+	}
+
+	.project-desc {
+		width: 100%;
+		padding: 2em;
+	}
 }
