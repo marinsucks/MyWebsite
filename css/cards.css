@@ -1,0 +1,148 @@
+.card-container {
+	display: grid;
+	grid-template-columns: repeat(25, 1fr);
+	grid-template-rows: 3;
+	row-gap: calc(3rem * 2.5);
+	width: 100%;
+	max-width: 1140px;
+	margin-left: 5vh;
+	margin-right: 5vh;
+}
+
+.cards {
+	border-radius: 50px; 
+	border: 5px solid var(--text);
+	overflow: hidden;
+	background-color: var(--background-dimmed);
+	min-height : 300px;
+}
+.cards:hover {
+	transform: scale(1.03);
+	transition: transform 0.2s;
+}
+
+.cards:not(:hover) {
+	transform: scale(1);
+	transition: transform 0.2s;
+}
+
+.card1 {
+	grid-column: 1 / 10;
+	grid-row: 1 / 2;
+}
+
+.card2 {
+	grid-column: 11 / 26;
+	grid-row: 1 / 2;
+}
+
+.card3 {
+	grid-column: 1 / 15;
+	grid-row: 2 / 3;
+}
+
+.card4 {
+	grid-column: 16 / 26;
+	grid-row: 2 / 3;
+}
+
+.card-header {
+	height: 20%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.card-tag {
+	height: 100%;
+	padding-left: 1.5rem;
+	padding-right: 1.5rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-right: 5px solid var(--text);
+	border-bottom: 5px solid var(--text);
+	border-bottom-right-radius: 25px; 
+}
+
+.c-tag {
+	background-color: var(--c-tag);
+}
+
+.cpp-tag {
+	background-color: var(--cpp-tag);
+}
+
+.it-tag {
+	background-color: var(--it-tag);
+}
+
+.web-tag {
+	background-color: var(--web-tag);
+}
+
+.card-title {
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-grow: 1;
+}
+
+.card-anim {
+	height: 75%;
+	padding: 1.5rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.card-anim code {
+	height: 100%;
+	width: 100%;
+}
+
+.card-anim img {
+	max-width: 100%;
+	max-height: 200px;
+}
+
+@media (max-width: 900px) {
+	.card-container {
+		grid-template-columns: repeat(1, 1fr);
+		row-gap: calc(2rem * 2);
+		margin-left: 2vh;
+		margin-right: 2vh;
+		width: 100%;
+	}
+
+	.cards {
+		width: 100%;
+		max-height: none;
+	}
+
+	.card1 {
+		grid-column: 1 / 2;
+		grid-row: 1 / 2;
+	}
+	
+	.card2 {
+		grid-column: 1 / 2;
+		grid-row: 2 / 3;
+	}
+
+	.card3 {
+		grid-column: 1 / 2;
+		grid-row: 3 / 4;
+	}
+
+	.card4 {
+		grid-column: 1 / 2;
+		grid-row: 4 / 5;
+	}
+
+	.card-anim code {
+		height: 125%;
+	}
+}

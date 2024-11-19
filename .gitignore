@@ -5,3 +5,6 @@ archive/
 
 ##### OS-GENERATED FILES #####
 .DS_Store
+
+####### CUSTOM SCRIPTS #######
+ssi.sh
