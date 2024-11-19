@@ -1,3 +1,6 @@
+const all_tags = ['c', 'cpp', 'it', 'web'];
+let sel_tags = [];
+
 function setButtonColor(tag, setting)
 {
 	let button = document.querySelector(`.${tag}-button`);
@@ -5,162 +8,69 @@ function setButtonColor(tag, setting)
 	button.style.backgroundColor = color;
 }
 
-class TagManager 
+function hideAll()
 {
-	constructor() 
-	{
-			this.toggledTags = [];
-	}
-	
-	getToggledTags()
-	{
-		return this.toggledTags;
-	}
-
-	setToggledTags(tags)
-	{
-		this.toggledTags = tags;
-	}
-
-	iterateElem(selector, newclass, delay)
-	{
-		let element = document.querySelectorAll(selector);
-		let oldclass = newclass === 'visible' ? 'hidden' : 'visible';
-		let wasfound = false;
-		element.forEach((element, index) => {
-			setTimeout(() => {
-				element.classList.replace(oldclass, newclass);
-			}, index * delay);
-			wasfound = true;
-		});
-		return wasfound;
-	}
-
-	hideTag(tag)
-	{
-		console.log('hideTag() called with param: `' + tag + '`');
-		if (tag === null)
-			throw new Error('hideTag: tag cannot be null');
-
-		this.iterateElem(`.${tag}-project`, 'hidden', 100);
-		
-		this.toggledTags = this.toggledTags.filter(str => str !== tag);
-		setButtonColor(tag, '--background-dimmed');
-		
-		console.log('hideTag() finished.');
-	}
-
-	hideAll()
-	{
-		console.log('hideAllTags() called.');
-
-		this.iterateElem('[class*="-project"]', 'hidden', 0);
-		this.toggledTags = [];
-
-		console.log('hideAllTags() finished.');
-	}
-
-	showTag(tag)
-	{
-		console.log('showTag() called with param: `' + tag + '`'); //debug
-		if (tag === null)
-			throw new Error('showTag: tag cannot be null');
-
-		let wasFound = this.iterateElem(`.${tag}-project`, 'visible', 100);
-
-		if (wasFound)
-		{
-			this.toggledTags.push(tag);
-			setButtonColor(tag, `--${tag}-tag`);
-		} 
-		else if (!wasFound)
-		{
-			console.log('showTag(): `' + tag + '` not found.');
-		}
-		console.log('showTag() finished.');
-	}
-
-	showAll()
-	{
-		console.log('showAllTags() called.');
-
-		this.iterateElem('[class*="-project"]', 'visible', 100);
-		this.toggledTags = [];
-	
-		console.log('showAllTags() finished.');
-	}
+	let element = document.querySelectorAll('[class*="-project"]');
+	element.forEach((element) => {
+		element.classList.replace('visible', 'hidden');
+	});
 }
 
-// Usage
-const tagManager = new TagManager();
+function printSelectedTags()
+{
+	//select projects - if no tags are selected, show all projects
+	let selector = "." + sel_tags.join("-project,.") + "-project";
+	if (sel_tags.length === 0)
+		selector = '[class*="-project"]';
+	let element = document.querySelectorAll(selector);
+	let wasfound = false;
+
+	//show only the selected projects
+	hideAll();
+	element.forEach((element, index) => {
+		setTimeout(() => {
+			element.classList.replace("hidden", "visible");
+		}, index * 100);
+		wasfound = true;
+	});
+
+	return wasfound;
+}
+
+function 	hideTag(tag)
+{
+	sel_tags = sel_tags.filter(str => str !== tag);
+	printSelectedTags();
+	setButtonColor(tag, '--background-dimmed');
+}
+
+function showTag(tag)
+{
+	sel_tags.push(tag);
+	if (!printSelectedTags())
+		throw new Error(`Element with class: ${tag}-project not found.`);
+	setButtonColor(tag, `--${tag}-tag`);
+}
 
 function toggleProject(tag) 
-{
-	const toggled_tags = tagManager.getToggledTags();
-
-	if (toggled_tags.length === 0)
-		tagManager.hideAll();
-
-	if (toggled_tags.includes(tag) && toggled_tags.length > 1)
-		tagManager.hideTag(tag);
-	else if (toggled_tags.includes(tag) && toggled_tags.length === 1)
+{	
+	if (sel_tags.includes(tag) && sel_tags.length > 1)
+		hideTag(tag);
+	else if (sel_tags.includes(tag) && sel_tags.length === 1)
 	{
-		tagManager.showAll();
+		sel_tags = [];
+		printSelectedTags();
 		setButtonColor(tag, '--background-dimmed');
-		//tagManager.setToggledTags([]);
 	}
 	else
-		tagManager.showTag(tag);
+		showTag(tag);
 }
 
 
-//let toggled_tags = [];
 
-//function setButtonColor(tag, setting)
-//{
-//	let button = document.querySelector(`.${tag}-button`);
-//	let color = getComputedStyle(document.documentElement).getPropertyValue(setting);
-//	button.style.backgroundColor = color;
-//}
 
-//function hideTag(tag) 
-//{
-//	console.log('hideTag() called with param: `' + tag + '`');
-//	let selector = tag ? `.${tag}-project` : '[class*="-project"]';
-//	let elements = document.querySelectorAll(selector);
-//	elements.forEach((element, index) => {
-//		setTimeout(() => {
-//			element.classList.remove('visible');
-//			element.classList.add('hidden');
-//		}, index * 100);
-//	});
-//	if (tag)
-//	{
-//		toggled_tags = toggled_tags.filter(str => str !== tag);
-//		setButtonColor(tag, '--background-dimmed');
-//	}	
-//	console.log('hideTag() finished.');
-//}
-
-//function showTag(tag)
-//{
-//	console.log('showTag() called with param: `' + tag + '`');
-//	let selector = tag ? `.${tag}-project` : '[class*="-project"]';
-//	let elements = document.querySelectorAll(selector);
-//	let was_found = false;
-
-//	elements.forEach((element) => {
-//		console.log('showTag(): ' + element.className + ', ' + element.innerHTML.split('\n')[2].trim());
-//		element.classList.remove('hidden');
-//		element.classList.add('visible'); // truc bizarre quand showtag
-//		was_found = true;
-//	});
-//	if (tag && was_found)
-//	{
-//		toggled_tags.push(tag);
-//		setButtonColor(tag, `--${tag}-tag`);
-//	}	
-//	else if (tag && !was_found)
-//		console.log('showTag(): `' + tag + '` not found.');
-//	console.log('showTag() finished.');
-//}
+function projectsPageStartup()
+{
+	document.querySelector('.error-msg').style.display = 'none';
+	printSelectedTags();
+}

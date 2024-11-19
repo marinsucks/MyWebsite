@@ -319,6 +319,12 @@ span {
 	margin: 5vh;
 }
 
+.error-msg p {
+	color: #eb5149;
+	margin: 2em;
+	font-weight: 600;
+}
+
 
 /**** CODE BLOCKS ****/
 

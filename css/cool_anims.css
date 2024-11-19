@@ -95,11 +95,24 @@
 /********* SHOW/HIDE PROJECT *********/
 
 .hidden {
-	display: none; /* debug */
+	display: none;
 }
 
 .visible {
-	display: block; /* debug */
+	display: block;
+	animation: show 0.5s ease-in-out;
+}
+
+@keyframes show {
+	0% {
+		opacity: 0;
+		filter: blur(10px);
+		margin-top: -5%;
+	}
+	100% {
+		opacity: 1;
+		filter: blur(0);
+	}
 }
 
 
