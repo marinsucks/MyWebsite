@@ -73,9 +73,10 @@
 	background-color: var(--cpp-tag);
 }
 
-.it-tag {
-	background-color: var(--it-tag);
+.devops-tag {
+	background-color: var(--devops-tag);
 }
+
 
 .web-tag {
 	background-color: var(--web-tag);
@@ -145,4 +146,10 @@
 	.card-anim code {
 		height: 125%;
 	}
+}
+
+/********* SPECIFICS *********/
+
+.docker-logo img {
+	max-height: 7em;
 }

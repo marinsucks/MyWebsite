@@ -29,7 +29,7 @@
 }
 
 .projects-tag button.it-button:hover {
-	background-color: var(--it-tag);
+	background-color: var(--devops-tag);
 }
 
 .projects-tag button.web-button:hover {
@@ -74,8 +74,8 @@
 	background-color: var(--cpp-tag);
 }
 
-.it-project div.project-title h2::after {
-	background-color: var(--it-tag);
+.devops-project div.project-title h2::after {
+	background-color: var(--devops-tag);
 }
 
 .web-project div.project-title h2::after {

@@ -92,6 +92,12 @@
 }
 
 
+/********* HTTP CODES *********/
+
+.http-reason {
+	text-align: center;
+}
+
 /********* SHOW/HIDE PROJECT *********/
 
 .hidden {
@@ -114,7 +120,6 @@
 		filter: blur(0);
 	}
 }
-
 
 @media(prefer-reduced-motion) {
 	.hidden {
