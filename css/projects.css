@@ -28,7 +28,7 @@
 	background-color: var(--cpp-tag);
 }
 
-.projects-tag button.it-button:hover {
+.projects-tag button.devops-button:hover {
 	background-color: var(--devops-tag);
 }
 
