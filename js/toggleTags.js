@@ -4,8 +4,13 @@ let sel_tags = [];
 function setButtonColor(tag, setting)
 {
 	let button = document.querySelector(`.${tag}-button`);
-	let color = getComputedStyle(document.documentElement).getPropertyValue(setting);
-	button.style.backgroundColor = color;
+	if (setting) 
+	{
+		let color = getComputedStyle(document.documentElement).getPropertyValue(setting);
+		button.style.backgroundColor = color;
+	}
+	else 
+		button.style.removeProperty('background-color');
 }
 
 function hideAll()
@@ -41,7 +46,7 @@ function 	hideTag(tag)
 {
 	sel_tags = sel_tags.filter(str => str !== tag);
 	printSelectedTags();
-	setButtonColor(tag, '--background-dimmed');
+	setButtonColor(tag, null);
 }
 
 function showTag(tag)
@@ -60,7 +65,7 @@ function toggleProject(tag)
 	{
 		sel_tags = [];
 		printSelectedTags();
-		setButtonColor(tag, '--background-dimmed');
+		setButtonColor(tag, null);
 	}
 	else
 		showTag(tag);
