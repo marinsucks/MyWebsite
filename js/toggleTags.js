@@ -1,4 +1,4 @@
-const all_tags = ['c', 'cpp', 'it', 'web'];
+const all_tags = ['c', 'cpp', 'devops', 'web'];
 let sel_tags = [];
 
 function setButtonColor(tag, setting)
