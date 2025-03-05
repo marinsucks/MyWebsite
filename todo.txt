@@ -1,11 +1,6 @@
-Idees:
+About page:
+	- On repeat spotify
 
-Une serie présentant les projets sous forme de menu déroulant style imdb.
+imdb-like carrousel
 
-On repeat spotify.
-
-Replace header and footer with SSI
-
-Animations projects:
-	- ajouter classe "visible" par defaut a tous les elements
-	- modifier le code de toggle projects pour changer la classe en hidden.
+Change the whole site to a SPA, using react.
