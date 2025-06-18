@@ -5,6 +5,42 @@ archive/
 
 ##### OS-GENERATED FILES #####
 .DS_Store
+Thumbs.db
 
-####### CUSTOM SCRIPTS #######
-ssi.sh
+##### CUSTOM FILES AND REPOS #####
+karmedex/
+
+##### NODE.JS / REACT / TYPESCRIPT #####
+node_modules/
+dist/
+build/
+.env
+.env.*
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
+.pnpm-debug.log*
+
+##### TYPESCRIPT #####
+*.tsbuildinfo
+
+##### COVERAGE / TESTS #####
+coverage/
+*.lcov
+
+##### EDITOR / IDE FILES #####
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+##### MISC #####
+*.log
+*.tgz
+
+##### NEXT.JS (if used) #####
+.next/
+out/
+.vercel/
