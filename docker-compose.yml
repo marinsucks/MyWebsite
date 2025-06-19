@@ -1,0 +1,9 @@
+services:
+  frontend:
+    context: ./frontend
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./frontend:/app
+      - ${SSL_PATH}:/etc/ssl/certs
