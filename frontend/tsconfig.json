@@ -1,0 +1,23 @@
+{
+	"include": ["src"],
+	"exclude": ["node_modules", "dist"],
+
+	"compilerOptions": {
+		
+		"outDir": "dist",
+		"baseUrl": "src",
+		"paths": {
+			"@components/*": ["components/*"],
+			"@pages/*": ["pages/*"],
+			"@utils/*": ["utils/*"]
+		},
+
+		"module": "commonjs",
+		"target": "es2017",
+		"strict": true,
+		"esModuleInterop": true,
+		"emitDecoratorMetadata": true,
+		"experimentalDecorators": true,
+		"jsx": "react-jsx"
+	}
+}
