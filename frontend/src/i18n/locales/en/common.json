@@ -1,0 +1,10 @@
+{
+	"about": "About",
+	"projects": "Projects",
+	"contact": "Contact",
+	"notFound": {
+		"title": "Page not found",
+		"description": "Are you lost? It seems you've wandered off the beaten path. Let's help you find your way back.",
+		"backToHome": "Back to Home"
+	}
+}

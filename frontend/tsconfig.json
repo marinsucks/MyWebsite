@@ -9,7 +9,12 @@
 		"paths": {
 			"@components/*": ["components/*"],
 			"@pages/*": ["pages/*"],
-			"@utils/*": ["utils/*"]
+			"@utils/*": ["utils/*"],
+			"@contexts/*": ["contexts/*"],
+			"@hooks/*": ["hooks/*"],
+			"@styles/*": ["styles/*"],
+			"@assets/*": ["assets/*"],
+			"@types/*": ["types/*"],
 		},
 
 		"module": "commonjs",
@@ -18,6 +23,7 @@
 		"esModuleInterop": true,
 		"emitDecoratorMetadata": true,
 		"experimentalDecorators": true,
-		"jsx": "react-jsx"
+		"jsx": "react-jsx",
+		"resolveJsonModule": true
 	}
 }

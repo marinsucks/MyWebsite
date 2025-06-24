@@ -1,0 +1,10 @@
+{
+	"about": "À propos",
+	"projects": "Projets",
+	"contact": "Contact",
+	"notFound": {
+		"title": "Page non trouvée",
+		"description": "Oups, cette page n’existe pas ! Pas de panique, on vous remet sur la bonne voie.",
+		"backToHome": "Retour à l'accueil"
+	}
+}
