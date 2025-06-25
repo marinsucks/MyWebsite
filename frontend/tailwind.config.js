@@ -8,7 +8,7 @@ module.exports = {
 			fontFamily: {
 				sans: ['Nunito', 'Arial', 'ui-sans-serif', 'system-ui', 'sans-serif'],
 				title: ['Geologica', 'Helvetica', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-				mono: ['Cascadia Code', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace'],
+				mono: ['JetBrains Mono', 'ui-monospace', 'Menlo', 'SFMono-Regular', 'monospace'],
 			},
 			colors: {
 				'text': 'var(--text)',

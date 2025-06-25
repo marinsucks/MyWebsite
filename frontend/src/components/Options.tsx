@@ -2,6 +2,14 @@ import React, { useState, useRef, useEffect } from "react";
 import { useDarkMode } from "@hooks/useDarkMode";
 import { useTranslation } from "react-i18next";
 
+// SVG imports
+import OptionsIconDark from "@assets/icons/dark/options.svg?react";
+import OptionsIconLight from "@assets/icons/light/options.svg?react";
+import LightModeIcon from "@assets/icons/dark/light-mode.svg?react";
+import DarkModeIcon from "@assets/icons/light/dark-mode.svg?react";
+import FlagFrIcon from "@assets/icons/flag-fr.svg?react";
+import FlagUkIcon from "@assets/icons/flag-uk.svg?react";
+
 const BUTTON_SIZE = 60;
 const RADIUS = 54; // Distance from center to floating buttons
 
@@ -42,6 +50,11 @@ const Options: React.FC = () => {
 		},
 	];
 
+	const OptionsIcon = darkMode ? OptionsIconDark : OptionsIconLight;
+	const ThemeIcon = darkMode ? LightModeIcon : DarkModeIcon;
+	const LangIcon = i18n.language === "en" ? FlagFrIcon : FlagUkIcon;
+	const langAlt = i18n.language === "en" ? "FR" : "EN";
+
 	return (
 		<div
 			ref={containerRef}
@@ -76,11 +89,7 @@ const Options: React.FC = () => {
 						zIndex: 2,
 					}}
 				>
-					<img
-						src={`/assets/icons/${modePath}/options.svg`}
-						alt="Options"
-						className="w-6 h-6"
-					/>
+					<OptionsIcon className="w-6 h-6" aria-label="Options" />
 				</button>
 			</div>
 			{/* Floating buttons */}
@@ -102,11 +111,7 @@ const Options: React.FC = () => {
 							pointerEvents: "auto",
 						}}
 					>
-						<img
-							src={`/assets/icons/${modePath}/${darkMode ? "light-mode" : "dark-mode"}.svg`}
-							alt={modePath}
-							className="w-6 h-6"
-						/>
+						<ThemeIcon className="w-6 h-6" aria-label={modePath} />
 					</button>
 					{/* Lang button (12h) */}
 					<button
@@ -124,11 +129,7 @@ const Options: React.FC = () => {
 							pointerEvents: "auto",
 						}}
 					>
-						<img
-							src={i18n.language === "en" ? "/assets/icons/flag-fr.svg" : "/assets/icons/flag-uk.svg"}
-							alt={i18n.language === "en" ? "FR" : "EN"}
-							className="w-6 h-6"
-						/>
+						<LangIcon className="w-6 h-6" aria-label={langAlt} />
 					</button>
 				</>
 			)}

@@ -6,9 +6,9 @@ const GreetingSection: React.FC = () => {
 
 	return (
 		<div className="text-left items-start">
-			<h2 className="font-title text-4xl md:text-5xl font-semibold text-text p-2">
+			<h3 className="font-mono text-4xl md:text-5xl font-bold text-accent p-2">
 				{t('home:greeting')}
-			</h2>
+			</h3>
 			<h1 className="font-title text-6xl md:text-7xl text-text font-extrabold p-2 tracking-tight">
 				{t('home:name')}
 			</h1>

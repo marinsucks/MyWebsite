@@ -7,14 +7,14 @@
 		"outDir": "dist",
 		"baseUrl": "src",
 		"paths": {
+			"@assets/*": ["assets/*"],
 			"@components/*": ["components/*"],
-			"@pages/*": ["pages/*"],
-			"@utils/*": ["utils/*"],
 			"@contexts/*": ["contexts/*"],
 			"@hooks/*": ["hooks/*"],
+			"@pages/*": ["pages/*"],
 			"@styles/*": ["styles/*"],
-			"@assets/*": ["assets/*"],
 			"@types/*": ["types/*"],
+			"@utils/*": ["utils/*"],
 		},
 
 		"module": "commonjs",

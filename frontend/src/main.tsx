@@ -1,7 +1,7 @@
-import './i18n/i18n';
+import '@contexts/i18n/i18n';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './styles/main.css';
+import '@styles/main.css';
 
 import App from './App';
 import { DarkModeProvider } from '@contexts/DarkModeContext';
