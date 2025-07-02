@@ -3,9 +3,9 @@ import { useTranslation, Trans } from 'react-i18next';
 
 import CogIcon from '@assets/icons/cog.svg?react';
 
-const { t } = useTranslation("home");
 const GreetingSection: React.FC = () => {
-
+	const { t } = useTranslation("home");
+	
 	return (
 		<div className="text-left items-start">
 			<h3 className="font-mono text-4xl md:text-5xl font-bold text-accent p-2">
@@ -22,24 +22,29 @@ const GreetingSection: React.FC = () => {
 };
 
 const AimsSection: React.FC = () => {
-	return (	
-		<Trans
-			i18nKey="description.quality"
-			ns="home"
-			components={{
-				stable: <span className="text-accent font-semibold"></span>,
-				clean: <span className="text-accent font-semibold"></span>
-			}}
-		/>
+	const { t } = useTranslation("home");
+	return (
+		<div className="text-left items-start">
+			<p className="text-lg md:text-xl text-text mt-4 max-w-2xl p-2">
+				<Trans
+					i18nKey="description.quality"
+					ns="home"
+					components={{
+						stable: <span className="text-accent font-semibold"></span>,
+						clean: <span className="text-accent font-semibold"></span>
+					}}
+				/>
+			</p>
+		</div>
 	);
 };
 
 const IntroductionSection: React.FC = () => {
 	return (
-		<>
+		<div className="flex flex-col justify-center">
 			<GreetingSection />
 			<AimsSection />
-		</>
+		</div>
 	);
 }
 

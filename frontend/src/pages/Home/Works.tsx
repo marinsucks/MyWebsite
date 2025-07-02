@@ -1,3 +1,5 @@
+//! featured Work Section Component, below is an idea but create a full page for it !!
+
 /**
  * Section Purpose: Renders the "Work" section on the homepage.
  *
@@ -12,3 +14,5 @@
  *
  * @returns The JSX element representing the work section.
  */
+
+

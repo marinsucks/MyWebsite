@@ -3,10 +3,6 @@
 	"name": "I'm Marin Becker.",
 	"description": {
 		"role": "Full-stack developer, learning DevOps.",
-		"1st": "I obsess over building ", 
-		"stable": "stable",
-		"2nd": " systems and keeping things ",
-		"clean": "clean",
-		"3rd": "."
+		"quality": "I obsess over building <stable>stable</stable> systems and keeping things <clean>clean</clean>."
 	}
 }

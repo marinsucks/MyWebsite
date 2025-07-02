@@ -3,10 +3,6 @@
 	"name": "Je suis Marin Becker.",
 	"description": {
 		"role": "Développeur full-stack, en transition vers le DevOps.",
-		"1st": "Je construis des systèmes ", 
-		"stable": "stables",
-		"2nd": " et du code ",
-		"clean": "propre",
-		"3rd": "."
+		"quality": "Je construis des systèmes <stable>stables</stable> et du code <clean>propre</clean>."
 	}
 }

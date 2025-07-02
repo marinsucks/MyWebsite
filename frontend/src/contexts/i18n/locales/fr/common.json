@@ -6,5 +6,8 @@
 		"title": "Page non trouvée",
 		"description": "Oups, cette page n’existe pas ! Pas de panique, on vous remet sur la bonne voie.",
 		"backToHome": "Retour à l'accueil"
+	},
+	"footer": {
+		"description": "Conçu dans <vs>VS Code</vs> avec un coup de main de <copilot>GitHub Copilot</copilot>. Développé avec <react>React</react>, <ts>TypeScript</ts> et <tailwind>Tailwind CSS</tailwind>, propulsé par <vite>Vite</vite>, déployé via <docker>Docker Compose</docker> — entièrement imaginé, designé et assemblé par <brain>mon propre cerveau</brain>."
 	}
 }
