@@ -12,25 +12,37 @@ const Header: React.FC = () => {
 	const { t } = useTranslation();
 
 	return (
-		<header className="w-full bg-background text-text p-4">
+		<header className="w-full bg-background text-primary p-4">
 			<nav className="max-w-8xl mx-auto flex items-center justify-between py-4 px-6">
-				<Link to="/" className="flex items-center">
-					<Logo className="h-10 w-10 object-contain" aria-label="Logo"/>
+				<Link
+					to="/"
+					className="flex items-center transition-transform duration-200 hover:scale-125 active:scale-110"
+					style={{ transitionProperty: 'transform' }}
+				>
+					<Logo className="h-10 w-10 object-contain" aria-label="Logo" />
 				</Link>
 
 				<ul className="flex space-x-8 font-title text-lg items-center">
 					<li>
 						<Link 
+							to={'/work'}
+							className="hover:text-accent transition-colors duration-200"
+						>
+							{t('common:header.work')}
+						</Link>
+					</li>
+					<li>
+						<Link 
 							to={'/about'}
 							className="hover:text-accent transition-colors duration-200"
 						>
-							{t('common:about')}
+							{t('common:header.about')}
 						</Link>
 					</li>
 
 					<li>
 						{/*<ContactForm />*/}
-						{t('common:contact')}
+						{t('common:header.contact')}
 					</li>
 				</ul>
 			</nav>

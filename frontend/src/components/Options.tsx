@@ -79,7 +79,7 @@ const Options: React.FC = () => {
 				{/* Settings button */}
 				<button
 					onClick={() => setOpenByClick((o) => !o)}
-					className="w-12 h-12 flex items-center justify-center rounded-full bg-background transition-colors duration-200 hover:bg-accent"
+					className="w-12 h-12 flex items-center justify-center rounded-full bg-background transition-colors duration-150 hover:bg-accent"
 					aria-label="Open settings"
 					type="button"
 					style={{
@@ -98,7 +98,7 @@ const Options: React.FC = () => {
 					{/* Theme button (9h) */}
 					<button
 						onClick={() => setDarkMode(!darkMode)}
-						className="w-12 h-12 flex items-center justify-center rounded-full bg-background transition-colors duration-200 hover:bg-primary"
+						className="w-12 h-12 flex items-center justify-center rounded-full bg-background transition-colors duration-1500 hover:bg-secondary"
 						aria-label="Toggle dark mode"
 						type="button"
 						style={{
@@ -116,7 +116,7 @@ const Options: React.FC = () => {
 					{/* Lang button (12h) */}
 					<button
 						onClick={() => i18n.changeLanguage(i18n.language === "en" ? "fr" : "en")}
-						className="w-12 h-12 flex items-center justify-center rounded-full bg-background transition-colors duration-200 hover:bg-primary"
+						className="w-12 h-12 flex items-center justify-center rounded-full bg-background transition-colors duration-150 hover:bg-secondary"
 						aria-label="Toggle language"
 						type="button"
 						style={{

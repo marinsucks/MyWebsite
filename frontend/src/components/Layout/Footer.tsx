@@ -16,72 +16,36 @@ const github = {light: GithubIconLight, dark: GithubIconDark,};
 const linkedin = {light: LinkedinIconLight, dark: LinkedinIconDark,};
 const cv = {light: CvIconLight, dark: CvIconDark,};
 
-const tools = {
-	vs: (
-		<a
-			href="https://code.visualstudio.com/"
-			target="_blank"
-			rel="noopener noreferrer"
-			className="font-semibold text-primary transition-colors hover:text-secondary"
-		/>
-	),
-	copilot: (
-		<a
-			href="https://github.com/features/copilot"
-			target="_blank"
-			rel="noopener noreferrer"
-			className="font-semibold text-primary transition-colors hover:text-secondary"
-		/>
-	),
-	react: (
-		<a
-			href="https://react.dev/"
-			target="_blank"
-			rel="noopener noreferrer"
-			className="font-semibold text-primary transition-colors hover:text-secondary"
-		/>
-	),
-	ts: (
-		<a
-			href="https://www.typescriptlang.org/"
-			target="_blank"
-			rel="noopener noreferrer"
-			className="font-semibold text-primary transition-colors hover:text-secondary"
-		/>
-	),
-	tailwind: (
-		<a
-			href="https://tailwindcss.com/"
-			target="_blank"
-			rel="noopener noreferrer"
-			className="font-semibold text-primary transition-colors hover:text-secondary"
-		/>
-	),
-	vite: (
-		<a
-			href="https://vitejs.dev/"
-			target="_blank"
-			rel="noopener noreferrer"
-			className="font-semibold text-primary transition-colors hover:text-secondary"
-		/>
-	),
-	docker: (
-		<a
-			href="https://docs.docker.com/compose/"
-			target="_blank"
-			rel="noopener noreferrer"
-			className="font-semibold text-primary transition-colors hover:text-secondary"
-		/>
-	),
-	brain: (
-		<a
-			href="https://motherfuckingwebsite.com/"
-			target="_blank"
-			rel="noopener noreferrer"
-			className="font-semibold text-primary transition-colors hover:text-secondary"
-		/>
-	),
-}
+// Composant réutilisable pour les liens d'outils
+const ToolLink: React.FC<{ href: string; children?: React.ReactNode }> = ({ href, children }) => (
+	<a
+		href={href}
+		target="_blank"
+		rel="noopener noreferrer"
+		className="font-semibold text-text transition-colors hover:text-accent"
+	>
+		{children}
+	</a>
+);
+
+const toolsUrls = {
+	vs: "https://code.visualstudio.com/",
+	copilot: "https://github.com/features/copilot",
+	react: "https://react.dev/",
+	ts: "https://www.typescriptlang.org/",
+	tailwind: "https://tailwindcss.com/",
+	vite: "https://vitejs.dev/",
+	docker: "https://docs.docker.com/compose/",
+	brain: "https://motherfuckingwebsite.com/",
+};
+
+/**
+ * Creates an map of ToolLink components for each tool URL.
+ */
+const tools = Object.entries(toolsUrls).reduce((acc, [key, url]) => {
+	acc[key] = <ToolLink href={url} />;
+	return acc;
+}, {} as Record<string, JSX.Element>);
 
 const Footer: React.FC = () => {
 	const [darkMode] = useDarkMode();
@@ -121,7 +85,7 @@ const Footer: React.FC = () => {
 	];
 
 	return (
-		<footer className="bg-background text-text py-6 w-full">
+		<footer className="text-primary py-6 w-full">
 			<div className="flex flex-col md:flex-row justify-between items-center max-w-4xl mx-auto px-4 gap-8 md:gap-16">
 				<div className="flex gap-8 mb-4 md:mb-0">
 					{links.map((link, idx) => (
@@ -131,13 +95,14 @@ const Footer: React.FC = () => {
 							title={link.title}
 							target={link.target}
 							rel={link.rel}
-							className="transition-transform hover:scale-110 focus:scale-110 outline-none"
+							className="transition-transform duration-200 hover:scale-125 active:scale-110"
+							style={{ transitionProperty: 'transform' }}
 						>
 							<link.Icon className="footer-icon w-8 h-8" aria-label={link.title} />
 						</a>
 					))}
 				</div>
-				<div className="text-sm text-muted-foreground text-center md:text-left">
+				<div className="text-sm text-center md:text-left p-2 opacity-80">
 					<Trans
 						ns="common"
 						i18nKey="footer.description"

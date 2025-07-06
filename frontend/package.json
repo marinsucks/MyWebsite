@@ -1,4 +1,8 @@
 {
+	"name": "frontend",
+	"version": "1.0.0",
+	"type": "module",
+
 	"dependencies": {
 		"react": "^18.0.0",
 		"react-dom": "^18.0.0",
@@ -7,20 +11,48 @@
 	"scripts": {
 		"dev": "vite",
 		"build": "tsc && vite build",
-		"start": "node dist/main.js"
+		"start": "node dist/main.js",
+		"lint": "eslint . --report-unused-disable-directives --max-warnings 0",
+		"lint:fix": "eslint . --fix",
+		"lint:check": "eslint . --max-warnings 0",
+		"type-check": "tsc --noEmit",
+		"qa:pre-commit": "npm run type-check && npm run lint:check",
+		"qa:console-check": "grep -r \"console\\.\" src/ --include=\"*.ts\" --include=\"*.tsx\" && exit 1 || exit 0",
+		"qa:todo-check": "grep -r \"TODO\\|FIXME\\|HACK\" src/ --include=\"*.ts\" --include=\"*.tsx\" || exit 0",
+		"qa:full": "npm run type-check && npm run lint:check && npm run qa:console-check"
 	},
 	"devDependencies": {
 		"typescript": "^4.9.5",
 		"@types/node": "^20.0.0",
 		"@types/react": "^18.0.0",
 		"@types/react-dom": "^18.0.0",
+
 		"vite": "^5.0.0",
 		"@vitejs/plugin-react": "^4.0.0",
+		"vite-plugin-svgr": "^4.0.0",
+
 		"tailwindcss": "^3.4.0",
 		"postcss": "^8.4.0",
 		"autoprefixer": "^10.4.0",
+
 		"i18next": "^23.0.0",
 		"react-i18next": "^13.0.0",
-		"vite-plugin-svgr": "^4.0.0"
+
+		"eslint": "^8.56.0",
+		"@eslint/js": "^8.56.0",
+    "typescript-eslint": "^7.7.0",
+    "@typescript-eslint/eslint-plugin": "^8.35.1",
+    "@typescript-eslint/parser": "^8.35.1",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^5.2.0",
+
+
+		"husky": "^9.1.7",
+		"lint-staged": "^16.1.2"
+	},
+	"lint-staged": {
+		"*.{ts,tsx}": [
+			"eslint --fix"
+		]
 	}
 }

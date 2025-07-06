@@ -1,0 +1,43 @@
+{
+	"featuredTitle": "À la Une",
+	"experience": [
+		{
+			"name": "finovox",
+			"title": "Stage DevOps/Data Engineer chez Finovox",
+			"tags": {
+				"technical": ["Python", "React", "Docker", "GCP", "CI/CD"],
+				"thematical": ["DevOps", "Ingénierie des données", "Supervision", "API"]
+			},
+			"description": "Automatisation de l'infrastructure, les outils d'observabilité et les pipelines CI dans un environnement cloud-native."
+		}
+	],
+	"projects": [
+		{
+			"name": "transcendence",
+			"title": "Transcendence",
+			"tags": {
+				"technical": ["TypeScript", "NodeJS", "WebSocket", "ELK", "SQLite"],
+				"thematical": ["Microservices", "DevOps", "Jeu en temps réel", "Matchmaking"]
+			},
+			"description": "Un jeu Pong full-stack basé sur des microservices, incluant des modes local, en ligne et tournoi."
+		},
+		{
+			"name": "inception",
+			"title": "Inception",
+			"tags": {
+				"technical": ["Docker Compose", "Nginx", "WordPress", "MariaDB"],
+				"thematical": ["DevOps", "Conteneurisation", "Infrastructure Web", "Supervision", "Administration système"]
+			},
+			"description": "Une application web Wordpress multi-services conteneurisée avec Docker."
+		},
+		{
+			"name": "portfolio",
+			"title": "Site Portfolio Personnel",
+			"tags": {
+				"technical": ["React", "TypeScript", "Vite", "Tailwind CSS", "Docker"],
+				"thematical": ["Fullstack", "DevOps", "i18n", "Accessibilité", "SPA"]
+			},
+			"description": "Un site portfolio entièrement responsive construit avec React, avec internationalisation et mode sombre."
+		}
+	]
+}
