@@ -7,6 +7,11 @@ archive/
 .DS_Store
 Thumbs.db
 
+##### SSL CERTIFICATES #####
+certs/
+*.pem
+*.crt
+
 ##### CUSTOM FILES AND REPOS #####
 karmedex/
 
