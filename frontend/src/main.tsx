@@ -17,5 +17,3 @@ root.render(
 		</DarkModeProvider>
 	</React.StrictMode>
 );
-
-console.log("TypeScript config works!");

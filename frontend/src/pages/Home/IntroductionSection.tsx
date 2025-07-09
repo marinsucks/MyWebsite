@@ -23,7 +23,7 @@ const GreetingSection: React.FC = () => {
 };
 
 const AimsSection: React.FC = () => {
-	const { t } = useTranslation("home");
+	//const { t } = useTranslation("home");
 	return (
 		<div className="text-right items-end">
 			<p className="text-3xl md:text-4xl font-title text-text mt-8 p-2 leading-tight">

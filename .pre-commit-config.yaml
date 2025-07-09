@@ -1,0 +1,20 @@
+repos:
+  - repo: local
+    hooks:
+      - id: npm-lint
+        name: "✨ Lint"
+        entry: bash -c "cd frontend && npm run lint"
+        language: system
+        always_run: true
+
+      - id: npm-type-check
+        name: "🧐 Typecheck"
+        entry: bash -c "cd frontend && npm run type-check"
+        language: system
+        always_run: true
+
+      - id: npm-build
+        name: "🏗️ Build"
+        entry: bash -c "cd frontend && npm run build"
+        language: system
+        always_run: true

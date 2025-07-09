@@ -2,6 +2,11 @@ DC_FILE = docker-compose.yml
 
 all: up
 
+pre-commit:
+	@pip3 install --quiet pre-commit
+	@pre-commit install
+	@pre-commit autoupdate
+
 up:
 	@docker compose -f $(DC_FILE) up -d
 
