@@ -79,7 +79,7 @@ const Options: React.FC = () => {
 				{/* Settings button */}
 				<button
 					onClick={() => setOpenByClick((o) => !o)}
-					className="w-12 h-12 flex items-center justify-center rounded-full bg-background transition-colors duration-150 hover:bg-accent"
+					className="w-12 h-12 flex items-center justify-center rounded-full bg-background transition-colors duration-150 hover:bg-accent/70"
 					aria-label="Open settings"
 					type="button"
 					style={{

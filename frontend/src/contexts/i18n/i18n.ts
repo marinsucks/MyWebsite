@@ -21,11 +21,16 @@ i18n.use(initReactI18next).init({
 			work: frWork
     }
   },
-  lng: "en",
+  lng: localStorage.getItem('language') || "en", // Lire la langue depuis localStorage
   fallbackLng: "en",
   interpolation: {
     escapeValue: false
   }
+});
+
+// Sauvegarder la langue dans localStorage à chaque changement
+i18n.on('languageChanged', (lng) => {
+  localStorage.setItem('language', lng);
 });
 
 export default i18n;

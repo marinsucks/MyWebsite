@@ -1,6 +1,6 @@
 import React from "react";
 import { useDarkMode } from "@hooks/useDarkMode";
-import { Trans } from "react-i18next";
+import { Trans, useTranslation } from "react-i18next";
 
 import EmailIconDark from '@assets/icons/dark/email.svg?react';
 import EmailIconLight from '@assets/icons/light/email.svg?react';
@@ -49,6 +49,7 @@ const tools = Object.entries(toolsUrls).reduce((acc, [key, url]) => {
 
 const Footer: React.FC = () => {
 	const [darkMode] = useDarkMode();
+	const { t } = useTranslation('common'); // Ajouter le hook useTranslation
 	const modePath = darkMode ? "dark" : "light";
 
 	const links = [
