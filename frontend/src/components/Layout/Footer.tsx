@@ -49,7 +49,7 @@ const tools = Object.entries(toolsUrls).reduce((acc, [key, url]) => {
 
 const Footer: React.FC = () => {
 	const [darkMode] = useDarkMode();
-	const { t } = useTranslation('common'); // Ajouter le hook useTranslation
+	useTranslation('common'); // for i18n to load the namespace
 	const modePath = darkMode ? "dark" : "light";
 
 	const links = [
