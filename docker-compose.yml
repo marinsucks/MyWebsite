@@ -4,12 +4,29 @@ services:
     build:
       context: ./frontend
     ports:
-      - "8080:80"
-      - "8443:443"
+      - "80:80"
+      - "443:443"
     volumes:
-      - ./frontend:/app
-      - ${SSL_FRONT_CERT}:/app/certs/frontend.crt
-      - ${SSL_FRONT_KEY}:/app/certs/frontend.key
+      # Certificats Let's Encrypt
+      - ./certbot/conf:/etc/letsencrypt
+      - ./certbot/www:/var/www/certbot
+      # Logs
+      - ./logs/nginx:/var/log/nginx
     environment:
       - NODE_ENV=production
+      - DOMAIN=${DOMAIN}
     restart: unless-stopped
+    command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
+
+  certbot:
+    image: certbot/certbot
+    container_name: certbot
+    volumes:
+      - ./certbot/conf:/etc/letsencrypt
+      - ./certbot/www:/var/www/certbot
+    environment:
+      - EMAIL=${EMAIL}
+      - DOMAIN=${DOMAIN}
+    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
+    depends_on:
+      - frontend

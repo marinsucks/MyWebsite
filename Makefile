@@ -1,14 +1,27 @@
 DC_FILE = docker-compose.yml
 
-all: up
+all: check-env up
 
-up:
+check-env:
+	@if [ -z "$$DOMAIN" ] || [ -z "$$EMAIL" ]; then \
+		echo "Error: Please set DOMAIN and EMAIL in your .env file"; \
+		echo "Example:"; \
+		echo "DOMAIN=example.com"; \
+		echo "EMAIL=admin@example.com"; \
+		exit 1; \
+	fi
+
+init-ssl: check-env
+	@chmod +x init-letsencrypt.sh
+	@./scripts/certbot.sh ./certbot
+
+up: check-env
 	@docker compose -f $(DC_FILE) up -d --remove-orphans
 
 down:
 	@docker compose -f $(DC_FILE) down
 
-build:
+build: check-env
 	@docker compose -f $(DC_FILE) build
 
 logs:
@@ -16,12 +29,13 @@ logs:
 
 clean: down
 	@rm -rf frontend/{node_modules,dist,build,certs}
+	@rm -rf certbot logs
 
 re: clean up
 
 rebuild: clean build up
 
-.PHONY: all up down logs re
+.PHONY: all up down logs re init-ssl check-env
 
 pre-commit:
 	@pip3 install --quiet pre-commit
