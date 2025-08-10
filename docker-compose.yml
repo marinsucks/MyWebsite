@@ -1,11 +1,15 @@
 services:
   frontend:
+    container_name: frontend-container
     build:
       context: ./frontend
     ports:
-      - "80:80"
-      - "443:443"
+      - "8080:80"
+      - "8443:443"
     volumes:
       - ./frontend:/app
-      - ./certs/frontend.crt.:/etc/ssl/certs/frontend.crt
-      - ./certs/frontend.key.:/etc/ssl/certs/frontend.key
+      - ${SSL_FRONT_CERT}:/app/certs/frontend.crt
+      - ${SSL_FRONT_KEY}:/app/certs/frontend.key
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped

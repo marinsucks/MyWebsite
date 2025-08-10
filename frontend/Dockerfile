@@ -1,14 +1,16 @@
-FROM node:18-alpine
-
-#! Make sure that frontend source code is linked as a volume in /app
+# Build stage
+FROM node:18-alpine AS build
 WORKDIR /app
-
-#TODO: check problems with all volumes from docker-compose.yml, none seems to be working
-
-#COPY package*.json ./
+COPY . .
 RUN npm install
-
-#COPY . .
 RUN npm run build
 
-CMD ["npm", "run", "start"]
+# Serve stage
+FROM nginx:alpine
+COPY --from=build /app/dist /usr/share/nginx/html
+COPY nginx.conf /etc/nginx/nginx.conf
+EXPOSE 80 443
+CMD ["nginx", "-g", "daemon off;"]
+
+# # Healthcheck
+# HEALTHCHECK --interval=30s --timeout=10s --start-period=5s CMD curl -f http://localhost/ || exit 1

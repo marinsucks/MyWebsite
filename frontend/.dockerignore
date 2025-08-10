@@ -7,6 +7,7 @@ Dockerfile
 node_modules
 dist
 build
+certs
 *-debug.log*
 package-lock.json
 yarn.lock

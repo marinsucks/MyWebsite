@@ -1,24 +1,27 @@
 DC_FILE = docker-compose.yml
-CERTS_DIR = certs/
 
-all: certs up
-
-certs:
-	@chmod +x scripts/ssl.sh
-	@set -a; . .env; set +a; ./scripts/ssl.sh "$${SSL_FRONT_KEY}" "$${SSL_FRONT_CERT}" $(CERTS_DIR) frontend
+all: up
 
 up:
-	@docker compose -f $(DC_FILE) up -d
+	@docker compose -f $(DC_FILE) up -d --remove-orphans
 
 down:
 	@docker compose -f $(DC_FILE) down
 
+build:
+	@docker compose -f $(DC_FILE) build
+
 logs:
 	@docker compose -f $(DC_FILE) logs -f
 
-re: down up
+clean: down
+	@rm -rf frontend/{node_modules,dist,build,certs}
 
-.PHONY: all certs up down logs re
+re: clean up
+
+rebuild: clean build up
+
+.PHONY: all up down logs re
 
 pre-commit:
 	@pip3 install --quiet pre-commit

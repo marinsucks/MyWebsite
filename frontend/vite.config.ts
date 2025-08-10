@@ -12,10 +12,10 @@ export default defineConfig({
 	server: {
 		host: '0.0.0.0',
 		port: 443,
-		https: {
-			key: fs.readFileSync('/etc/ssl/certs/frontend.key'),
-			cert: fs.readFileSync('/etc/ssl/certs/frontend.crt'),
-		}
+        https: process.env.NODE_ENV !== 'production' && fs.existsSync('./certs/frontend.key') ? {
+            key: fs.readFileSync('./certs/frontend.key'),
+            cert: fs.readFileSync('./certs/frontend.crt'),
+        } : undefined
 	},
 	resolve: {
 		alias: {
