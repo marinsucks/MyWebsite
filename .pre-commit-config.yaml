@@ -5,16 +5,20 @@ repos:
         name: "✨ Lint"
         entry: bash -c "cd frontend && npm run lint"
         language: system
-        always_run: true
+        types: [file]
+        files: ^frontend/src/.*\.(ts|tsx)$
 
       - id: npm-type-check
         name: "🧐 Typecheck"
         entry: bash -c "cd frontend && npm run type-check"
         language: system
-        always_run: true
+        types: [file]
+        files: ^frontend/src/.*\.(ts|tsx)$
 
       - id: npm-build
-        name: "🏗️ Build"
+        name: "🏗️  Build"
         entry: bash -c "cd frontend && npm run build"
         language: system
+        pass_filenames: false
         always_run: true
+        files: ^(frontend/(src/.*|package\.json|vite\.config\.ts|tailwind\.config\.js|tsconfig\.json))$
