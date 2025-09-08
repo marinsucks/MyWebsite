@@ -2,7 +2,7 @@
 	"greeting": "Hello world!",
 	"name": "I'm Marin Becker.",
 	"description": {
-		"role": "Full-stack developer, learning DevOps.",
+		"role": "Full-stack developer, specialized in DevOps.",
 		"quality": "I obsess over building <stable>stable</stable> systems and keeping things <clean>clean</clean>."
 	}
 }

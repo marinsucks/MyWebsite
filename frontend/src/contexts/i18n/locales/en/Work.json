@@ -5,40 +5,22 @@
 				"name": "finovox",
 				"title": "DevOps/Data Engineer Internship at Finovox",
 				"tags": {
-					"technical": ["Python", "React", "Docker", "GCP", "CI/CD"],
-					"thematical": ["DevOps", "Data Engineering", "Monitoring", "API"]
+					"technical": ["Python", "React", "GCP"],
+					"thematical": ["Fullstack", "DevOps"]
 				},
 				"description": "Infrastructure automation, observability tools, and CI pipelines in a cloud-native environment."
+			},
+			{
+				"name": "42",
+				"title": "Curriculum at 42",
+				"tags": {
+					"technical": ["C / C++", "Bash", "Git"],
+					"thematical": ["Algorithms", "Systems", "Networks"]
+				},
+				"description": "An immersive, self-directed learning program focused on programming, computer science, and problem-solving."
 			}
 		],
 
-		"projects": [
-			{
-				"name": "transcendence",
-				"title": "Transcendence",
-				"tags": {
-					"technical": ["TypeScript", "NodeJS", "WebSocket", "ELK", "SQLite"],
-					"thematical": ["Microservices", "DevOps", "Real-time Gaming", "Matchmaking"]
-				},
-				"description": "A full-stack, microservices-based Pong game with local, online, and tournament modes."
-			},
-			{
-				"name": "inception",
-				"title": "Inception",
-				"tags": {
-					"technical": ["Docker Compose", "Nginx", "WordPress", "MariaDB"],
-					"thematical": ["DevOps", "Containerization", "Web Infrastructure", "Monitoring", "System Administration"]
-				},
-				"description": "A multi-service Wordpress web application containerized using Docker"
-			},
-			{
-				"name": "portfolio",
-				"title": "Personal Portfolio Website",
-				"tags": {
-					"technical": ["React", "TypeScript", "Vite", "Tailwind CSS", "Docker"],
-					"thematical": ["Fullstack", "DevOps", "i18n", "Accessibility", "SPA"]
-				},
-				"description": "A fully responsive portfolio site built with React, featuring internationalization and dark mode"
-			}
-		]
+	"projects": [
+	]
 }
