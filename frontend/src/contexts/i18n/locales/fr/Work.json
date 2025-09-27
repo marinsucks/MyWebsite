@@ -8,7 +8,38 @@
 				"technical": ["Python", "React", "GCP"],
 				"thematical": ["Fullstack", "DevOps"]
 			},
-			"description": "Automatisation de l'infrastructure, outils d'observabilité et pipelines CI dans un environnement cloud-native."
+			"summary": "Automatisation de l'infrastructure, outils d'observabilité et pipelines CI dans un environnement cloud-native.",
+			"description": "TODO",
+			"link": "https://finovox.com",
+			"tasks": [
+				{
+					"title": "Gestion d'API",
+					"summary": "TODO",
+					"link": null,
+					"media": {
+						"image": "TODO",
+						"alt": "Illustration de gestion d'API"
+					}
+				},
+				{
+					"title": "Documentation",
+					"summary": "TODO",
+					"link": null,
+					"media": {
+						"image": "TODO",
+						"alt": "Illustration de gestion de documentation"
+					}
+				},
+				{
+					"title": "Tests d'intégration",
+					"summary": "TODO",
+					"link": null,
+					"media": {
+						"image": "TODO",
+						"alt": "Illustration des tests d'intégration"
+					}
+				}
+			]
 		},
 		{
 			"name": "42",
@@ -17,9 +48,29 @@
 				"technical": ["C / C++", "Bash", "Git"],
 				"thematical": ["Algorithmes", "Systèmes", "Réseaux"]
 			},
-			"description": "Un programme immersif et autodidacte axé sur la programmation, l'informatique et la résolution de problèmes."
+			"summary": "Un programme immersif et autodidacte axé sur la programmation, l'informatique et la résolution de problèmes.",
+			"description": "TODO",
+			"link": "https://42.fr",
+			"tasks": [
+				{
+					"title": "transcendance",
+					"summary": "TODO",
+					"link": "https://github.com/42mates/transcendance",
+					"media": {
+						"image": "TODO",
+						"alt": "Capture d'écran du projet Transcendance"
+					}
+				},
+				{
+					"title": "webserv",
+					"summary": "TODO",
+					"link": "https://github.com/42mates/webserv",
+					"media": {
+						"image": "TODO",
+						"alt": "Capture d'écran du projet Webserv"
+					}
+				}
+			]
 		}
-	],
-	"projects": [
 	]
 }

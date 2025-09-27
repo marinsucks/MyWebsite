@@ -21,41 +21,24 @@ import Section from "@components/Layout/Section";
 
 import WorkItem, { WorkProps } from "@components/Home/WorkItem";
 
-const WorksSection: React.FC = () => {
+const FeaturedWorksSection: React.FC = () => {
 	const { t } = useTranslation("work");
 
 	const experienceData = t("experience", { returnObjects: true }) as Array<{
 		name: string;
 		title: string;
 		tags: { technical: string[]; thematical: string[] };
-		description: string;
-	}>;
-	
-	const projectsData = t("projects", { returnObjects: true }) as Array<{
-		name: string;
-		title: string;
-		tags: { technical: string[]; thematical: string[] };
-		description: string;
+		summary: string;
 	}>;
 
 	const works: WorkProps[] = [
 		...experienceData.map((item) => ({
 			title: item.title,
 			tags: item.tags,
-			description: item.description,
+			summary: item.summary,
 			onClick: () => {
 				alert(
-					`${item.title}\n\nTags: ${item.tags.technical.join(", ")}, ${item.tags.thematical.join(", ")}\n\nDescription: ${item.description}`
-				);
-			},
-		})),
-		...projectsData.map((item) => ({
-			title: item.title,
-			tags: item.tags,
-			description: item.description,
-			onClick: () => {
-				alert(
-					`${item.title}\n\nTags: ${item.tags.technical.join(", ")}, ${item.tags.thematical.join(", ")}\n\nDescription: ${item.description}`
+					`${item.title}\n\nTags: ${item.tags.technical.join(", ")}, ${item.tags.thematical.join(", ")}\n\nDescription: ${item.summary}`
 				);
 			},
 		})),
@@ -74,7 +57,7 @@ const WorksSection: React.FC = () => {
 					<WorkItem
 						key={index}
 						title={work.title}
-						description={work.description}
+						summary={work.summary}
 						tags={work.tags}
 						onClick={work.onClick}
 					/>
@@ -84,4 +67,4 @@ const WorksSection: React.FC = () => {
 	);
 }
 
-export default WorksSection;
+export default FeaturedWorksSection;

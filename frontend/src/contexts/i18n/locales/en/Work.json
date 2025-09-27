@@ -1,26 +1,76 @@
 {
 	"featuredTitle": "Featured Works",
 	"experience": [
-			{
-				"name": "finovox",
-				"title": "DevOps/Data Engineer Internship at Finovox",
-				"tags": {
-					"technical": ["Python", "React", "GCP"],
-					"thematical": ["Fullstack", "DevOps"]
-				},
-				"description": "Infrastructure automation, observability tools, and CI pipelines in a cloud-native environment."
+		{
+			"name": "finovox",
+			"title": "DevOps/Data Engineer Internship at Finovox",
+			"tags": {
+				"technical": ["Python", "React", "GCP"],
+				"thematical": ["Fullstack", "DevOps"]
 			},
-			{
-				"name": "42",
-				"title": "Curriculum at 42",
-				"tags": {
-					"technical": ["C / C++", "Bash", "Git"],
-					"thematical": ["Algorithms", "Systems", "Networks"]
+			"summary": "Infrastructure automation, observability tools, and CI pipelines in a cloud-native environment.",
+			"description": "TODO",
+			"link": "https://finovox.com",
+			"tasks": [
+				{
+					"title": "API management",
+					"summary": "TODO",
+					"link": null,
+					"media": {
+						"image": "TODO",
+						"alt": "API handling illustration"
+					}
 				},
-				"description": "An immersive, self-directed learning program focused on programming, computer science, and problem-solving."
-			}
-		],
-
-	"projects": [
+				{
+					"title": "Documentation",
+					"summary": "TODO",
+					"link": null,
+					"media": {
+						"image": "TODO",
+						"alt": "Documentation handling illustration"
+					}
+				},
+				{
+					"title": "Integration Tests",
+					"summary": "TODO",
+					"link": null,
+					"media": {
+						"image": "TODO",
+						"alt": "Integration Tests illustration"
+					}
+				}
+			]
+		},
+		{
+			"name": "42",
+			"title": "Curriculum at 42",
+			"tags": {
+				"technical": ["C / C++", "Bash", "Git"],
+				"thematical": ["Algorithms", "Systems", "Networks"]
+			},
+			"summary": "An immersive, self-directed learning program focused on programming, computer science, and problem-solving.",
+			"description": "TODO",
+			"link": "https://42.fr",
+			"tasks": [
+				{
+					"title": "transcendance",
+					"summary": "TODO",
+					"link": "https://github.com/42mates/transcendance",
+					"media": {
+						"image": "TODO",
+						"alt": "Transcendance project screenshot"
+					}
+				},
+				{
+					"title": "webserv",
+					"summary": "TODO",
+					"link": "https://github.com/42mates/webserv",
+					"media": {
+						"image": "TODO",
+						"alt": "Webserv project screenshot"
+					}
+				}
+			]
+		}
 	]
 }

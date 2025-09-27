@@ -1,5 +1,5 @@
 {
-	"include": ["src"],
+	"include": ["src", "src/components/Work/DetailedWorkSection.tsx"],
 	"exclude": ["node_modules", "dist"],
 
 	"compilerOptions": {

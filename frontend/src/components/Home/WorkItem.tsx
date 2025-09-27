@@ -2,7 +2,7 @@ import React from "react";
 
 export type WorkProps = {
 	title: string;
-	description: string;
+	summary: string;
 	tags: {
 		technical: string[];
 		thematical: string[];
@@ -12,7 +12,7 @@ export type WorkProps = {
 
 const WorkItem: React.FC<WorkProps> = ({
 	title,
-	description,
+	summary,
 	tags,
 	onClick,
 }) => (
@@ -31,7 +31,7 @@ const WorkItem: React.FC<WorkProps> = ({
 		<h3 className="text-2xl font-title font-medium mb-1 text-text group-hover:text-accent group-focus:text-accent transition">
 			{title}
 		</h3>
-		<p className="text-primary mb-3 truncate">{description}</p>
+		<p className="text-primary mb-3 truncate">{summary}</p>
 		<div className="flex flex-wrap gap-2 mb-1 pb-2">
 			{tags.technical.map((tag) => (
 				<span
