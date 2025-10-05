@@ -25,14 +25,6 @@ const Header: React.FC = () => {
 				<ul className="flex space-x-8 font-title text-lg items-center">
 					<li>
 						<Link 
-							to={'/work'}
-							className="hover:text-accent transition-colors duration-200"
-						>
-							{t('common:header.work')}
-						</Link>
-					</li>
-					<li>
-						<Link 
 							to={'/about'}
 							className="hover:text-accent transition-colors duration-200"
 						>

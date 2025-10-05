@@ -36,7 +36,7 @@ const toolsUrls = {
 	tailwind: "https://tailwindcss.com/",
 	vite: "https://vitejs.dev/",
 	docker: "https://docs.docker.com/compose/",
-	brain: "https://motherfuckingwebsite.com/",
+	brain: "https://neurotorium.org/tool/brain-atlas/",
 };
 
 /**

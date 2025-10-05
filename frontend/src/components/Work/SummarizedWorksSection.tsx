@@ -1,7 +1,6 @@
 //! featured Work Section Component, below is an idea but create a full page for it !!
 
 /**
- * Section Purpose: Renders the "Work" section on the homepage.
  *
  * Hover Effects: - add interactive hover halo around a work item.
  * Tags: - Includes tags for each work item to highlight relevant skills or technologies.
@@ -19,9 +18,73 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import Section from "@components/Layout/Section";
 
-import WorkItem, { WorkProps } from "@components/Home/WorkItem";
 
-const FeaturedWorksSection: React.FC = () => {
+export type WorkProps = {
+    title: string;
+    summary: string;
+    tags: {
+        technical: string[];
+        thematical: string[];
+    };
+    onClick: () => void;
+};
+
+const WorkSummary: React.FC<WorkProps> = ({
+    title,
+    summary,
+    tags,
+    onClick,
+}) => (
+    <button
+        type="button"
+        onClick={onClick}
+        className="
+            group/item
+            w-full text-left bg-background p-6 mb-4
+            rounded-lg border border-secondary
+            hover:z-10
+            hover:shadow-[0_0_24px_4px_theme('colors.secondary')]
+            focus:shadow-[0_0_24px_4px_theme('colors.secondary')]"
+        aria-label={`Open details for project: ${title}`}
+    >
+        <h3 className="text-2xl font-title font-medium mb-1 text-text group-hover:text-accent group-focus:text-accent transition">
+            {title}
+        </h3>
+        <p className="text-primary mb-3 truncate">{summary}</p>
+        <div className="flex flex-wrap gap-2 mb-1 pb-2">
+            {tags.technical.map((tag) => (
+                <span
+                    key={tag}
+                    className="
+                        text-accent
+                        bg-accent/10
+                        text-xs font-medium 
+                        px-3 py-1 
+                        rounded-full"
+                >
+                    {tag}
+                </span>
+            ))}
+        </div>
+        <div className="flex flex-wrap gap-2">
+            {tags.thematical.map((tag) => (
+                <span
+                    key={tag}
+                    className="
+                        text-accent
+                        bg-accent/10
+                        text-xs font-medium 
+                        px-3 py-1 
+                        rounded-full"
+                >
+                    {tag}
+                </span>
+            ))}
+        </div>
+    </button>
+);
+ 
+const SummarizedWorksSection: React.FC = () => {
 	const { t } = useTranslation("work");
 
 	const experienceData = t("experience", { returnObjects: true }) as Array<{
@@ -54,7 +117,7 @@ const FeaturedWorksSection: React.FC = () => {
 				[&>*]:transition-all 
 				[&>*]:duration-150">
 				{works.map((work, index) => (
-					<WorkItem
+					<WorkSummary
 						key={index}
 						title={work.title}
 						summary={work.summary}
@@ -67,4 +130,4 @@ const FeaturedWorksSection: React.FC = () => {
 	);
 }
 
-export default FeaturedWorksSection;
+export default SummarizedWorksSection;

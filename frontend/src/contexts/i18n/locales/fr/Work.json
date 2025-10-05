@@ -3,7 +3,8 @@
 	"experience": [
 		{
 			"name": "finovox",
-			"title": "Stage DevOps/Data Engineer chez Finovox",
+			"title": "Stage DevOps/Data Engineer",
+			"organization": "Finovox",
 			"tags": {
 				"technical": ["Python", "React", "GCP"],
 				"thematical": ["Fullstack", "DevOps"]
@@ -43,22 +44,23 @@
 		},
 		{
 			"name": "42",
-			"title": "Cursus à 42",
+			"title": "Cursus",
+			"organization": "42",
 			"tags": {
 				"technical": ["C / C++", "Bash", "Git"],
 				"thematical": ["Algorithmes", "Systèmes", "Réseaux"]
 			},
 			"summary": "Un programme immersif et autodidacte axé sur la programmation, l'informatique et la résolution de problèmes.",
 			"description": "TODO",
-			"link": "https://42.fr",
-			"tasks": [
+			"link": "https://www.42network.org/",
+			"projects": [
 				{
-					"title": "transcendance",
+					"title": "transcendence",
 					"summary": "TODO",
-					"link": "https://github.com/42mates/transcendance",
+					"link": "https://github.com/42mates/transcendence",
 					"media": {
 						"image": "TODO",
-						"alt": "Capture d'écran du projet Transcendance"
+						"alt": "Capture d'écran du projet Transcendence"
 					}
 				},
 				{
@@ -68,6 +70,24 @@
 					"media": {
 						"image": "TODO",
 						"alt": "Capture d'écran du projet Webserv"
+					}
+				},
+				{
+					"title": "minishell",
+					"summary": "TODO",
+					"link": "https://github.com/42mates/minishell",
+					"media": {
+						"image": "TODO",
+						"alt": "Capture d'écran du projet Minishell"
+					}
+				},
+				{
+					"title": "inception",
+					"summary": "TODO",
+					"link": "https://github.com/marinsucks/42/tree/master/devops/inception",
+					"media": {
+						"image": "TODO",
+						"alt": "Capture d'écran du projet Inception"
 					}
 				}
 			]

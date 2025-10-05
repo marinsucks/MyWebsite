@@ -1,5 +1,4 @@
 {
-	"featuredTitle": "Featured Works",
 	"experience": [
 		{
 			"name": "finovox",
@@ -12,7 +11,6 @@
 			"summary": "Infrastructure automation, observability tools, and CI pipelines in a cloud-native environment.",
 			"description": "TODO",
 			"link": "https://finovox.com",
-			"tasksTitle": "Key Responsibilities",
 			"tasks": [
 				{
 					"title": "API management",
@@ -46,7 +44,7 @@
 		{
 			"name": "42",
 			"title": "Curriculum",
-			"organization": "42",
+			"organization": "42 Paris",
 			"tags": {
 				"technical": ["C / C++", "Bash", "Git"],
 				"thematical": ["Algorithms", "Systems", "Networks"]
@@ -54,7 +52,6 @@
 			"summary": "An immersive, self-directed learning program focused on programming, computer science, and problem-solving.",
 			"description": "TODO",
 			"link": "https://www.42network.org/",
-			"projectsTitle": "Notable Projects",
 			"projects": [
 				{
 					"title": "transcendence",
@@ -72,24 +69,6 @@
 					"media": {
 						"image": "TODO",
 						"alt": "Webserv project screenshot"
-					}
-				},
-				{
-					"title": "minishell",
-					"summary": "TODO",
-					"link": "https://github.com/42mates/minishell",
-					"media": {
-						"image": "TODO",
-						"alt": "Minishell project screenshot"
-					}
-				},
-				{
-					"title": "inception",
-					"summary": "TODO",
-					"link": "https://github.com/marinsucks/42/tree/master/devops/inception",
-					"media": {
-						"image": "TODO",
-						"alt": "Inception project screenshot"
 					}
 				}
 			]
