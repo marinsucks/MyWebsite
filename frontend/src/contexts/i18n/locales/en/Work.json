@@ -1,98 +1,98 @@
 {
-	"featuredTitle": "Featured Works",
-	"experience": [
-		{
-			"name": "finovox",
-			"title": "DevOps/Data Engineer Internship",
-			"organization": "Finovox",
-			"tags": {
-				"technical": ["Python", "React", "GCP"],
-				"thematical": ["Fullstack", "DevOps"]
-			},
-			"summary": "Infrastructure automation, observability tools, and CI pipelines in a cloud-native environment.",
-			"description": "TODO",
-			"link": "https://finovox.com",
-			"tasksTitle": "Key Responsibilities",
-			"tasks": [
-				{
-					"title": "API management",
-					"summary": "TODO",
-					"link": null,
-					"media": {
-						"image": "TODO",
-						"alt": "API handling illustration"
-					}
-				},
-				{
-					"title": "Documentation",
-					"summary": "TODO",
-					"link": null,
-					"media": {
-						"image": "TODO",
-						"alt": "Documentation handling illustration"
-					}
-				},
-				{
-					"title": "Integration Tests",
-					"summary": "TODO",
-					"link": null,
-					"media": {
-						"image": "TODO",
-						"alt": "Integration Tests illustration"
-					}
-				}
-			]
-		},
-		{
-			"name": "42",
-			"title": "Curriculum",
-			"organization": "42",
-			"tags": {
-				"technical": ["C / C++", "Bash", "Git"],
-				"thematical": ["Algorithms", "Systems", "Networks"]
-			},
-			"summary": "An immersive, self-directed learning program focused on programming, computer science, and problem-solving.",
-			"description": "TODO",
-			"link": "https://www.42network.org/",
-			"projectsTitle": "Notable Projects",
-			"projects": [
-				{
-					"title": "transcendence",
-					"summary": "TODO",
-					"link": "https://github.com/42mates/transcendence",
-					"media": {
-						"image": "TODO",
-						"alt": "Transcendence project screenshot"
-					}
-				},
-				{
-					"title": "webserv",
-					"summary": "TODO",
-					"link": "https://github.com/42mates/webserv",
-					"media": {
-						"image": "TODO",
-						"alt": "Webserv project screenshot"
-					}
-				},
-				{
-					"title": "minishell",
-					"summary": "TODO",
-					"link": "https://github.com/42mates/minishell",
-					"media": {
-						"image": "TODO",
-						"alt": "Minishell project screenshot"
-					}
-				},
-				{
-					"title": "inception",
-					"summary": "TODO",
-					"link": "https://github.com/marinsucks/42/tree/master/devops/inception",
-					"media": {
-						"image": "TODO",
-						"alt": "Inception project screenshot"
-					}
-				}
-			]
-		}
-	]
+  "featuredTitle": "Featured Works",
+  "experience": [
+    {
+      "name": "finovox",
+      "title": "DevOps/Data Engineer Internship",
+      "organization": "Finovox",
+      "tags": {
+        "technical": ["Python", "React", "GCP"],
+        "thematical": ["Fullstack", "DevOps"]
+      },
+      "summary": "Infrastructure automation, observability tools, and CI pipelines in a cloud-native environment.",
+      "description": "Built internal tooling, improved backend services, and strengthened DevOps workflow across the platform.",
+      "link": "https://finovox.com",
+      "tasksTitle": "Key Responsibilities",
+      "tasks": [
+        {
+          "title": "API management",
+          "summary": "Migrated and cleaned up the API using OpenAPI3 and Pydantic.",
+          "link": null,
+          "media": {
+            "image": "/media/api.png",
+            "alt": "API handling illustration"
+          }
+        },
+        {
+          "title": "Documentation",
+          "summary": "Maintained internal technical documentation with Docusaurus.",
+          "link": null,
+          "media": {
+            "image": "/media/docs.png",
+            "alt": "Documentation handling illustration"
+          }
+        },
+        {
+          "title": "Integration Tests",
+          "summary": "Set up automated unit, integration, and e2e test suites with Pytest.",
+          "link": null,
+          "media": {
+            "image": "/media/tests.png",
+            "alt": "Integration Tests illustration"
+          }
+        }
+      ]
+    },
+    {
+      "name": "42",
+      "title": "Curriculum at 42",
+      "organization": "42",
+      "tags": {
+        "technical": ["C / C++", "Bash", "Git"],
+        "thematical": ["Algorithms", "Systems", "Networks"]
+      },
+      "summary": "An immersive, self-directed learning program focused on programming, computer science, and problem-solving.",
+      "description": "Hands-on projects covering systems programming, networking, and full-stack development.",
+      "link": "https://www.42network.org/",
+      "projectsTitle": "Notable Projects",
+      "projects": [
+        {
+          "title": "transcendence",
+          "summary": "Full-stack web app with microservices, Fastify, Docker and ELK.",
+          "link": "https://github.com/42mates/transcendence",
+          "media": {
+            "image": "/media/transcendence.png",
+            "alt": "Transcendence project screenshot"
+          }
+        },
+        {
+          "title": "webserv",
+          "summary": "Custom HTTP/1.1 server in C++ inspired by NGINX.",
+          "link": "https://github.com/42mates/webserv",
+          "media": {
+            "image": "/media/webserv.png",
+            "alt": "Webserv project screenshot"
+          }
+        },
+        {
+          "title": "minishell",
+          "summary": "Unix shell in C with pipes, signals and redirections.",
+          "link": "https://github.com/42mates/minishell",
+          "media": {
+            "image": "/media/minishell.png",
+            "alt": "Minishell project screenshot"
+          }
+        },
+        {
+          "title": "inception",
+          "summary": "Dockerized WordPress stack with NGINX and MariaDB.",
+          "link": "https://github.com/marinsucks/42/tree/master/devops/inception",
+          "media": {
+            "image": "/media/inception.png",
+            "alt": "Inception project screenshot"
+          }
+        }
+      ]
+    }
+  ]
 }

@@ -3,7 +3,8 @@ DC_FILE = docker-compose.yml
 all: check-env up
 
 check-env:
-	@if [ -z "$$DOMAIN" ] || [ -z "$$EMAIL" ]; then \
+	@set -a; source .env; set +a; \
+	if [ -z "$$DOMAIN" ] || [ -z "$$EMAIL" ]; then \
 		echo "Error: Please set DOMAIN and EMAIL in your .env file"; \
 		echo "Example:"; \
 		echo "DOMAIN=example.com"; \
@@ -16,7 +17,8 @@ init-ssl: check-env
 	@./scripts/certbot.sh ./certbot
 
 up: check-env
-	@docker compose -f $(DC_FILE) up -d --remove-orphans
+	@source .env && docker compose -f $(DC_FILE) up --remove-orphans --build
+# 	@source .env && docker compose -f $(DC_FILE) up --remove-orphans --build -d
 
 down:
 	@docker compose -f $(DC_FILE) down

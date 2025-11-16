@@ -11,6 +11,7 @@ Thumbs.db
 certs/
 *.pem
 *.crt
+*.key
 
 ##### CUSTOM FILES AND REPOS #####
 karmedex/
