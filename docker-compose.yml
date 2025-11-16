@@ -1,0 +1,29 @@
+services:
+  frontend:
+    container_name: frontend-container
+    build:
+      context: ./frontend
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      # Certificats TLS
+      - ${SSL_FRONT_CERT}:/app/certs/frontend.crt:ro
+      - ${SSL_FRONT_KEY}:/app/certs/frontend.key:ro
+      # Logs
+      - ./logs/nginx:/var/log/nginx
+    environment:
+      - DOMAIN=${DOMAIN}
+    # restart: unless-stopped
+
+  # certbot:
+  #   image: certbot/certbot
+  #   container_name: certbot
+  #   volumes:
+  #     - ./certbot/conf:/etc/letsencrypt
+  #     - ./certbot/www:/var/www/certbot
+  #   environment:
+  #     - EMAIL=${EMAIL}
+  #     - DOMAIN=${DOMAIN}
+  #   depends_on:
+  #     - frontend

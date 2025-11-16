@@ -1,0 +1,8 @@
+{
+	"greeting": "Hello world!",
+	"name": "I'm Marin Becker.",
+	"description": {
+		"role": "Full-stack developer, specialized in DevOps.",
+		"quality": "I create <reliable>reliable</reliable> services through <clean>clean</clean> and <accessible>accessible</accessible> code."
+	}
+}

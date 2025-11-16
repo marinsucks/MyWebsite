@@ -1,0 +1,96 @@
+{
+  "featuredTitle": "À la Une",
+  "experience": [
+    {
+      "name": "finovox",
+      "title": "Stage DevOps/Data Engineer",
+      "organization": "Finovox",
+      "tags": {
+        "technical": ["Python", "React", "GCP"],
+        "thematical": ["Fullstack", "DevOps"]
+      },
+      "summary": "Automatisation de l'infrastructure, observabilité et CI dans un environnement cloud-native.",
+      "description": "Développement interne, amélioration du backend et renforcement du workflow DevOps global.",
+      "link": "https://finovox.com",
+      "tasks": [
+        {
+          "title": "Gestion d'API",
+          "summary": "Migration et normalisation de l’API avec OpenAPI3 et Pydantic.",
+          "link": null,
+          "media": {
+            "image": "/media/api.png",
+            "alt": "Illustration de gestion d'API"
+          }
+        },
+        {
+          "title": "Documentation",
+          "summary": "Maintenance de la documentation technique avec Docusaurus.",
+          "link": null,
+          "media": {
+            "image": "/media/docs.png",
+            "alt": "Illustration de gestion de documentation"
+          }
+        },
+        {
+          "title": "Tests d'intégration",
+          "summary": "Mise en place de tests unitaires, intégration et e2e via Pytest.",
+          "link": null,
+          "media": {
+            "image": "/media/tests.png",
+            "alt": "Illustration des tests d'intégration"
+          }
+        }
+      ]
+    },
+    {
+      "name": "42",
+      "title": "Cursus à 42",
+      "organization": "42",
+      "tags": {
+        "technical": ["C / C++", "Bash", "Git"],
+        "thematical": ["Algorithmes", "Systèmes", "Réseaux"]
+      },
+      "summary": "Programme immersif basé sur la pratique, les systèmes et le développement moderne.",
+      "description": "Projets pratiques couvrant systèmes, réseau, algorithmique et développement web.",
+      "link": "https://www.42network.org/",
+      "projects": [
+        {
+          "title": "transcendence",
+          "summary": "App web fullstack en microservices: Fastify, Docker, ELK.",
+          "link": "https://github.com/42mates/transcendence",
+          "media": {
+            "image": "/media/transcendence.png",
+            "alt": "Capture d'écran du projet Transcendence"
+          }
+        },
+        {
+          "title": "webserv",
+          "summary": "Serveur HTTP/1.1 en C++ inspiré d’NGINX.",
+          "link": "https://github.com/42mates/webserv",
+          "media": {
+            "image": "/media/webserv.png",
+            "alt": "Capture d'écran du projet Webserv"
+          }
+        },
+        {
+          "title": "minishell",
+          "summary": "Shell Unix en C avec pipes, signaux et redirections.",
+          "link": "https://github.com/42mates/minishell",
+          "media": {
+            "image": "/media/minishell.png",
+            "alt": "Capture d'écran du projet Minishell"
+          }
+        },
+        {
+          "title": "inception",
+          "summary": "Stack WordPress dockerisée : NGINX + MariaDB.",
+          "link": "https://github.com/marinsucks/42/tree/master/devops/inception",
+          "media": {
+            "image": "/media/inception.png",
+            "alt": "Capture d'écran du projet Inception"
+          }
+        }
+      ]
+    }
+  ]
+}

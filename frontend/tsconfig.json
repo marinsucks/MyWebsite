@@ -1,0 +1,29 @@
+{
+	"include": ["src", "src/components/Work/DetailedWorkSection.tsx"],
+	"exclude": ["node_modules", "dist"],
+
+	"compilerOptions": {
+		
+		"outDir": "dist",
+		"baseUrl": "src",
+		"paths": {
+			"@assets/*": ["assets/*"],
+			"@components/*": ["components/*"],
+			"@contexts/*": ["contexts/*"],
+			"@hooks/*": ["hooks/*"],
+			"@pages/*": ["pages/*"],
+			"@styles/*": ["styles/*"],
+			"@types/*": ["types/*"],
+			"@utils/*": ["utils/*"],
+		},
+
+		"module": "commonjs",
+		"target": "es2017",
+		"strict": true,
+		"esModuleInterop": true,
+		"emitDecoratorMetadata": true,
+		"experimentalDecorators": true,
+		"jsx": "react-jsx",
+		"resolveJsonModule": true
+	}
+}

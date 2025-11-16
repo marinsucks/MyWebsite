@@ -1,0 +1,16 @@
+{
+	"header": {
+		"about": "About",
+		"work": "Work",
+		"contact": "Contact"
+	},
+	"footer": {
+		"description": "Crafted in <vs>VS Code</vs> with help from <copilot>GitHub Copilot</copilot>. Built with <react>React</react>, <ts>TypeScript</ts>, and <tailwind>Tailwind CSS</tailwind>, served by <vite>Vite</vite>, deployed via <docker>Docker Compose</docker> — all imagined, designed, and wired together by <brain>my own brain</brain>."
+	},
+	"notFound": {
+		"title": "Page not found",
+		"description": "Are you lost? It seems you've wandered off the beaten path. Let's help you find your way back.",
+		"backToHome": "Back to Home"
+	},
+	"comingSoon": "Coming Soon"
+}
