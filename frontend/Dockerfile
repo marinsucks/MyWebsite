@@ -9,17 +9,19 @@ RUN npm run build
 # Serve stage
 FROM nginx:alpine
 
-RUN apk add --no-cache gettext certbot certbot-nginx
-
+# Copy custom nginx configuration
 COPY nginx.conf /etc/nginx/nginx.conf
 
+# Copy built applications
 COPY --from=build /app/dist /usr/share/nginx/html/v2
 COPY dist_v1 /usr/share/nginx/html/v1
 
-EXPOSE 80 443
+# Expose internal port for nginx-proxy
+EXPOSE 8080
 
-# Use envsubst to replace environment variables and start nginx
-CMD [ "nginx", "-g", "daemon off;" ]
+# Start nginx
+CMD ["nginx", "-g", "daemon off;"]
 
-# # Healthcheck
-# HEALTHCHECK --interval=30s --timeout=10s --start-period=5s CMD curl -f http://localhost/ || exit 1
+# Healthcheck
+HEALTHCHECK --interval=30s --timeout=10s --start-period=5s \
+  CMD wget --quiet --tries=1 --spider http://localhost:8080/ || exit 1

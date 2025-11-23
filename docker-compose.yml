@@ -1,29 +1,47 @@
 services:
-  frontend:
-    container_name: frontend-container
-    build:
-      context: ./frontend
+  nginx-proxy:
+    image: nginxproxy/nginx-proxy:latest
+    container_name: nginx-proxy
     ports:
       - "80:80"
       - "443:443"
     volumes:
-      # Certificats TLS
-      - ${SSL_FRONT_CERT}:/app/certs/frontend.crt:ro
-      - ${SSL_FRONT_KEY}:/app/certs/frontend.key:ro
-      # Logs
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+      - ./certs:/etc/nginx/certs:ro
+      - ./vhost.d:/etc/nginx/vhost.d
+      - ./html:/usr/share/nginx/html
+    labels:
+      - "com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy"
+    restart: unless-stopped
+
+  acme-companion:
+    image: nginxproxy/acme-companion:latest
+    container_name: acme-companion
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./certs:/etc/nginx/certs:rw
+      - ./vhost.d:/etc/nginx/vhost.d:rw
+      - ./html:/usr/share/nginx/html:rw
+      - ./acme:/etc/acme.sh
+    environment:
+      - DEFAULT_EMAIL=${EMAIL}
+    depends_on:
+      - nginx-proxy
+    restart: unless-stopped
+
+  site:
+    container_name: site-container
+    build:
+      context: ./frontend
+    expose:
+      - "8080"
+    volumes:
       - ./logs/nginx:/var/log/nginx
     environment:
-      - DOMAIN=${DOMAIN}
-    # restart: unless-stopped
-
-  # certbot:
-  #   image: certbot/certbot
-  #   container_name: certbot
-  #   volumes:
-  #     - ./certbot/conf:/etc/letsencrypt
-  #     - ./certbot/www:/var/www/certbot
-  #   environment:
-  #     - EMAIL=${EMAIL}
-  #     - DOMAIN=${DOMAIN}
-  #   depends_on:
-  #     - frontend
+      - VIRTUAL_HOST=${DOMAIN},www.${DOMAIN},v1.${DOMAIN},v2.${DOMAIN}
+      - VIRTUAL_PORT=8080
+      - LETSENCRYPT_HOST=${DOMAIN},www.${DOMAIN},v1.${DOMAIN},v2.${DOMAIN}
+      - LETSENCRYPT_EMAIL=${EMAIL}
+    depends_on:
+      - nginx-proxy
+    restart: unless-stopped

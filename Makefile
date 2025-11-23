@@ -1,44 +1,78 @@
+# Docker Compose file
 DC_FILE = docker-compose.yml
 
-all: check-env up
+# Default target
+all: check-env deploy
 
+# Check if required environment variables are set
 check-env:
 	@set -a; . ./.env; set +a; \
 	if [ -z "$$DOMAIN" ] || [ -z "$$EMAIL" ]; then \
-		echo "Error: Please set DOMAIN and EMAIL in your .env file"; \
+		echo "❌ Error: Please set DOMAIN and EMAIL in your .env file"; \
 		echo "Example:"; \
-		echo "DOMAIN=example.com"; \
-		echo "EMAIL=admin@example.com"; \
+		echo "DOMAIN=marinbecker.me"; \
+		echo "EMAIL=admin@marinbecker.me"; \
 		exit 1; \
 	fi
+	@echo "✅ Environment variables OK"
 
-init-ssl: check-env
-	@chmod +x init-letsencrypt.sh
-	@./scripts/certbot.sh ./certbot
+# Build the site container
+build: check-env
+	@echo "🏗️  Building site container..."
+	@docker compose -f $(DC_FILE) build site
 
-up: check-env
-	@. ./.env && docker compose -f $(DC_FILE) up --remove-orphans --build -d
+# Deploy everything (build and start all services)
+deploy: check-env
+	@echo "🚀 Deploying with automatic HTTPS..."
+	@docker compose -f $(DC_FILE) up --remove-orphans --build -d
+	@echo "✅ Deployment complete!"
+	@echo "🌐 Your site will be available at:"
+	@echo "   - https://$$DOMAIN"
+	@echo "   - https://v1.$$DOMAIN" 
+	@echo "   - https://v2.$$DOMAIN"
+	@echo "📋 SSL certificates are automatically managed by Let's Encrypt"
 
+# Stop all services
 down:
+	@echo "🛑 Stopping all services..."
 	@docker compose -f $(DC_FILE) down
 
-build: check-env
-	@docker compose -f $(DC_FILE) build
-
+# Show logs for the site container
 logs:
+	@docker compose -f $(DC_FILE) logs -f site
+
+# Show logs for all services
+logs-all:
 	@docker compose -f $(DC_FILE) logs -f
 
+# Show status of all containers
+status:
+	@docker compose -f $(DC_FILE) ps
+
+# Clean up everything (containers, images, volumes)
 clean: down
-	@rm -rf frontend/{node_modules,dist,build,certs}
-	@rm -rf certbot logs
+	@echo "🧹 Cleaning up..."
+	@rm -rf frontend/{node_modules,dist,build}
+	@rm -rf logs/*
+	@docker compose -f $(DC_FILE) down --volumes --remove-orphans
+	@docker system prune -f
 
-re: clean up
+# Rebuild everything from scratch
+rebuild: clean deploy
 
-rebuild: clean build up
+# Restart just the site service
+restart-site:
+	@docker compose -f $(DC_FILE) restart site
 
-.PHONY: all up down logs re init-ssl check-env
+# Check SSL certificate status
+ssl-status:
+	@echo "🔒 SSL Certificate status:"
+	@ls -la certs/ 2>/dev/null || echo "No certificates generated yet"
 
-pre-commit:
-	@pip3 install --quiet pre-commit
-	@pre-commit install
-	@pre-commit autoupdate
+# Development setup
+dev-setup:
+	@echo "🛠️  Setting up development environment..."
+	@cd frontend && npm install
+	@echo "✅ Development setup complete!"
+
+.PHONY: all check-env build deploy down logs logs-all status clean rebuild restart-site ssl-status dev-setup
