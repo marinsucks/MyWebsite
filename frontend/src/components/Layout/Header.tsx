@@ -33,8 +33,12 @@ const Header: React.FC = () => {
 					</li>
 
 					<li>
-						{/*<ContactForm />*/}
-						{t('common:header.contact')}
+						<a 
+							href="mailto:contact@marinbecker.me"
+							className="hover:text-accent transition-colors duration-200"
+						>
+							{t('common:header.contact')}
+						</a>
 					</li>
 				</ul>
 			</nav>
