@@ -12,8 +12,9 @@ const Header: React.FC = () => {
 	const { t } = useTranslation();
 
 	return (
-		<header className="w-full bg-background text-primary p-4">
-			<nav className="max-w-8xl mx-auto flex items-center justify-between py-4 px-6">
+		<header className="fixed top-0 left-0 right-0 w-full bg-transparent text-primary z-50 px-4">
+			<div className="max-w-6xl mx-auto bg-background/90 backdrop-blur-sm border border-t-0 border-secondary rounded-b-lg">
+				<nav className="flex items-center justify-between py-4 px-6">
 				<Link
 					to="/"
 					className="flex items-center transition-transform duration-200 hover:scale-125 active:scale-110"
@@ -41,7 +42,8 @@ const Header: React.FC = () => {
 						</a>
 					</li>
 				</ul>
-			</nav>
+				</nav>
+			</div>
 		</header>
 	);
 };

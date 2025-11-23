@@ -6,17 +6,27 @@
 @layer base {
   :root {
     --text: #090c10;
+    --text-dark: #050609;
     --background: #d1def0;
+    --background-dark: #b8c9e3;
     --primary: #22416d;
+    --primary-dark: #1a3354;
     --secondary: #7fa6dc;
+    --secondary-dark: #6891d0;
     --accent: #be170e;
+    --accent-dark: #9e120b;
   }
   .dark {
     --text: #eef1f5;
+    --text-dark: #d9e0ea;
     --background: #0f1c2e;
+    --background-dark: #0a1424;
     --primary: #94b2dd;
+    --primary-dark: #7ba0d1;
     --secondary: #23497f;
+    --secondary-dark: #1c3a66;
     --accent: #f5807a;
+    --accent-dark: #f36a62;
   }
 }
 /*@layer base {

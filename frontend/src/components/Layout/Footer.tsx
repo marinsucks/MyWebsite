@@ -86,9 +86,10 @@ const Footer: React.FC = () => {
 	];
 
 	return (
-		<footer className="text-primary py-6 w-full">
-			<div className="flex flex-col md:flex-row justify-between items-center max-w-4xl mx-auto px-4 gap-8 md:gap-16">
-				<div className="flex gap-8 mb-4 md:mb-0">
+		<footer className="fixed bottom-0 left-0 right-0 w-full bg-transparent text-primary relative z-50 px-4">
+			<div className="max-w-6xl mx-auto py-4 bg-background/90 backdrop-blur-sm border border-b-0 border-secondary rounded-t-lg">
+				<div className="flex flex-col sm:flex-row justify-between items-center px-2 sm:px-4 gap-4 sm:gap-8">
+				<div className="flex justify-between w-full sm:w-auto gap-0 sm:gap-8 mb-2 sm:mb-0 px-4 sm:px-0">
 					{links.map((link, idx) => (
 						<a
 							key={idx}
@@ -96,19 +97,20 @@ const Footer: React.FC = () => {
 							title={link.title}
 							target={link.target}
 							rel={link.rel}
-							className="transition-transform duration-200 hover:scale-125 active:scale-110"
+							className="transition-transform duration-200 hover:scale-125 active:scale-110 flex-1 sm:flex-none flex justify-center sm:justify-start"
 							style={{ transitionProperty: 'transform' }}
 						>
-							<link.Icon className="footer-icon w-8 h-8" aria-label={link.title} />
+							<link.Icon className="footer-icon w-10 h-10 sm:w-8 sm:h-8" aria-label={link.title} />
 						</a>
 					))}
 				</div>
-				<div className="text-sm text-center md:text-left p-2 opacity-80">
+				<div className="text-xs sm:text-sm text-center sm:text-left px-1 sm:p-2 opacity-80">
 					<Trans
 						ns="common"
 						i18nKey="footer.description"
 						components={tools}
 					/>
+				</div>
 				</div>
 			</div>
 		</footer>

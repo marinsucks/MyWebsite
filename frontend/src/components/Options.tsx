@@ -10,14 +10,13 @@ import DarkModeIcon from "@assets/icons/light/dark-mode.svg?react";
 import FlagFrIcon from "@assets/icons/flag-fr.svg?react";
 import FlagUkIcon from "@assets/icons/flag-uk.svg?react";
 
-const BUTTON_SIZE = 60;
-const RADIUS = 54; // Distance from center to floating buttons
+const BUTTON_SIZE = 72; // Augmenté de 60 à 72
+const RADIUS = 64; // Distance from center to floating buttons (augmentée aussi)
 
 const Options: React.FC = () => {
 	const [openByClick, setOpenByClick] = useState(false);
 	const [hovered, setHovered] = useState(false);
 	const [darkMode, setDarkMode] = useDarkMode();
-	const modePath = darkMode ? "dark" : "light";
 	const { i18n } = useTranslation();
 	const containerRef = useRef<HTMLDivElement>(null);
 
@@ -54,11 +53,14 @@ const Options: React.FC = () => {
 	const ThemeIcon = darkMode ? LightModeIcon : DarkModeIcon;
 	const LangIcon = i18n.language === "en" ? FlagFrIcon : FlagUkIcon;
 	const langAlt = i18n.language === "en" ? "FR" : "EN";
+	const darkModeAlt = darkMode ? "Light mode" : "Dark mode";
+	
+	const toggleDarkMode = () => setDarkMode(!darkMode);
 
 	return (
 		<div
 			ref={containerRef}
-			className="fixed bottom-6 right-6 z-50 text-text"
+			className="fixed bottom-6 right-6 z-[9999] text-text"
 			style={{
 				width: `${RADIUS + BUTTON_SIZE}px`,
 				height: `${RADIUS + BUTTON_SIZE}px`,
@@ -79,7 +81,7 @@ const Options: React.FC = () => {
 				{/* Settings button */}
 				<button
 					onClick={() => setOpenByClick((o) => !o)}
-					className="w-12 h-12 flex items-center justify-center rounded-full bg-background transition-colors duration-150 hover:bg-accent/70"
+					className="w-16 h-16 flex items-center justify-center rounded-full bg-background transition-colors duration-150 hover:bg-secondary"
 					aria-label="Open settings"
 					type="button"
 					style={{
@@ -89,7 +91,7 @@ const Options: React.FC = () => {
 						zIndex: 2,
 					}}
 				>
-					<OptionsIcon className="w-6 h-6" aria-label="Options" />
+					<OptionsIcon className="w-8 h-8" aria-label="Options" />
 				</button>
 			</div>
 			{/* Floating buttons */}
@@ -97,8 +99,8 @@ const Options: React.FC = () => {
 				<>
 					{/* Theme button (9h) */}
 					<button
-						onClick={() => setDarkMode(!darkMode)}
-						className="w-12 h-12 flex items-center justify-center rounded-full bg-background transition-colors duration-1500 hover:bg-secondary"
+						onClick={toggleDarkMode}
+						className="w-16 h-16 flex items-center justify-center rounded-full bg-background transition-colors duration-150 hover:bg-secondary"
 						aria-label="Toggle dark mode"
 						type="button"
 						style={{
@@ -111,12 +113,12 @@ const Options: React.FC = () => {
 							pointerEvents: "auto",
 						}}
 					>
-						<ThemeIcon className="w-6 h-6" aria-label={modePath} />
+						<ThemeIcon className="w-8 h-8" aria-label={darkModeAlt} />
 					</button>
 					{/* Lang button (12h) */}
 					<button
 						onClick={() => i18n.changeLanguage(i18n.language === "en" ? "fr" : "en")}
-						className="w-12 h-12 flex items-center justify-center rounded-full bg-background transition-colors duration-150 hover:bg-secondary"
+						className="w-16 h-16 flex items-center justify-center rounded-full bg-background transition-colors duration-150 hover:bg-secondary"
 						aria-label="Toggle language"
 						type="button"
 						style={{
@@ -129,7 +131,7 @@ const Options: React.FC = () => {
 							pointerEvents: "auto",
 						}}
 					>
-						<LangIcon className="w-6 h-6" aria-label={langAlt} />
+						<LangIcon className="w-8 h-8" aria-label={langAlt} />
 					</button>
 				</>
 			)}
