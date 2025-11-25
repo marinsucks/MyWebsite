@@ -1,0 +1,177 @@
+/******** ROTATE ********/
+
+.rotate {
+	animation: rotate 3s linear infinite;
+	/*animation-play-state: paused;*/
+}
+/*.rotate:hover { animation-play-state: running; }*/
+
+@keyframes rotate {
+	0% { transform: rotate(0deg); }
+	100% { transform: rotate(360deg); }
+}
+
+/********* PULSE *********/
+
+.pulse { animation: pulse 1s ease-in-out infinite; }
+
+@keyframes pulse {
+	0%, 100% { transform: scale(1); }
+	50% { transform: scale(1.2); }
+}
+
+/********* SLIDE IN OUT *********/
+
+.slide-in-out {
+	animation: slide-in-out 3s ease-in-out infinite;
+}
+
+@keyframes slide-in-out {
+	0% {
+		transform: translateX(-100%);
+		opacity: 0;
+	}
+	50% {
+		transform: translateX(0);
+		opacity: 1;
+	}
+	100% {
+		transform: translateX(100%);
+		opacity: 0;
+	}
+}
+
+/********* LED STRIP *********/
+
+.led-strip {
+  white-space: nowrap;
+	display: flex;
+	position: absolute;
+	left: 0;
+}
+
+.led-strip span {
+  display: inline-block;
+  padding-left: 100%;
+  animation: led-strip 3s linear infinite;
+}
+
+.led-strip2 span {
+	animation-delay: 1.5s;
+}
+
+@keyframes led-strip {
+	0% { 	transform: translateX(0); }
+	100% { 	transform: translateX(100%); }
+}
+
+/********* WALLS BOUNCE *********/
+
+.bounce-walls {
+	animation: bounce-walls 2s ease-in-out infinite;
+}
+
+@keyframes bounce-walls {
+	0%   { transform: translateX(-50%); }
+	50%  { transform: translateX(50%); }
+	100% { transform: translateX(-50%); }
+}
+
+
+
+/********* COLOR PULSE *********/
+
+.color-pulse:hover {
+	animation: color-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes color-pulse {
+	0% { color: inherit; }
+	60% { color: #eb5149; }
+	100% { color: inherit; }	
+}
+
+
+/********* HTTP CODES *********/
+
+.http-reason {
+	text-align: center;
+}
+
+/********* SHOW/HIDE PROJECT *********/
+
+.hidden {
+	display: none;
+}
+
+.visible {
+	display: block;
+	animation: show 0.5s ease-in-out;
+}
+
+@keyframes show {
+	0% {
+		opacity: 0;
+		filter: blur(10px);
+		margin-top: -5%;
+	}
+	100% {
+		opacity: 1;
+		filter: blur(0);
+	}
+}
+
+@media(prefer-reduced-motion) {
+	.hidden {
+		transition: none;
+	}
+	.visible {
+		transition: none;
+	}
+}
+
+.show {
+	opacity: 1;
+	filter: blur(0);
+	transform: translateX(0);
+}
+
+.show-right {
+	transform: translateX(0) !important; 
+}
+
+/********* SNOW *********/
+
+#snow {
+	background-image: url('/media/snow/snowtile1.1.png'), url('/media/snow/snowtile0.1.png'), url('/media/snow/snowtile2.1.png');
+	left: 0;
+	position: absolute;
+	top: 0;
+	width: 100%;
+	z-index:1;
+	-webkit-animation: snow 1000s linear infinite;
+	-moz-animation: snow 1000s linear infinite;
+	-ms-animation: snow 1000s linear infinite;
+	animation: snow 1000s linear infinite;
+	-webkit-transform: translate3d(0,0,0);
+	-moz-transform: translate3d(0,0,0);
+	-ms-transform: translate3d(0,0,0);
+	-o-transform: translate3d(0,0,0);
+	transform: translate3d(0,0,0);
+}
+@keyframes snow {
+0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
+100% {background-position: 50000px 50000px, 10000px 20000px, -10000px 15000px;}          
+}
+@-moz-keyframes snow {
+0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
+100% {background-position: 50000px 50000px, 10000px 20000px, -10000px 15000px;}          
+}
+@-webkit-keyframes snow {
+0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
+100% {background-position: 50000px 50000px, 10000px 20000px, -10000px 15000px;}          
+}
+@-ms-keyframes snow {
+0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
+100% {background-position: 50000px 50000px, 10000px 20000px, -10000px 15000px;}          
+}  
