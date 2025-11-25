@@ -1,0 +1,69 @@
+name: 🚀 Secure Deploy
+
+on:
+  push:
+    branches: [ master ]
+    paths:
+      - 'frontend/**'
+      - 'docker-compose.yml'
+      - 'Dockerfile'
+      - 'Makefile'
+      - '.github/workflows/**'
+
+jobs:
+  security-check:
+    runs-on: ubuntu-latest
+    outputs:
+      safe-to-deploy: ${{ steps.check.outputs.safe }}
+    steps:
+    - name: 🔍 Security verification
+      id: check
+      run: |
+        if [[ "${{ github.repository }}" == "marinsucks/MyWebsite" && 
+              "${{ github.ref }}" == "refs/heads/master" && 
+              "${{ github.event_name }}" == "push" && 
+              "${{ github.actor }}" == "marinsucks" ]]; then
+          echo "safe=true" >> $GITHUB_OUTPUT
+        else
+          echo "safe=false" >> $GITHUB_OUTPUT
+        fi
+
+  deploy:
+    needs: security-check
+    if: needs.security-check.outputs.safe-to-deploy == 'true'
+    runs-on: self-hosted
+    timeout-minutes: 10
+    
+    steps:
+    - name: 📂 Secure checkout
+      uses: actions/checkout@v4
+      with:
+        ref: ${{ github.sha }}  # Pin exact commit
+        fetch-depth: 1
+        
+    - name: 🛡️ Final security check
+      run: |
+        echo "Deploying commit: ${{ github.sha }}"
+        echo "By user: ${{ github.actor }}"
+        
+    - name: 🛑 Stop containers
+      run: |
+        cd ${{ github.workspace }}
+        make down || true
+        
+    - name: 🚀 Deploy
+      run: |
+        cd ${{ github.workspace }}
+        make deploy
+        
+    - name: ✅ Health check
+      run: |
+        sleep 15
+        curl -f https://marinbecker.me || exit 1
+        
+    - name: 📱 Success notification
+      if: success()
+      run: |
+        curl -H "Content-Type: application/json" \
+             -d '{"content":"✅ **Deploy successful** marinbecker.me\n🔗 Commit: '"${{ github.sha }}"'"}' \
+             ${{ secrets.DISCORD_WEBHOOK }}
