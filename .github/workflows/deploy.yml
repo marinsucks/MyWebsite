@@ -68,7 +68,19 @@ jobs:
     - name: ✅ Health check
       run: |
         sleep 15
-        curl -f https://marinbecker.me || exit 1
+        for i in {1..10}; do
+          if curl -f https://marinbecker.me; then
+          echo "Health check passed on attempt $i"
+          exit 0
+          fi
+          echo "Health check failed on attempt $i"
+          if [ $i -lt 10 ]; then
+          sleep 5
+          fi
+        done
+        echo "Health check failed after 10 attempts"
+        exit 1
+
         
     - name: 📱 Success notification
       if: success()
