@@ -1,5 +1,8 @@
 {
   "featuredTitle": "À la Une",
+  "aboutTitle": "À propos de cette expérience",
+  "responsibilitiesTitle": "Responsabilités clés",
+  "projectsTitle": "Projets notables",
   "experience": [
     {
       "name": "finovox",
@@ -9,35 +12,35 @@
         "technical": ["Python", "React", "GCP"],
         "thematical": ["Fullstack", "DevOps"]
       },
-      "summary": "Automatisation de l'infrastructure, observabilité et CI dans un environnement cloud-native.",
-      "description": "Développement interne, amélioration du backend et renforcement du workflow DevOps global.",
+      "summary": "Stage DevOps/Data Engineer dans une startup spécialisée en analyse anti-fraude et conformité documentaire.",
+      "description": "Au sein d'une petite équipe tech, j'ai participé à l'automatisation de l'infrastructure, au développement d'API backend et à la documentation frontend. Ce stage a été l'occasion de renforcer mes compétences techniques (Python, bibliothèques spécialisées, CI/CD) et de progresser dans l'organisation de projets collaboratifs." ,
       "link": "https://finovox.com",
       "tasks": [
         {
           "title": "Gestion d'API",
-          "summary": "Migration et normalisation de l’API avec OpenAPI3 et Pydantic.",
+          "summary": "Schématisation, réorganisation et amélioration de l'architecture API.",
           "link": null,
           "media": {
-            "image": "/media/api.png",
-            "alt": "Illustration de gestion d'API"
+        "image": "/media/api.png",
+        "alt": "Illustration de gestion d'API"
           }
         },
         {
           "title": "Documentation",
-          "summary": "Maintenance de la documentation technique avec Docusaurus.",
+          "summary": "Maintenance de la documentation technique interne avec Docusaurus.",
           "link": null,
           "media": {
-            "image": "/media/docs.png",
-            "alt": "Illustration de gestion de documentation"
+        "image": "/media/docs.png",
+        "alt": "Illustration de gestion de documentation"
           }
         },
         {
-          "title": "Tests d'intégration",
-          "summary": "Mise en place de tests unitaires, intégration et e2e via Pytest.",
+          "title": "Tests",
+          "summary": "Mise en place de suites de tests automatisés unitaires, d'intégration et e2e avec Pytest.",
           "link": null,
           "media": {
-            "image": "/media/tests.png",
-            "alt": "Illustration des tests d'intégration"
+        "image": "/media/tests.png",
+        "alt": "Illustration des tests"
           }
         }
       ]
@@ -50,8 +53,8 @@
         "technical": ["C / C++", "Bash", "Git"],
         "thematical": ["Algorithmes", "Systèmes", "Réseaux"]
       },
-      "summary": "Programme immersif basé sur la pratique, les systèmes et le développement moderne.",
-      "description": "Projets pratiques couvrant systèmes, réseau, algorithmique et développement web.",
+      "summary": "Programme immersif basé sur la pratique couvrant systèmes, réseau, algorithmique et développement web.",
+      "description": "La pédagogie de 42 repose entièrement sur la pratique, l'autonomie et l'évaluation par les pairs : pas de cours, pas de professeurs, uniquement des projets. Ce rythme continu m'a appris à travailler efficacement en autonomie totale, à maintenir un code soigné et à progresser rapidement sur de nouveaux sujets techniques. Elle m'a donné des bases solides pour me spécialiser dans n'importe quel domaine de l'informatique.",
       "link": "https://www.42network.org/",
       "projects": [
         {
@@ -65,7 +68,7 @@
         },
         {
           "title": "webserv",
-          "summary": "Serveur HTTP/1.1 en C++ inspiré d’NGINX.",
+          "summary": "Serveur HTTP/1.1 en C++ inspiré d'NGINX.",
           "link": "https://github.com/42mates/webserv",
           "media": {
             "image": "/media/webserv.png",
@@ -88,6 +91,45 @@
           "media": {
             "image": "/media/inception.png",
             "alt": "Capture d'écran du projet Inception"
+          }
+        },
+        {
+          "title": "born2beroot",
+          "summary": "Mise en place d'un serveur Linux suivant des directives strictes.",
+          "link": "https://github.com/marinsucks/42/tree/master/devops/born2beroot",
+          "media": {
+            "image": "/media/born2beroot.png",
+            "alt": "Capture d'écran du projet Born2beroot"
+          }
+        },
+        {
+          "title": "cub3D",
+          "summary": "Moteur 3D raycasting inspiré de Wolfenstein 3D.",
+          "link": "https://github.com/42mates/cub3D",
+          "media": {
+            "image": "/media/cub3d.png",
+            "alt": "Capture d'écran du projet Cub3D"
+          }
+        }
+      ]
+    },
+    {
+      "name": "perso",
+      "title": "Projets personnels",
+      "tags": {
+        "technical": ["React", "Typescript", "Linux"],
+        "thematical": ["Web", "SysAdmin"]
+      },
+      "summary": "Projets personnels réalisés en parallèle.",
+      "link": "https://www.github.com/marinsucks",
+      "projects": [
+        {
+          "title": "MyWebsite",
+          "summary": "Site web personnel en React/Typescript hébergé sur un VPS Debian.",
+          "link": "https://github.com/marinsucks/MyWebsite",
+          "media": {
+            "image": "/media/mywebsite.png",
+            "alt": "Capture d'écran du projet MyWebsite"
           }
         }
       ]

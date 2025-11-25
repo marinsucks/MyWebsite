@@ -36,7 +36,7 @@ const Header: React.FC = () => {
 					<li>
 						<a 
 							href="mailto:contact@marinbecker.me"
-							className="hover:text-accent transition-colors duration-200"
+							className="text-accent px-4 py-2 rounded-lg hover:bg-accent hover:text-background transition-colors duration-200"
 						>
 							{t('common:header.contact')}
 						</a>

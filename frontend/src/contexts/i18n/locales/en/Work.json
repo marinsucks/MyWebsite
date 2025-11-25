@@ -1,5 +1,8 @@
 {
   "featuredTitle": "Featured Works",
+  "aboutTitle": "About this Experience",
+  "responsibilitiesTitle": "Key Responsibilities",
+  "projectsTitle": "Notable Projects",
   "experience": [
     {
       "name": "finovox",
@@ -9,18 +12,17 @@
         "technical": ["Python", "React", "GCP"],
         "thematical": ["Fullstack", "DevOps"]
       },
-      "summary": "Infrastructure automation, observability tools, and CI pipelines in a cloud-native environment.",
-      "description": "Built internal tooling, improved backend services, and strengthened DevOps workflow across the platform.",
+      "summary": "DevOps/Data Engineer internship at a startup specializing in anti-fraud analysis and document compliance.",
+      "description": "As part of a small tech team, I contributed to infrastructure automation, backend API development, and frontend documentation. This internship strengthened my technical skills (Python, specialized libraries, CI/CD) and improved my collaborative project organization abilities.",
       "link": "https://finovox.com",
-      "tasksTitle": "Key Responsibilities",
       "tasks": [
         {
           "title": "API management",
-          "summary": "Migrated and cleaned up the API using OpenAPI3 and Pydantic.",
+          "summary": "Schematized, reorganized and improved the API architecture.",
           "link": null,
           "media": {
             "image": "/media/api.png",
-            "alt": "API handling illustration"
+            "alt": "API management illustration"
           }
         },
         {
@@ -29,16 +31,16 @@
           "link": null,
           "media": {
             "image": "/media/docs.png",
-            "alt": "Documentation handling illustration"
+            "alt": "Documentation management illustration"
           }
         },
         {
-          "title": "Integration Tests",
+          "title": "Testing",
           "summary": "Set up automated unit, integration, and e2e test suites with Pytest.",
           "link": null,
           "media": {
             "image": "/media/tests.png",
-            "alt": "Integration Tests illustration"
+            "alt": "Testing illustration"
           }
         }
       ]
@@ -51,14 +53,13 @@
         "technical": ["C / C++", "Bash", "Git"],
         "thematical": ["Algorithms", "Systems", "Networks"]
       },
-      "summary": "An immersive, self-directed learning program focused on programming, computer science, and problem-solving.",
-      "description": "Hands-on projects covering systems programming, networking, and full-stack development.",
+      "summary": "Immersive practice-based program covering systems, networking, algorithms, and web development.",
+      "description": "42's pedagogy is entirely based on practice, autonomy, and peer evaluation: no classes, no teachers, only projects. This continuous rhythm taught me to work efficiently with complete autonomy, maintain clean code, and quickly progress on new technical topics. It provided me with solid foundations to specialize in any field of computer science.",
       "link": "https://www.42network.org/",
-      "projectsTitle": "Notable Projects",
       "projects": [
         {
           "title": "transcendence",
-          "summary": "Full-stack web app with microservices, Fastify, Docker and ELK.",
+          "summary": "Full-stack web app with microservices: Fastify, Docker, ELK.",
           "link": "https://github.com/42mates/transcendence",
           "media": {
             "image": "/media/transcendence.png",
@@ -85,11 +86,50 @@
         },
         {
           "title": "inception",
-          "summary": "Dockerized WordPress stack with NGINX and MariaDB.",
+          "summary": "Dockerized WordPress stack: NGINX + MariaDB.",
           "link": "https://github.com/marinsucks/42/tree/master/devops/inception",
           "media": {
             "image": "/media/inception.png",
             "alt": "Inception project screenshot"
+          }
+        },
+        {
+          "title": "born2beroot",
+          "summary": "Secure Linux server setup following strict guidelines.",
+          "link": "https://github.com/marinsucks/42/tree/master/devops/born2beroot",
+          "media": {
+            "image": "/media/born2beroot.png",
+            "alt": "Born2beroot project screenshot"
+          }
+        },
+        {
+          "title": "cub3D",
+          "summary": "Raycasting 3D engine inspired by Wolfenstein 3D.",
+          "link": "https://github.com/42mates/cub3D",
+          "media": {
+            "image": "/media/cub3d.png",
+            "alt": "Cub3D project screenshot"
+          }
+        }
+      ]
+    },
+    {
+      "name": "perso",
+      "title": "Personal Projects",
+      "tags": {
+        "technical": ["React", "Typescript", "Linux"],
+        "thematical": ["Web", "SysAdmin"]
+      },
+      "summary": "Personal projects developed in parallel.",
+      "link": "https://www.github.com/marinsucks",
+      "projects": [
+        {
+          "title": "MyWebsite",
+          "summary": "Personal website in React/Typescript hosted on a Debian VPS.",
+          "link": "https://github.com/marinsucks/MyWebsite",
+          "media": {
+            "image": "/media/mywebsite.png",
+            "alt": "MyWebsite project screenshot"
           }
         }
       ]
