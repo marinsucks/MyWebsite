@@ -80,11 +80,3 @@ jobs:
         done
         echo "Health check failed after 10 attempts"
         exit 1
-
-        
-    - name: 📱 Success notification
-      if: success()
-      run: |
-        curl -H "Content-Type: application/json" \
-             -d '{"content":"✅ **Deploy successful** marinbecker.me\n🔗 Commit: '"${{ github.sha }}"'"}' \
-             ${{ secrets.DISCORD_WEBHOOK }}
