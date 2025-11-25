@@ -6,6 +6,10 @@ all: check-env deploy
 
 # Check if required environment variables are set
 check-env:
+	@if [ ! -f ./.env ] && [ -f ../.env ]; then \
+		echo "📋 Copying .env from parent directory..."; \
+		cp ../.env ./; \
+	fi
 	@set -a; . ./.env; set +a; \
 	if [ -z "$$DOMAIN" ] || [ -z "$$EMAIL" ]; then \
 		echo "❌ Error: Please set DOMAIN and EMAIL in your .env file"; \
