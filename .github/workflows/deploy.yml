@@ -53,12 +53,15 @@ jobs:
         cd ${{ github.workspace }}
         make down || true
         
-    - name: 🧹 Clean ACME permissions
+    - name: 🧹 Cleanup workspace
       run: |
         cd ${{ github.workspace }}
-        sudo chown -R $(whoami):$(whoami) ./acme/ 2>/dev/null || true
-        sudo chown -R $(whoami):$(whoami) ./certs/ 2>/dev/null || true
-        sudo rm -rf ./acme/* 2>/dev/null || true
+        # Forcer les permissions sur les fichiers restants
+        sudo chmod -R 755 . || true
+        sudo chown -R $(whoami):$(whoami) . || true
+        # Nettoyer les logs et fichiers temporaires
+        sudo rm -rf logs/ .env vhost.d/ || true
+      continue-on-error: true
         
     - name: 🚀 Deploy
       run: |

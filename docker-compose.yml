@@ -7,7 +7,7 @@ services:
       - "443:443"
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock:ro
-      - ./certs:/etc/nginx/certs:ro
+      - /opt/ssl-certs/certs:/etc/nginx/certs:ro
       - ./vhost.d:/etc/nginx/vhost.d
       - ./html:/usr/share/nginx/html
     labels:
@@ -19,10 +19,10 @@ services:
     container_name: acme-companion
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
-      - ./certs:/etc/nginx/certs:rw
+      - /opt/ssl-certs/certs:/etc/nginx/certs:rw
       - ./vhost.d:/etc/nginx/vhost.d:rw
       - ./html:/usr/share/nginx/html:rw
-      - ./acme:/etc/acme.sh
+      - /opt/ssl-certs/acme:/etc/acme.sh
     environment:
       - DEFAULT_EMAIL=${EMAIL}
     depends_on:
