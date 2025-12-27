@@ -1,0 +1,16 @@
+{
+  "title": "Enchanté !",
+  "intro": {
+    "title": "Je suis Marin.",
+    "content": "Je suis un développeur full-stack spécialisé en DevOps, avec une formation en Relations Internationales. Je livre tout type d'application avec du code propre, une architecture solide et une expérience utilisateur fluide.",
+    "current": "Actuellement, je travaille en tant qu'Ingénieur DevOps chez Finovox."
+  },
+  "approach": {
+    "title": "De l'idée à l'exécution",
+    "content": "Je code en réfléchissant d'abord, en construisant ensuite. Je navigue entre frontend, backend et DevOps pour maintenir la cohérence du système. Code propre, structure claire, et des choses qui n'ont pas besoin d'être réparées deux fois."
+  },
+  "philosophy": {
+    "title": "Pourquoi c'est important pour moi",
+    "content": "Le code est le seul artisanat où tout s'imbrique parfaitement pour moi. J'aime créer des choses qui sont claires, fonctionnelles et réellement agréables à utiliser. C'est là où se rencontrent logique, esthétique et curiosité 💡"
+  }
+}

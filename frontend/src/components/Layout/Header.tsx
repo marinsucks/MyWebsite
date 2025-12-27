@@ -23,7 +23,7 @@ const Header: React.FC = () => {
 					<Logo className="h-10 w-10 object-contain" aria-label="Logo" />
 				</Link>
 
-				<ul className="flex space-x-8 font-title text-lg items-center">
+				<ul className="flex space-x-8 font-title text-text items-center">
 					<li>
 						<Link 
 							to={'/about'}

@@ -1,0 +1,16 @@
+{
+  "title": "Nice to meet you!",
+  "intro": {
+    "title": "I'm Marin.",
+    "content": "I'm a full-stack developer specializing in DevOps, with a background in International Relations. I deliver any type of application with clean code, solid architecture, and a smooth user experience.",
+    "current": "Currently, I'm working as a DevOps Engineer at Finovox."
+  },
+  "approach": {
+    "title": "From idea to execution",
+    "content": "I code by thinking first, building second. I move across frontend, backend, and DevOps to keep the system coherent. Clean code, clear structure, and things that don't need fixing twice."
+  },
+  "philosophy": {
+    "title": "Why this matters to me",
+    "content": "Coding is the only craft where everything clicks for me. I like creating things that are clear, functional, and actually pleasant to use. It's where logic, aesthetics, and curiosity meet 💡"
+  }
+}
