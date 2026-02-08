@@ -29,6 +29,20 @@ jobs:
     timeout-minutes: 10
     
     steps:
+    - name: 🧹 Pre-checkout cleanup
+      run: |
+        # Nettoyer les fichiers créés par Docker (appartenant à root)
+        if [ -d "${{ github.workspace }}/logs" ]; then
+          sudo rm -rf "${{ github.workspace }}/logs"
+        fi
+        if [ -d "${{ github.workspace }}/vhost.d" ]; then
+          sudo rm -rf "${{ github.workspace }}/vhost.d"
+        fi
+        if [ -d "${{ github.workspace }}/html" ]; then
+          sudo rm -rf "${{ github.workspace }}/html"
+        fi
+      continue-on-error: true
+    
     - name: 📂 Secure checkout
       uses: actions/checkout@v4
       with:
