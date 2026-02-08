@@ -1,45 +1,142 @@
 import React, { useState, useEffect } from 'react';
+import loverboyImg from '@assets/photos/loverboy.png';
+import cutecatGif from '@assets/photos/cutecat.gif';
 
 const Manon: React.FC = () => {
   const [timeElapsed, setTimeElapsed] = useState({
-    years: 0,
     months: 0,
     days: 0,
     hours: 0,
     minutes: 0,
-    seconds: 0,
   });
 
+  const [refuseClickCount, setRefuseClickCount] = useState(0);
+  const [isReplyOpen, setIsReplyOpen] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
+
+  const refuseMessages = [
+    "T'es sûre ?",
+    "Vraiment sûre ?",
+    "Réfléchis bien...",
+    "Tu vas le regretter",
+    "Bon, sérieusement ?",
+    "C'est ta dernière chance",
+    "Attend, réfléchis encore",
+    "Je suis sympa pourtant",
+    "On peut en discuter ?",
+    "C'est pas grave si tu dis non... 😢",
+    "Mais j'ai préparé des choses !",
+    "Tu préfères rester seule ?",
+    "Netflix c'est bien aussi...",
+    "Je comprends pas là",
+    "Un dernier mot ?",
+    "Tu changes jamais d'avis ?",
+    "Même après tout ce texte ?",
+    "J'ai passé du temps là-dessus",
+    "Le post-it te plaît pas ?",
+    "Le fond rose non plus ?",
+    "Les cœurs qui tombent alors ?",
+    "Tu aimes pas la Saint-Valentin ?",
+    "C'est Mikie qui t'a dit de refuser ?",
+    "Je peux changer !",
+    "Qu'est-ce qui te ferait dire oui ?",
+    "Un indice au moins ?",
+    "Je fais quoi maintenant ?",
+    "Tu rigoles j'espère",
+    "C'est une blague ?",
+    "Haha très drôle",
+    "OK tu m'as eu",
+    "Mais là vraiment ?",
+    "Pour de vrai de vrai ?",
+    "100% sûre ?",
+    "Genre vraiment vraiment ?",
+    "Pas un petit doute ?",
+    "Même 0.1% ?",
+    "Allez un tout petit oui ?",
+    "Juste pour voir ?",
+    "On essaie ?",
+    "Sans engagement ?",
+    "Je promets rien",
+    "Toi non plus d'ailleurs",
+    "On verra bien",
+    "Pas d'attente",
+    "Juste un resto",
+    "Et des chocolats",
+    "C'est pas grand chose",
+    "30 minutes de ton temps",
+    "Ou 1h",
+    "2h max",
+    "On verra",
+    "Ça dépend",
+    "Du moment",
+    "Et de toi",
+    "Surtout de toi",
+    "Bon OK...",
+    "J'abandonne",
+    "Enfin presque",
+    "Pas vraiment",
+    "Encore un peu",
+    "Juste quelques clics",
+    "Pour voir",
+    "Où est ta limite",
+    "De patience",
+    "Parce que moi",
+    "J'en ai",
+    "Beaucoup",
+    "Genre énormément",
+    "Je peux continuer",
+    "Longtemps",
+    "Très longtemps",
+    "Tu vas voir",
+    "On est que au début",
+    "J'ai préparé",
+    "Plein de phrases",
+    "Genre vraiment plein",
+    "Tu veux savoir combien ?",
+    "100 en fait",
+    "Oui oui",
+    "Cent phrases",
+    "Pour te convaincre",
+    "Ou t'énerver",
+    "Les deux marchent",
+    "Alors ?",
+    "Tu dis oui ?",
+    "Ou tu continues ?",
+    "À cliquer",
+    "Comme une folle",
+    "Sur ce bouton",
+    "Qui te provoque",
+    "Un peu",
+    "Beaucoup",
+    "Passionnément",
+    "À la folie",
+    "... Pas du tout ?",
+    "Bon écoute",
+    "Je suis à court d'idées de texte 😅"
+  ];
+
   useEffect(() => {
-    const startDate = new Date('2025-08-05T19:28:00+02:00'); // Heure française (UTC+2 en été)
+    const startDate = new Date('2025-08-05T19:28:00+02:00');
 
     const calculateTimeElapsed = () => {
       const now = new Date();
       const diff = now.getTime() - startDate.getTime();
 
-      const seconds = Math.floor(diff / 1000);
-      const minutes = Math.floor(seconds / 60);
-      const hours = Math.floor(minutes / 60);
-      const days = Math.floor(hours / 24);
-      
-      // Calcul approximatif des mois et années
-      const totalMonths = Math.floor(days / 30.44);
-      const years = Math.floor(totalMonths / 12);
-      const months = totalMonths % 12;
-      const remainingDays = Math.floor(days - (totalMonths * 30.44));
+      const totalMinutes = Math.floor(diff / (1000 * 60));
+      const totalHours = Math.floor(totalMinutes / 60);
+      const totalDays = Math.floor(totalHours / 24);
+      const totalMonths = Math.floor(totalDays / 30.44);
 
       setTimeElapsed({
-        years,
-        months,
-        days: remainingDays,
-        hours: hours % 24,
-        minutes: minutes % 60,
-        seconds: seconds % 60,
+        months: totalMonths,
+        days: Math.floor(totalDays - (totalMonths * 30.44)),
+        hours: totalHours % 24,
+        minutes: totalMinutes % 60,
       });
     };
 
     calculateTimeElapsed();
-    const interval = setInterval(calculateTimeElapsed, 1000);
+    const interval = setInterval(calculateTimeElapsed, 60000); // Update every minute
 
     return () => clearInterval(interval);
   }, []);
@@ -52,10 +149,11 @@ const Manon: React.FC = () => {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        justifyContent: 'center',
-        fontFamily: '"Agbalumo", cursive',
+        justifyContent: 'flex-start',
+        fontFamily: '"Cherry Bomb One", cursive',
         color: '#fff',
         padding: 'clamp(15px, 5vw, 20px)',
+        paddingTop: 'clamp(40px, 8vh, 80px)',
         position: 'relative',
         overflow: 'hidden',
       }}
@@ -63,7 +161,8 @@ const Manon: React.FC = () => {
       {/* Floating hearts animation */}
 			<style>
 				{`
-					@import url('https://fonts.googleapis.com/css2?family=Agbalumo&display=swap');
+					@import url('https://fonts.googleapis.com/css2?family=Cherry+Bomb+One&display=swap');
+					@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
 
 					@keyframes float {
 				0% {
@@ -108,7 +207,14 @@ const Manon: React.FC = () => {
 					.heart:nth-of-type(16) { left: 80%; animation-duration: 18s; animation-delay: -27s; }
 					.heart:nth-of-type(17) { left: 85%; animation-duration: 20s; animation-delay: -2s; }
 					.heart:nth-of-type(18) { left: 90%; animation-duration: 16s; animation-delay: -19s; }
-				`}
+					@keyframes fadeIn {
+						from {
+							opacity: 0;
+						}
+						to {
+							opacity: 1;
+						}
+					}				`}
 			</style>
 
 			{/* Floating hearts */}
@@ -121,106 +227,390 @@ const Manon: React.FC = () => {
 					);
 				})}
 
-						{/* Main content */}
       {/* Main content */}
-      <div style={{ zIndex: 1, textAlign: 'center', maxWidth: '900px' }}>
+      <div style={{ 
+        zIndex: 1, 
+        width: '100%', 
+        maxWidth: '1150px',
+        padding: '0 20px',
+        margin: '0 auto',
+      }}>
+        {/* Site Title */}
         <h1
           style={{
-            fontSize: 'clamp(3rem, 10vw, 6rem)',
-            marginBottom: '60px',
-            fontWeight: '600',
-            letterSpacing: '-0.5px',
-            opacity: 0.95,
+            fontSize: 'clamp(2rem, 8vw, 5rem)',
+            fontWeight: '700',
+            marginBottom: 'clamp(30px, 6vh, 60px)',
+            color: '#fff',
+            textShadow: '0 4px 20px rgba(0, 0, 0, 0.3)',
+            fontFamily: '"Cherry Bomb One", cursive',
+            letterSpacing: '1px',
+            textAlign: 'center',
+            wordBreak: 'break-word',
+            overflowWrap: 'break-word',
+            padding: '0 10px',
           }}
         >
-          Manon & Marin
+          AdopteUnMarin.fr
         </h1>
 
+        {/* Container for side-by-side layout */}
         <div
           style={{
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '20px',
-            alignItems: 'center',
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 500px), 1fr))',
+            gap: '40px',
+            alignItems: 'start',
           }}
         >
-          {/* Ligne 1: années, mois, jours */}
-          <div style={{ 
-            display: 'flex', 
-            gap: 'clamp(15px, 4vw, 30px)',
-            flexWrap: 'wrap',
-            justifyContent: 'center',
-            alignItems: 'baseline',
-          }}>
-            {timeElapsed.years > 0 && (
-              <div style={{ display: 'flex', alignItems: 'baseline', gap: '8px' }}>
-                <span style={{ fontSize: 'clamp(2.5rem, 8vw, 5rem)', fontWeight: '700' }}>
-                  {String(timeElapsed.years)}
-                </span>
-                <span style={{ fontSize: 'clamp(0.9rem, 2.5vw, 1.3rem)', opacity: 0.7, fontWeight: '400' }}>
-                  ans
-                </span>
-              </div>
-            )}
-            {(timeElapsed.years > 0 || timeElapsed.months > 0) && (
-              <div style={{ display: 'flex', alignItems: 'baseline', gap: '8px' }}>
-                <span style={{ fontSize: 'clamp(2.5rem, 8vw, 5rem)', fontWeight: '700' }}>
-                  {String(timeElapsed.months)}
-                </span>
-                <span style={{ fontSize: 'clamp(0.9rem, 2.5vw, 1.3rem)', opacity: 0.7, fontWeight: '400' }}>
-                  mois
-                </span>
-              </div>
-            )}
-						{(timeElapsed.days > 0) && (
-              <div style={{ display: 'flex', alignItems: 'baseline', gap: '8px' }}>
-                <span style={{ fontSize: 'clamp(2.5rem, 8vw, 5rem)', fontWeight: '700' }}>
-                  {String(timeElapsed.days)}
-                </span>
-                <span style={{ fontSize: 'clamp(0.9rem, 2.5vw, 1.3rem)', opacity: 0.7, fontWeight: '400' }}>
-                  jours
-                </span>
-              </div>
-            )}
+          {/* Post-it */}
+          <div
+            style={{
+              background: 'linear-gradient(135deg, #ffd97d 0%, #ffcd56 100%)',
+              borderRadius: '4px',
+              padding: 'clamp(25px, 5vw, 40px)',
+              boxShadow: '0 10px 40px rgba(0, 0, 0, 0.3), 0 2px 8px rgba(0, 0, 0, 0.2)',
+              transform: 'rotate(-1deg)',
+              position: 'relative',
+              fontFamily: '"Indie Flower", cursive',
+              color: '#333',
+              textAlign: 'left',
+            }}
+          >
+          {/* Tape effect */}
+          <div
+            style={{
+              position: 'absolute',
+              top: '-10px',
+              left: '50%',
+              transform: 'translateX(-50%)',
+              width: '80px',
+              height: '20px',
+              background: 'rgba(255, 255, 255, 0.4)',
+              border: '1px solid rgba(0, 0, 0, 0.05)',
+              borderRadius: '2px',
+            }}
+          />
+
+          <h2
+            style={{
+              fontSize: 'clamp(1.4rem, 4vw, 1.8rem)',
+              fontWeight: '700',
+              marginBottom: '20px',
+              color: '#d63384',
+              textAlign: 'center',
+              lineHeight: '1.3',
+            }}
+          >
+            Manon Trashgirl
+            <br />
+            <span style={{ fontSize: '0.85em' }}>24 ans • Poitiers</span>
+          </h2>
+
+						<div
+						style={{
+							fontSize: 'clamp(1rem, 2.5vw, 1.2rem)',
+							lineHeight: '1.6',
+							marginBottom: '15px',
+						}}
+						>
+						<h3
+							style={{
+							fontSize: 'clamp(1.1rem, 3vw, 1.3rem)',
+							fontWeight: '700',
+							marginBottom: '15px',
+							color: '#d63384',
+							textAlign: 'center',
+							}}
+						>
+							🌹 Cherche date Saint-Valentin 🌹
+						</h3>
+						<p style={{ margin: '0 0 15px 0' }}>
+							Kiffeuse kikoo jap sur les bords, passionnée par son chat et la techno,
+							cherche un date pour la saint Valentin le 14 février 2026
+						</p>
+						<p style={{ margin: '0 0 15px 0' }}>
+							<strong>Profil recherché :</strong> Un mec stylé, intelligent, riche, de préférence de plus de 1m90 qui me traitera comme une princesse ^^
+						</p>
+						<p style={{ margin: '0 0 0 0' }}>
+							📍 Dispo sur Poitiers ou Paris
+							<br />
+							
+						</p>
+						</div>
+
+          <div
+            style={{
+              marginTop: '20px',
+              textAlign: 'center',
+              fontSize: 'clamp(0.9rem, 2vw, 1rem)',
+              fontStyle: 'italic',
+              opacity: 0.8,
+            }}
+          >
+            Réponses sérieuses uniquement !
+          </div>
+        </div>
+
+        {/* Gmail Reply Section */}
+        <div
+          style={{
+            background: '#fff',
+            borderRadius: '8px',
+            boxShadow: '0 8px 30px rgba(0, 0, 0, 0.2)',
+            fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif',
+            color: '#202124',
+            textAlign: 'left',
+            overflow: 'hidden',
+          }}
+        >
+          {/* Dropdown Header */}
+          <div
+            onClick={() => setIsReplyOpen(!isReplyOpen)}
+            style={{
+              padding: 'clamp(15px, 3vw, 20px)',
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '10px',
+              background: isReplyOpen ? '#f8f9fa' : '#fff',
+              transition: 'background 0.2s ease',
+              borderBottom: isReplyOpen ? '1px solid #e0e0e0' : 'none',
+            }}
+            onMouseEnter={(e) => {
+              if (!isReplyOpen) e.currentTarget.style.background = '#f8f9fa';
+            }}
+            onMouseLeave={(e) => {
+              if (!isReplyOpen) e.currentTarget.style.background = '#fff';
+            }}
+          >
+            <span style={{ fontSize: 'clamp(1rem, 2.5vw, 1.1rem)', fontWeight: '500' }}>
+              {isReplyOpen ? '▼' : '▶'} Voir <span style={{ 
+                background: '#d63384', 
+                color: '#fff', 
+                padding: '2px 8px', 
+                borderRadius: '12px',
+                fontSize: '0.9em',
+                fontWeight: '600',
+              }}>1</span> réponse
+            </span>
           </div>
 
-          {/* Ligne 2: heures, minutes, secondes */}
-          <div style={{ 
-            display: 'flex', 
-            gap: 'clamp(15px, 4vw, 30px)',
-            flexWrap: 'wrap',
-            justifyContent: 'center',
-            alignItems: 'baseline',
-          }}>
-            <div style={{ display: 'flex', alignItems: 'baseline', gap: '8px' }}>
-              <span style={{ fontSize: 'clamp(2.5rem, 8vw, 5rem)', fontWeight: '700' }}>
-                {String(timeElapsed.hours).padStart(2, '0')}
-              </span>
-              <span style={{ fontSize: 'clamp(0.9rem, 2.5vw, 1.3rem)', opacity: 0.7, fontWeight: '400' }}>
-                heures
-              </span>
-            </div>
-            <div style={{ display: 'flex', alignItems: 'baseline', gap: '8px' }}>
-              <span style={{ fontSize: 'clamp(2.5rem, 8vw, 5rem)', fontWeight: '700' }}>
-                {String(timeElapsed.minutes).padStart(2, '0')}
-              </span>
-              <span style={{ fontSize: 'clamp(0.9rem, 2.5vw, 1.3rem)', opacity: 0.7, fontWeight: '400' }}>
-                minutes
-              </span>
-            </div>
-            <div style={{ display: 'flex', alignItems: 'baseline', gap: '8px' }}>
-              <span style={{ fontSize: 'clamp(2.5rem, 8vw, 5rem)', fontWeight: '700' }}>
-                {String(timeElapsed.seconds).padStart(2, '0')}
-              </span>
-              <span style={{ fontSize: 'clamp(0.9rem, 2.5vw, 1.3rem)', opacity: 0.7, fontWeight: '400' }}>
-                secondes
-              </span>
+          {/* Gmail Content (collapsible) */}
+          {isReplyOpen && (
+            <div style={{ padding: 'clamp(20px, 4vw, 30px)' }}>
+              {/* Gmail Header */}
+              <div style={{ borderBottom: '1px solid #e0e0e0', paddingBottom: '15px', marginBottom: '20px' }}>
+                <div style={{ fontSize: 'clamp(1.1rem, 3vw, 1.4rem)', fontWeight: '500', marginBottom: '12px', color: '#202124' }}>
+                  Re: Cherche date Saint-Valentin
+                </div>
+            <div style={{ fontSize: 'clamp(0.85rem, 2vw, 0.95rem)', color: '#5f6368', lineHeight: '1.6' }}>
+              <div><strong>De :</strong> Marin Bigboss</div>
+              <div><strong>À :</strong> Manon Trashgirl</div>
+              <div><strong>Date :</strong> 14 février 2026</div>
             </div>
           </div>
+
+          {/* Email Body */}
+          <div style={{ fontSize: 'clamp(0.95rem, 2.2vw, 1.05rem)', lineHeight: '1.7', color: '#3c4043' }}>
+            <p style={{ margin: '0 0 20px 0' }}>
+              Salut Manon,
+            </p>
+            
+            <p style={{ margin: '0 0 20px 0' }}>
+              J'ai vu passer ton annonce, elle m'intéresse de fou, j'aimerais beaucoup t'emmener en date !
+            </p>
+
+            <div style={{ margin: '25px 0' }}>
+              <div style={{ fontWeight: '600', marginBottom: '10px', fontSize: 'clamp(1rem, 2.3vw, 1.1rem)' }}>
+                Pourquoi je postule
+              </div>
+              <p style={{ margin: '0 0 15px 0' }}>
+                Tu es littéralement la femme de mes rêves : une femme magnifique, drôle, intelligente et indépendante. J'adorerais t'inviter au resto afin de célébrer notre rencontre il y a{' '}
+                <strong 
+                  style={{ color: '#d63384', cursor: 'help' }}
+                  title="Depuis le 5 août 2025 à 19h28"
+                >
+                  {timeElapsed.months} mois, {timeElapsed.days} jours, {timeElapsed.hours} heures et {timeElapsed.minutes} minutes
+                </strong> !
+              </p>
+            </div>
+
+            <div style={{ margin: '25px 0' }}>
+              <div style={{ fontWeight: '600', marginBottom: '10px', fontSize: 'clamp(1rem, 2.3vw, 1.1rem)' }}>
+                Pourquoi me choisir
+              </div>
+              <p style={{ margin: '0 0 10px 0' }}>
+                Je corresponds totalement à toutes tes attentes, je suis notamment :
+              </p>
+              <ul style={{ margin: '0', paddingLeft: '20px', lineHeight: '1.8', listStyle: 'none' }}>
+                <li>- Stylé</li>
+                <li>- Intelligent - selon les contextes</li>
+                <li>- + de 1m90 avec mes chaussures</li>
+                <li>- Bon au lit</li>
+              </ul>
+              <p style={{ margin: '15px 0 0 0' }}>
+                J'ai énormément de projets à te faire découvrir : des voyages, des dîners, des balades, des salons de thé. Je suis prêt à accepter tes meilleurs comme tes pires côtés (oui oui même Mikie !!!)
+              </p>
+            </div>
+            {/* Photo loverboy */}
+            <div style={{ margin: '20px 0', textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+              <img 
+                src={loverboyImg} 
+                alt="Loverboy" 
+                style={{ 
+                  maxWidth: '100%', 
+                  height: 'auto', 
+                  borderRadius: '12px',
+                  boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
+                  maxHeight: '300px',
+                  objectFit: 'cover',
+                  display: 'block',
+                }} 
+              />
+              <div style={{ 
+                fontSize: '0.85em', 
+                color: '#5f6368', 
+                marginTop: '8px', 
+                fontStyle: 'italic' 
+              }}>
+                Prêt pour le 14 février 😎
+              </div>
+            </div>
+
+            <div style={{ margin: '25px 0' }}>
+              <div style={{ fontWeight: '600', marginBottom: '10px', fontSize: 'clamp(1rem, 2.3vw, 1.1rem)' }}>
+                Ce que je te propose
+              </div>
+              <p style={{ margin: '0' }}>
+                Un date le 14 février, dans un restau sympa avec plusieurs adresses au choix, en fonction de l'endroit où tu te trouveras :)
+              </p>
+            </div>
+
+            <p style={{ margin: '25px 0 20px 0' }}>
+              Je pense avoir tout dit, si ma proposition t'intéresse, tu peux cliquer sur "accepter" en bas !
+            </p>
+
+            <p style={{ margin: '0 0 25px 0' }}>
+              J'espère que tu accepteras, et si c'est le cas j'ai hâte de partager ce dîner avec toi !
+            </p>
+
+            <p style={{ margin: '0 0 25px 0' }}>
+              Marin &lt;3
+            </p>
+
+            {/* Buttons */}
+            <div style={{ 
+              display: 'flex', 
+              gap: '15px', 
+              marginTop: '30px',
+              flexWrap: 'wrap',
+            }}>
+              <button
+                onClick={() => setShowSuccess(true)}
+                style={{
+                  background: '#d63384',
+                  color: '#fff',
+                  border: 'none',
+                  borderRadius: '24px',
+                  padding: 'clamp(10px, 2vw, 14px) clamp(20px, 4vw, 32px)',
+                  fontSize: 'clamp(0.95rem, 2vw, 1.05rem)',
+                  fontWeight: '600',
+                  cursor: 'pointer',
+                  boxShadow: '0 2px 8px rgba(214, 51, 132, 0.3)',
+                  transition: 'all 0.2s ease',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-2px)';
+                  e.currentTarget.style.boxShadow = '0 4px 12px rgba(214, 51, 132, 0.4)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.boxShadow = '0 2px 8px rgba(214, 51, 132, 0.3)';
+                }}
+              >
+                ✨ J'accepte l'offre
+              </button>
+              
+              <button
+                onClick={() => setRefuseClickCount(prev => Math.min(prev + 1, refuseMessages.length - 1))}
+                style={{
+                  background: '#f1f3f4',
+                  color: '#5f6368',
+                  border: '1px solid #dadce0',
+                  borderRadius: '24px',
+                  padding: 'clamp(10px, 2vw, 14px) clamp(20px, 4vw, 32px)',
+                  fontSize: 'clamp(0.95rem, 2vw, 1.05rem)',
+                  fontWeight: '500',
+                  cursor: 'pointer',
+                  transition: 'all 0.2s ease',
+                  minWidth: '200px',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = '#e8eaed';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = '#f1f3f4';
+                }}
+              >
+                {refuseClickCount === 0 ? 'Refuser' : refuseMessages[refuseClickCount]}
+              </button>
+            </div>
+          </div>
+            </div>
+          )}
         </div>
       </div>
     </div>
+
+      {/* Success Overlay */}
+      {showSuccess && (
+        <div
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: 'rgba(0, 0, 0, 0.8)',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: 'clamp(20px, 4vw, 40px)',
+            zIndex: 9999,
+            animation: 'fadeIn 0.5s ease-in-out',
+            padding: '50px',
+          }}
+        >
+          <img 
+            src={cutecatGif} 
+            alt="Celebration" 
+            style={{
+              maxWidth: 'min(500px, 90vw)',
+              maxHeight: '60vh',
+              borderRadius: '16px',
+              //boxShadow: '0 8px 32px rgba(255, 255, 255, 0.2)',
+            }}
+          />
+          <h2
+            style={{
+              color: '#fff',
+              fontSize: 'clamp(2rem, 5vw, 3.5rem)',
+              fontFamily: '"Cherry Bomb One", cursive',
+              textAlign: 'center',
+              margin: 0,
+              textShadow: '0 4px 12px rgba(255, 192, 203, 0.5)',
+            }}
+          >
+            LETS GOOOOO !!!!! 😎😎😎😎
+          </h2>
+        </div>
+      )}
+	
+		</div>
   );
 };
+
 
 export default Manon;
