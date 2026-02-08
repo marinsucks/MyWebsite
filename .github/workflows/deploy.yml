@@ -3,12 +3,6 @@ name: 🚀 Secure Deploy
 on:
   push:
     branches: [ master ]
-    paths:
-      - 'frontend/**'
-      - 'docker-compose.yml'
-      - 'Dockerfile'
-      - 'Makefile'
-      - '.github/workflows/**'
 
 jobs:
   security-check:
@@ -67,7 +61,7 @@ jobs:
       run: |
         cd ${{ github.workspace }}
         make deploy
-        
+
     - name: ✅ Health check
       run: |
         sleep 15
