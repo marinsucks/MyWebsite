@@ -31,8 +31,8 @@ services:
 
   site:
     container_name: site-container
-    build:
-      context: ./frontend
+    image: ghcr.io/marinsucks/mywebsite:latest
+    pull_policy: always
     expose:
       - "8080"
     volumes:

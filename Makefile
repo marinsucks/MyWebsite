@@ -20,15 +20,18 @@ check-env:
 	fi
 	@echo "✅ Environment variables OK"
 
-# Build the site container
+# Build the site container (for local development)
 build: check-env
-	@echo "🏗️  Building site container..."
-	@docker compose -f $(DC_FILE) build site
+	@echo "🏗️  Building site container locally..."
+	@docker build -t ghcr.io/marinsucks/mywebsite:latest ./frontend
+	@echo "✅ Build complete!"
 
-# Deploy everything (build and start all services)
+# Deploy everything (pull latest image and start all services)
 deploy: check-env
 	@echo "🚀 Deploying with automatic HTTPS..."
-	@docker compose -f $(DC_FILE) up --remove-orphans --build -d
+	@echo "📥 Pulling latest image from registry..."
+	@docker compose -f $(DC_FILE) pull site
+	@docker compose -f $(DC_FILE) up --remove-orphans -d
 	@echo "✅ Deployment complete!"
 	@echo "🌐 Your site will be available at:"
 	@echo "   - https://$$DOMAIN"
