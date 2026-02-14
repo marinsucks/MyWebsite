@@ -46,6 +46,7 @@ coverage/
 ##### MISC #####
 *.log
 *.tgz
+logs/
 
 ##### NEXT.JS (if used) #####
 .next/

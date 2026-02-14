@@ -29,20 +29,6 @@ jobs:
     timeout-minutes: 10
     
     steps:
-    - name: 🧹 Pre-checkout cleanup
-      run: |
-        # Nettoyer les fichiers créés par Docker (appartenant à root)
-        if [ -d "${{ github.workspace }}/logs" ]; then
-          sudo rm -rf "${{ github.workspace }}/logs"
-        fi
-        if [ -d "${{ github.workspace }}/vhost.d" ]; then
-          sudo rm -rf "${{ github.workspace }}/vhost.d"
-        fi
-        if [ -d "${{ github.workspace }}/html" ]; then
-          sudo rm -rf "${{ github.workspace }}/html"
-        fi
-      continue-on-error: true
-    
     - name: 📂 Secure checkout
       uses: actions/checkout@v4
       with:
@@ -60,16 +46,6 @@ jobs:
       run: |
         cd ${{ github.workspace }}
         make down || true
-        
-    - name: 🧹 Cleanup workspace
-      run: |
-        cd ${{ github.workspace }}
-        # Forcer les permissions sur les fichiers restants
-        sudo chmod -R 755 . || true
-        sudo chown -R $(whoami):$(whoami) . || true
-        # Nettoyer les logs et fichiers temporaires
-        sudo rm -rf logs/ .env vhost.d/ || true
-      continue-on-error: true
         
     - name: 🚀 Deploy
       run: |
