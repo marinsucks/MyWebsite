@@ -1,0 +1,69 @@
+name: 🏥 Health Check
+
+on:
+  schedule:
+    # Runs every day at 9:00 AM UTC (10:00 AM CET / 11:00 AM CEST)
+    - cron: '0 9 * * *'
+  workflow_dispatch:
+    # Allows manual trigger from GitHub Actions tab
+
+jobs:
+  health-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    
+    steps:
+    - name: 🔍 Check marinbecker.me status
+      id: check
+      run: |
+        echo "Checking marinbecker.me..."
+        
+        # Get HTTP status code and response body
+        response=$(curl -s -w "\n%{http_code}" https://marinbecker.me)
+        http_code=$(echo "$response" | tail -n1)
+        body=$(echo "$response" | head -n-1)
+        
+        echo "HTTP Status Code: $http_code"
+        
+        # Check if status code is 200
+        if [ "$http_code" != "200" ]; then
+          echo "❌ ERROR: marinbecker.me returned HTTP $http_code"
+          exit 1
+        fi
+        
+        # Check if response contains valid HTML content
+        if ! echo "$body" | grep -q "<html"; then
+          echo "❌ ERROR: Response doesn't contain valid HTML"
+          exit 1
+        fi
+        
+        # Check if response is not empty
+        if [ -z "$body" ]; then
+          echo "❌ ERROR: Empty response received"
+          exit 1
+        fi
+        
+        echo "✅ SUCCESS: marinbecker.me is healthy!"
+        echo "Response contains $(echo "$body" | wc -c) bytes"
+        
+    - name: 🔍 Check response time
+      run: |
+        echo "Checking response time..."
+        
+        # Measure response time
+        response_time=$(curl -o /dev/null -s -w '%{time_total}\n' https://marinbecker.me)
+        
+        echo "Response time: ${response_time}s"
+        
+        # Alert if response time is over 3 seconds
+        if (( $(echo "$response_time > 3.0" | bc -l) )); then
+          echo "⚠️ WARNING: Slow response time (${response_time}s)"
+        else
+          echo "✅ Response time is good"
+        fi
+        
+    - name: 📊 Final status
+      if: success()
+      run: |
+        echo "🎉 All checks passed!"
+        echo "marinbecker.me is running smoothly ✨"
