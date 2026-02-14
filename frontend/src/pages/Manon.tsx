@@ -13,6 +13,7 @@ const Manon: React.FC = () => {
   const [refuseClickCount, setRefuseClickCount] = useState(0);
   const [isReplyOpen, setIsReplyOpen] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
+  const [showPhotoModal, setShowPhotoModal] = useState(false);
 
   const refuseMessages = [
     "T'es sûre ?",
@@ -404,11 +405,37 @@ const Manon: React.FC = () => {
                 <div style={{ fontSize: 'clamp(1.1rem, 3vw, 1.4rem)', fontWeight: '500', marginBottom: '12px', color: '#202124' }}>
                   Re: Cherche date Saint-Valentin
                 </div>
-            <div style={{ fontSize: 'clamp(0.85rem, 2vw, 0.95rem)', color: '#5f6368', lineHeight: '1.6' }}>
-              <div><strong>De :</strong> Marin Bigboss</div>
-              <div><strong>À :</strong> Manon Trashgirl</div>
-              <div><strong>Date :</strong> 14 février 2026</div>
-            </div>
+                <div style={{ display: 'flex', gap: '15px', alignItems: 'center' }}>
+                  <img 
+                    src={loverboyImg} 
+                    alt="Marin" 
+                    onClick={() => setShowPhotoModal(true)}
+                    style={{ 
+                      width: 'clamp(70px, 15vw, 80px)', 
+                      height: 'clamp(70px, 15vw, 80px)', 
+                      borderRadius: '50%',
+                      objectFit: 'cover',
+                      objectPosition: 'center',
+                      boxShadow: '0 2px 8px rgba(0, 0, 0, 0.15)',
+                      flexShrink: 0,
+                      cursor: 'pointer',
+                      transition: 'transform 0.2s ease, box-shadow 0.2s ease',
+                    }} 
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.transform = 'scale(1.05)';
+                      e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.25)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.transform = 'scale(1)';
+                      e.currentTarget.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.15)';
+                    }}
+                  />
+                  <div style={{ fontSize: 'clamp(0.85rem, 2vw, 0.95rem)', color: '#5f6368', lineHeight: '1.6' }}>
+                    <div><strong>De :</strong> Marin Bigboss</div>
+                    <div><strong>À :</strong> Manon Trashgirl</div>
+                    <div><strong>Date :</strong> 14 février 2026</div>
+                  </div>
+                </div>
           </div>
 
           {/* Email Body */}
@@ -450,40 +477,9 @@ const Manon: React.FC = () => {
                 <li>- Bon au lit</li>
               </ul>
               <p style={{ margin: '15px 0 0 0' }}>
-                J'ai énormément de projets à te faire découvrir : des voyages, des dîners, des balades, des salons de thé. Je suis prêt à accepter tes meilleurs comme tes pires côtés (oui oui même Mikie !!!)
-              </p>
-            </div>
-            {/* Photo loverboy */}
-            <div style={{ margin: '20px 0', textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-              <img 
-                src={loverboyImg} 
-                alt="Loverboy" 
-                style={{ 
-                  maxWidth: '100%', 
-                  height: 'auto', 
-                  borderRadius: '12px',
-                  boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
-                  maxHeight: '300px',
-                  objectFit: 'cover',
-                  display: 'block',
-                }} 
-              />
-              <div style={{ 
-                fontSize: '0.85em', 
-                color: '#5f6368', 
-                marginTop: '8px', 
-                fontStyle: 'italic' 
-              }}>
-                Prêt pour le 14 février 😎
-              </div>
-            </div>
-
-            <div style={{ margin: '25px 0' }}>
-              <div style={{ fontWeight: '600', marginBottom: '10px', fontSize: 'clamp(1rem, 2.3vw, 1.1rem)' }}>
-                Ce que je te propose
-              </div>
-              <p style={{ margin: '0' }}>
-                Un date le 14 février, dans un restau sympa avec plusieurs adresses au choix, en fonction de l'endroit où tu te trouveras :)
+                J'ai énormément de projets pour toi: des voyages, des dîners, des balades, des salons de thé... 
+								Je suis prêt à t'accepter telle que tu es et à faire tous les efforts nécessaires pour garantir ton bonheur, car 
+								je veux passer ma vie avec toi et te rendre heureuse !
               </p>
             </div>
 
@@ -563,9 +559,44 @@ const Manon: React.FC = () => {
       </div>
     </div>
 
+      {/* Photo Modal */}
+      {showPhotoModal && (
+        <div
+          onClick={() => setShowPhotoModal(false)}
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: 'rgba(0, 0, 0, 0.9)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            zIndex: 9999,
+            animation: 'fadeIn 0.3s ease-in-out',
+            padding: '20px',
+            cursor: 'pointer',
+          }}
+        >
+          <img 
+            src={loverboyImg} 
+            alt="Marin" 
+            style={{
+              maxWidth: '90vw',
+              maxHeight: '90vh',
+              borderRadius: '12px',
+              boxShadow: '0 8px 32px rgba(255, 255, 255, 0.2)',
+              objectFit: 'contain',
+            }}
+          />
+        </div>
+      )}
+
       {/* Success Overlay */}
       {showSuccess && (
         <div
+          onClick={() => setShowSuccess(false)}
           style={{
             position: 'fixed',
             top: 0,
@@ -573,38 +604,153 @@ const Manon: React.FC = () => {
             right: 0,
             bottom: 0,
             backgroundColor: 'rgba(0, 0, 0, 0.8)',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: 'clamp(20px, 4vw, 40px)',
             zIndex: 9999,
             animation: 'fadeIn 0.5s ease-in-out',
-            padding: '50px',
+            overflowY: 'auto',
+            display: 'flex',
+            alignItems: 'flex-start',
+            justifyContent: 'center',
+            padding: '20px',
           }}
         >
-          <img 
-            src={cutecatGif} 
-            alt="Celebration" 
+          <div
+            onClick={(e) => e.stopPropagation()}
             style={{
-              maxWidth: 'min(500px, 90vw)',
-              maxHeight: '60vh',
-              borderRadius: '16px',
-              //boxShadow: '0 8px 32px rgba(255, 255, 255, 0.2)',
-            }}
-          />
-          <h2
-            style={{
-              color: '#fff',
-              fontSize: 'clamp(2rem, 5vw, 3.5rem)',
-              fontFamily: '"Cherry Bomb One", cursive',
-              textAlign: 'center',
-              margin: 0,
-              textShadow: '0 4px 12px rgba(255, 192, 203, 0.5)',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              gap: 'clamp(20px, 4vw, 40px)',
+              marginTop: '20px',
+              marginBottom: '20px',
+              maxWidth: '100%',
             }}
           >
-            LETS GOOOOO !!!!! 😎😎😎😎
-          </h2>
+            <img 
+              src={cutecatGif} 
+              alt="Celebration" 
+              style={{
+                maxWidth: 'min(400px, 80vw)',
+                maxHeight: '40vh',
+                borderRadius: '16px',
+                objectFit: 'contain',
+              }}
+            />
+            <h2
+              style={{
+                color: '#fff',
+                fontSize: 'clamp(2rem, 5vw, 3.5rem)',
+                fontFamily: '"Cherry Bomb One", cursive',
+                textAlign: 'center',
+                margin: 0,
+                textShadow: '0 4px 12px rgba(255, 192, 203, 0.5)',
+              }}
+            >
+              LETS GOOOOO !!!!! 😎😎😎😎
+            </h2>
+            
+            <div
+              style={{
+                background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.05))',
+                backdropFilter: 'blur(10px)',
+                borderRadius: '20px',
+                padding: 'clamp(30px, 5vw, 50px)',
+                maxWidth: 'min(700px, 90vw)',
+                boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)',
+                border: '1px solid rgba(255, 255, 255, 0.18)',
+              }}
+            >
+              <div
+                style={{
+                  color: '#fff',
+                  fontSize: 'clamp(1.1rem, 3vw, 1.4rem)',
+                  fontFamily: '"Indie Flower", cursive',
+                  textAlign: 'center',
+                  lineHeight: '1.8',
+                  marginBottom: '30px',
+                }}
+              >
+                <span style={{ fontSize: '1.3em', display: 'block', marginBottom: '10px' }}>💕</span>
+                Je savais que tu dirais oui...
+                <br />
+                Tu le regretteras pas, promis ! 
+              </div>
+
+              <div
+                style={{
+                  background: 'rgba(214, 51, 132, 0.3)',
+                  borderLeft: '4px solid #d63384',
+                  padding: 'clamp(20px, 4vw, 30px)',
+                  borderRadius: '8px',
+                  marginBottom: '25px',
+                }}
+              >
+                <div
+                  style={{
+                    color: '#fff',
+                    fontSize: 'clamp(1.05rem, 2.5vw, 1.3rem)',
+                    fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif',
+                    fontWeight: '600',
+                    marginBottom: '15px',
+                    letterSpacing: '0.5px',
+                  }}
+                >
+                  📍 Point de rendez-vous
+                </div>
+                <div
+                  style={{
+                    color: '#fff',
+                    fontSize: 'clamp(0.95rem, 2.2vw, 1.15rem)',
+                    fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif',
+                    lineHeight: '1.7',
+                  }}
+                >
+                  <strong>Vendredi 14 février 2026</strong>
+                  <br />
+                  <strong>19h44 précises</strong> ⏰
+                  <br />
+                  Gare Montparnasse
+                  <br />
+                  <span style={{ fontSize: '0.9em', opacity: 0.95, fontStyle: 'italic' }}>
+                    Je t'attendrai avec un bouquet de fleurs 💐
+                  </span>
+                </div>
+              </div>
+
+              <div
+                style={{
+                  background: 'rgba(255, 255, 255, 0.1)',
+                  padding: 'clamp(20px, 4vw, 25px)',
+                  borderRadius: '12px',
+                  textAlign: 'center',
+                }}
+              >
+                <div
+                  style={{
+                    color: '#ffd97d',
+                    fontSize: 'clamp(1rem, 2.5vw, 1.25rem)',
+                    fontFamily: '"Cherry Bomb One", cursive',
+                    marginBottom: '10px',
+                    textShadow: '0 2px 8px rgba(0, 0, 0, 0.3)',
+                  }}
+                >
+                  ✨ Un dîner t'attend ! ✨
+									<br />
+									(et peut être un cadeau...)
+                </div>
+                <div
+                  style={{
+                    color: '#fff',
+                    fontSize: 'clamp(0.9rem, 2vw, 1.05rem)',
+                    fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif',
+                    opacity: 0.9,
+                    fontStyle: 'italic',
+                  }}
+                >
+                  Prépare-toi pour une soirée géniale 🌹
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       )}
 	
