@@ -6,14 +6,10 @@ import Home from "@pages/Home";
 // import Work from "@pages/Work";
 import NotFound from "@pages/NotFound";
 import About from "@pages/About";
-import Manon from "@pages/Manon";
 
 const App: React.FC = () => (
 	<BrowserRouter>
 		<Routes>
-			{/* Page indépendante sans Layout */}
-			<Route path="/manon" element={<Manon />} />
-			
 			{/* Pages normales avec Layout */}
 			<Route
 				path="*"
