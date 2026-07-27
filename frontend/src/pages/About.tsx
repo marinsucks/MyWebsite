@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import Section from '@components/Layout/Section';
-import me from '@assets/photos/me.jpg';
+import me from '@assets/photos/me.png';
 
 const H2: React.FC<{ content: string }> = ({ content }) => {
   return (
