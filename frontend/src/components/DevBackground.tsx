@@ -1,152 +1,128 @@
 import React, { useEffect, useRef } from 'react';
 
-interface Character {
-  char: string;
-  x: number;
-  y: number;
-  opacity: number;
-  fadeDirection: number;
-  changeTimer: number;
-}
+import { useDarkModeContext } from '@contexts/DarkModeContext';
+
+const CHARACTERS = ' .:-=+*#%@';
+const FRAME_DURATION = 1000 / 24;
 
 const DevBackground: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const animationRef = useRef<number>();
-  const charactersRef = useRef<Character[]>([]);
-
-  // Caractères ASCII pour le style dev (sans espaces)
-  const devChars = [
-    // Symboles de programmation
-    '{', '}', '[', ']', '(', ')', '<', '>', 
-    '/', '\\', '|', '-', '_', '=', '+', '*',
-    '&', '%', '$', '#', '@', '!', '?', '^',
-    '~', '`', ':', ';', '.', ',', '"', "'",
-    // Chiffres et lettres
-    '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
-    'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J',
-    'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T',
-    'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd',
-    'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n',
-    'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x',
-    'y', 'z'
-  ];
-
-  const getRandomChar = () => {
-    return devChars[Math.floor(Math.random() * devChars.length)];
-  };
-
-  const initializeCanvas = () => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-
-    const updateCanvasSize = () => {
-      // Adapter à la taille de tout l'écran pour couvrir jusqu'au footer
-      canvas.width = window.innerWidth;
-      canvas.height = Math.max(document.documentElement.scrollHeight, window.innerHeight);
-      
-      // Réinitialiser les caractères en grille
-      charactersRef.current = [];
-      
-      // Taille de la grille (comme un terminal)
-      const cellWidth = 20; // Largeur de chaque cellule
-      const cellHeight = 24; // Hauteur de chaque cellule
-      
-      const cols = Math.floor(canvas.width / cellWidth);
-      const rows = Math.floor(canvas.height / cellHeight);
-      
-      for (let row = 0; row < rows; row++) {
-        for (let col = 0; col < cols; col++) {
-          // Position centrée dans chaque cellule de grille
-          const x = (col * cellWidth) + (cellWidth / 2);
-          const y = (row * cellHeight) + (cellHeight / 2);
-          
-          charactersRef.current.push({
-            char: getRandomChar(),
-            x: x,
-            y: y,
-            opacity: Math.random() * 0.3 + 0.7, // Opacité aléatoire fixe (70-100%)
-            fadeDirection: Math.random() > 0.5 ? 1 : -1,
-            changeTimer: Math.random() * 80 + 30 // Changement beaucoup plus fréquent (30-110 frames)
-          });
-        }
-      }
-    };
-
-    updateCanvasSize();
-    window.addEventListener('resize', updateCanvasSize);
-    
-    // Observer pour détecter les changements de taille du contenu
-    const resizeObserver = new ResizeObserver(updateCanvasSize);
-    const parent = canvas.parentElement;
-    if (parent) {
-      resizeObserver.observe(parent);
-    }
-    
-    return () => {
-      window.removeEventListener('resize', updateCanvasSize);
-      resizeObserver.disconnect();
-    };
-  };
-
-  const animate = () => {
-    const canvas = canvasRef.current;
-    const ctx = canvas?.getContext('2d');
-    if (!canvas || !ctx) return;
-
-    // Effacer le canvas
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    
-    // Configuration du texte
-    ctx.font = '14px JetBrains Mono, monospace';
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-
-    // Animer chaque caractère
-    charactersRef.current.forEach(character => {
-      // Timer pour changer le caractère
-      character.changeTimer--;
-      if (character.changeTimer <= 0) {
-        character.char = getRandomChar();
-        character.opacity = Math.random() * 0.3 + 0.7; // Nouvelle opacité aléatoire lors du changement (70-100%)
-        character.changeTimer = Math.random() * 80 + 30; // Changement plus fréquent
-        
-        // Légère variation de position dans la cellule de grille (pour un peu de vie)
-        if (Math.random() > 0.95) {
-          character.x += (Math.random() - 0.5) * 4; // Très petit mouvement
-          character.y += (Math.random() - 0.5) * 4;
-        }
-      }
-
-      // Dessiner le caractère avec couleur background-dark et son opacité fixe
-      const backgroundDarkColor = getComputedStyle(document.documentElement).getPropertyValue('--background-dark').trim();
-      ctx.fillStyle = `${backgroundDarkColor}${Math.floor(character.opacity * 255).toString(16).padStart(2, '0')}`;
-      ctx.fillText(character.char, character.x, character.y);
-    });
-
-    animationRef.current = requestAnimationFrame(animate);
-  };
+  const { darkMode } = useDarkModeContext();
 
   useEffect(() => {
-    const cleanup = initializeCanvas();
-    animate();
+    const canvas = canvasRef.current;
+    const context = canvas?.getContext('2d');
+    if (!canvas || !context) return;
+
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let animationFrame = 0;
+    let startFrame = 0;
+    let lastFrame = -FRAME_DURATION;
+    let width = 0;
+    let height = 0;
+    let columns = 0;
+    let rows = 0;
+    let cellWidth = 0;
+    let cellHeight = 0;
+    let foreground = '';
+
+    const resize = () => {
+      const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+      width = window.innerWidth;
+      height = window.innerHeight;
+
+      canvas.width = Math.ceil(width * dpr);
+      canvas.height = Math.ceil(height * dpr);
+      context.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+      const fontSize = width < 640 ? 11 : 13;
+      context.font = `${fontSize}px "JetBrains Mono", monospace`;
+      context.textBaseline = 'top';
+      cellWidth = context.measureText('M').width;
+      cellHeight = fontSize * 1.15;
+      columns = Math.ceil(width / cellWidth) + 1;
+      rows = Math.ceil(height / cellHeight) + 1;
+    };
+
+    const draw = (timestamp: number) => {
+      if (timestamp - lastFrame < FRAME_DURATION) {
+        if (!reducedMotion) {
+          animationFrame = window.requestAnimationFrame(draw);
+        }
+        return;
+      }
+
+      lastFrame = timestamp;
+      const time = timestamp * 0.001;
+      const centerX = columns * 0.5;
+      const centerY = rows * 0.5;
+
+      context.clearRect(0, 0, width, height);
+      context.fillStyle = foreground;
+      context.globalAlpha = darkMode ? 0.9 : 0.75;
+
+      for (let row = 0; row < rows; row++) {
+        let line = '';
+
+        for (let column = 0; column < columns; column++) {
+          const x = column * 0.12;
+          const y = row * 0.18;
+          const centerDistance = Math.hypot(column - centerX, row - centerY);
+          const movingDistance = Math.hypot(
+            column - centerX - Math.sin(time * 0.35) * columns * 0.22,
+            row - centerY - Math.cos(time * 0.28) * rows * 0.22,
+          );
+
+          const plasma =
+            Math.sin(x + time * 0.75) +
+            Math.sin(y - time * 0.55) +
+            Math.sin((x + y) * 0.65 + time * 0.4) +
+            Math.sin(centerDistance * 0.16 - time * 1.1) +
+            Math.sin(movingDistance * 0.11 + time * 0.7);
+
+          const normalized = Math.max(0, Math.min(1, (plasma + 5) / 10));
+          const characterIndex = Math.round(normalized * (CHARACTERS.length - 1));
+          line += CHARACTERS[characterIndex];
+        }
+
+        context.fillText(line, 0, row * cellHeight);
+      }
+
+      if (!reducedMotion) {
+        animationFrame = window.requestAnimationFrame(draw);
+      }
+    };
+
+    const handleResize = () => {
+      resize();
+      if (reducedMotion) {
+        draw(lastFrame + FRAME_DURATION);
+      }
+    };
+
+    startFrame = window.requestAnimationFrame(() => {
+      foreground = getComputedStyle(document.documentElement)
+        .getPropertyValue('--background-dark')
+        .trim();
+      resize();
+      draw(0);
+    });
+
+    window.addEventListener('resize', handleResize);
 
     return () => {
-      if (animationRef.current) {
-        cancelAnimationFrame(animationRef.current);
-      }
-      cleanup?.();
+      window.cancelAnimationFrame(startFrame);
+      window.cancelAnimationFrame(animationFrame);
+      window.removeEventListener('resize', handleResize);
     };
-  }, []);
+  }, [darkMode]);
 
   return (
     <canvas
       ref={canvasRef}
-      className="absolute top-0 left-0 w-full h-full pointer-events-none"
-      style={{ 
-        background: 'transparent',
-        mixBlendMode: 'normal',
-        zIndex: 0
-      }}
+      aria-hidden="true"
+      className="fixed inset-0 h-screen w-screen pointer-events-none"
+      style={{ zIndex: 0 }}
     />
   );
 };
