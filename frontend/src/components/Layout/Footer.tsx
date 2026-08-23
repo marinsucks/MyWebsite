@@ -29,13 +29,12 @@ const ToolLink: React.FC<{ href: string; children?: React.ReactNode }> = ({ href
 );
 
 const toolsUrls = {
-	vs: "https://code.visualstudio.com/",
-	copilot: "https://github.com/features/copilot",
 	react: "https://react.dev/",
 	ts: "https://www.typescriptlang.org/",
 	tailwind: "https://tailwindcss.com/",
-	vite: "https://vitejs.dev/",
 	docker: "https://docs.docker.com/compose/",
+	nginx: "https://nginx.org/",
+	actions: "https://github.com/features/actions",
 	brain: "https://neurotorium.org/tool/brain-atlas/",
 };
 
@@ -87,7 +86,7 @@ const Footer: React.FC = () => {
 
 	return (
 		<footer className="fixed bottom-0 left-0 right-0 w-full bg-transparent text-primary relative z-50 px-4">
-			<div className="max-w-6xl mx-auto py-4 bg-background/90 backdrop-blur-sm border border-b-0 border-secondary rounded-t-lg">
+			<div className="max-w-7xl mx-auto py-4 bg-background/90 backdrop-blur-sm border border-b-0 border-secondary rounded-t-lg">
 				<div className="flex flex-col sm:flex-row justify-between items-center px-2 sm:px-4 gap-4 sm:gap-8">
 				<div className="flex justify-between w-full sm:w-auto gap-0 sm:gap-8 mb-2 sm:mb-0 px-4 sm:px-0">
 					{links.map((link, idx) => (
@@ -104,11 +103,14 @@ const Footer: React.FC = () => {
 						</a>
 					))}
 				</div>
-				<div className="text-xs sm:text-sm text-center sm:text-left px-1 sm:p-2 opacity-80">
+				<div className="px-1 text-center text-xs opacity-80 sm:p-2 sm:text-left sm:text-sm">
 					<Trans
 						ns="common"
 						i18nKey="footer.description"
-						components={tools}
+						components={{
+							...tools,
+							codex: <span className="font-semibold text-text" />,
+						}}
 					/>
 				</div>
 				</div>

@@ -29,6 +29,12 @@
     --accent-dark: #f36a62;
   }
 }
+
+@layer components {
+  .site-header-shell:has(.desktop-options-panel) {
+    border-bottom-right-radius: 0;
+  }
+}
 /*@layer base {
   :root {
     --text-50: #eff2f6;

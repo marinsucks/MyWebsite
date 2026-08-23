@@ -32,9 +32,16 @@ i18n.use(initReactI18next).init({
   }
 });
 
+const updateDocumentLanguage = (lng: string) => {
+  document.documentElement.lang = lng.split('-')[0];
+};
+
+updateDocumentLanguage(i18n.language);
+
 // Sauvegarder la langue dans localStorage à chaque changement
 i18n.on('languageChanged', (lng) => {
   localStorage.setItem('language', lng);
+  updateDocumentLanguage(lng);
 });
 
 export default i18n;

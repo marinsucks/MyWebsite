@@ -34,8 +34,11 @@ const WorkSummary: React.FC<WorkProps> = ({
     summary,
     tags,
     onClick,
-}) => (
-    <button
+}) => {
+    const { t } = useTranslation("work");
+
+    return (
+        <button
         type="button"
         onClick={onClick}
         className="
@@ -45,7 +48,7 @@ const WorkSummary: React.FC<WorkProps> = ({
             hover:z-10
             hover:shadow-[0_0_24px_4px_theme('colors.secondary')]
             focus:shadow-[0_0_24px_4px_theme('colors.secondary')]"
-        aria-label={`Open details for project: ${title}`}
+        aria-label={t("accessibility.openDetails", { title })}
     >
         <h3 className="text-2xl font-title font-medium mb-1 text-text group-hover:text-accent group-focus:text-accent transition">
             {title}
@@ -81,8 +84,9 @@ const WorkSummary: React.FC<WorkProps> = ({
                 </span>
             ))}
         </div>
-    </button>
-);
+        </button>
+    );
+};
  
 const SummarizedWorksSection: React.FC = () => {
 	const { t } = useTranslation("work");
@@ -101,7 +105,11 @@ const SummarizedWorksSection: React.FC = () => {
 			summary: item.summary,
 			onClick: () => {
 				alert(
-					`${item.title}\n\nTags: ${item.tags.technical.join(", ")}, ${item.tags.thematical.join(", ")}\n\nDescription: ${item.summary}`
+					t("accessibility.summaryAlert", {
+						title: item.title,
+						tags: [...item.tags.technical, ...item.tags.thematical].join(", "),
+						summary: item.summary,
+					})
 				);
 			},
 		})),

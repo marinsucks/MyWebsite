@@ -1,8 +1,7 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDarkMode } from "@hooks/useDarkMode";
 import { useTranslation } from "react-i18next";
 
-// SVG imports
 import OptionsIconDark from "@assets/icons/dark/options.svg?react";
 import OptionsIconLight from "@assets/icons/light/options.svg?react";
 import LightModeIcon from "@assets/icons/dark/light-mode.svg?react";
@@ -10,130 +9,97 @@ import DarkModeIcon from "@assets/icons/light/dark-mode.svg?react";
 import FlagFrIcon from "@assets/icons/flag-fr.svg?react";
 import FlagUkIcon from "@assets/icons/flag-uk.svg?react";
 
-const BUTTON_SIZE = 72; // Augmenté de 60 à 72
-const RADIUS = 64; // Distance from center to floating buttons (augmentée aussi)
+interface OptionsProps {
+	className?: string;
+	inline?: boolean;
+}
 
-const Options: React.FC = () => {
-	const [openByClick, setOpenByClick] = useState(false);
-	const [hovered, setHovered] = useState(false);
+const Options: React.FC<OptionsProps> = ({ className = "", inline = false }) => {
+	const [open, setOpen] = useState(false);
 	const [darkMode, setDarkMode] = useDarkMode();
-	const { i18n } = useTranslation();
 	const containerRef = useRef<HTMLDivElement>(null);
-
-	const open = openByClick || hovered;
-
-	// Close on outside click if opened by click
-	useEffect(() => {
-		if (!openByClick) return;
-		const handleClick = (e: MouseEvent) => {
-			if (
-				containerRef.current &&
-				!containerRef.current.contains(e.target as Node)
-			) {
-				setOpenByClick(false);
-			}
-		};
-		document.addEventListener("mousedown", handleClick);
-		return () => document.removeEventListener("mousedown", handleClick);
-	}, [openByClick]);
-
-	// Positions for the floating buttons (in radians)
-	const positions = [
-		{ // Theme button at 9h (270deg)
-			x: -Math.cos(Math.PI / 2) * RADIUS,
-			y: -Math.sin(Math.PI / 2) * RADIUS,
-		},
-		{ // Lang button at 12h (0deg)
-			x: -Math.cos(0) * RADIUS,
-			y: -Math.sin(0) * RADIUS,
-		},
-	];
-
+	const { t, i18n } = useTranslation("common");
 	const OptionsIcon = darkMode ? OptionsIconDark : OptionsIconLight;
 	const ThemeIcon = darkMode ? LightModeIcon : DarkModeIcon;
 	const LangIcon = i18n.language === "en" ? FlagFrIcon : FlagUkIcon;
-	const langAlt = i18n.language === "en" ? "FR" : "EN";
-	const darkModeAlt = darkMode ? "Light mode" : "Dark mode";
-	
-	const toggleDarkMode = () => setDarkMode(!darkMode);
+	const optionButtonClassName =
+		"flex h-10 w-10 items-center justify-center rounded-md text-text transition-colors hover:bg-secondary/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-accent";
+
+	useEffect(() => {
+		if (!open) return;
+
+		const closeOnOutsideClick = (event: MouseEvent) => {
+			if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
+				setOpen(false);
+			}
+		};
+		const closeOnEscape = (event: KeyboardEvent) => {
+			if (event.key === "Escape") setOpen(false);
+		};
+
+		document.addEventListener("mousedown", closeOnOutsideClick);
+		document.addEventListener("keydown", closeOnEscape);
+		return () => {
+			document.removeEventListener("mousedown", closeOnOutsideClick);
+			document.removeEventListener("keydown", closeOnEscape);
+		};
+	}, [open]);
+
+	const controls = (
+		<>
+			<button
+				type="button"
+				role={inline ? undefined : "menuitem"}
+				onClick={() => setDarkMode(!darkMode)}
+				className={optionButtonClassName}
+				aria-label={t(darkMode ? "settings.lightMode" : "settings.darkMode")}
+				title={t(darkMode ? "settings.lightMode" : "settings.darkMode")}
+			>
+				<ThemeIcon className="h-6 w-6" aria-hidden="true" />
+			</button>
+			<button
+				type="button"
+				role={inline ? undefined : "menuitem"}
+				onClick={() => i18n.changeLanguage(i18n.language === "en" ? "fr" : "en")}
+				className={optionButtonClassName}
+				aria-label={t("settings.language")}
+				title={t("settings.language")}
+			>
+				<LangIcon className="h-6 w-6" aria-hidden="true" />
+			</button>
+		</>
+	);
+
+	if (inline) {
+		return (
+			<div className={`flex items-center justify-around ${className}`} aria-label={t("settings.title")}>
+				{controls}
+			</div>
+		);
+	}
 
 	return (
-		<div
-			ref={containerRef}
-			className="fixed bottom-6 right-6 z-[9999] text-text"
-			style={{
-				width: `${RADIUS + BUTTON_SIZE}px`,
-				height: `${RADIUS + BUTTON_SIZE}px`,
-				pointerEvents: "none", // Only buttons are interactive
-			}}
-			onMouseEnter={() => setHovered(true)}
-			onMouseLeave={() => setHovered(false)}
-		>
-			{/* Square container */}
-			<div
-				className="absolute bottom-0 right-0"
-				style={{
-					width: `${BUTTON_SIZE}px`,
-					height: `${BUTTON_SIZE}px`,
-					pointerEvents: "auto",
-				}}
+		<div ref={containerRef} className={`relative flex items-center justify-center ${className}`}>
+			<button
+				onClick={() => setOpen((currentOpen) => !currentOpen)}
+				className="flex h-10 w-10 items-center justify-center rounded-lg transition-colors hover:bg-secondary/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+				aria-label={t("settings.open")}
+				aria-expanded={open}
+				aria-haspopup="menu"
+				title={t("settings.title")}
+				type="button"
 			>
-				{/* Settings button */}
-				<button
-					onClick={() => setOpenByClick((o) => !o)}
-					className="w-16 h-16 flex items-center justify-center rounded-full bg-background transition-colors duration-150 hover:bg-secondary"
-					aria-label="Open settings"
-					type="button"
-					style={{
-						position: "absolute",
-						bottom: 0,
-						right: 0,
-						zIndex: 2,
-					}}
-				>
-					<OptionsIcon className="w-8 h-8" aria-label="Options" />
-				</button>
-			</div>
-			{/* Floating buttons */}
+				<OptionsIcon className="h-6 w-6" aria-hidden="true" />
+			</button>
+
 			{open && (
-				<>
-					{/* Theme button (9h) */}
-					<button
-						onClick={toggleDarkMode}
-						className="w-16 h-16 flex items-center justify-center rounded-full bg-background transition-colors duration-150 hover:bg-secondary"
-						aria-label="Toggle dark mode"
-						type="button"
-						style={{
-							position: "absolute",
-							bottom: 0,
-							right: 0,
-							transform: `translate(${positions[0].x}px, ${positions[0].y}px)`,
-							transition: "transform 0.3s cubic-bezier(.4,2,.6,1)",
-							zIndex: 1,
-							pointerEvents: "auto",
-						}}
-					>
-						<ThemeIcon className="w-8 h-8" aria-label={darkModeAlt} />
-					</button>
-					{/* Lang button (12h) */}
-					<button
-						onClick={() => i18n.changeLanguage(i18n.language === "en" ? "fr" : "en")}
-						className="w-16 h-16 flex items-center justify-center rounded-full bg-background transition-colors duration-150 hover:bg-secondary"
-						aria-label="Toggle language"
-						type="button"
-						style={{
-							position: "absolute",
-							bottom: 0,
-							right: 0,
-							transform: `translate(${positions[1].x}px, ${positions[1].y}px)`,
-							transition: "transform 0.3s cubic-bezier(.4,2,.6,1)",
-							zIndex: 1,
-							pointerEvents: "auto",
-						}}
-					>
-						<LangIcon className="w-8 h-8" aria-label={langAlt} />
-					</button>
-				</>
+				<div
+					role="menu"
+					aria-label={t("settings.title")}
+					className="desktop-options-panel absolute -left-px -right-px top-full z-[60] flex flex-col items-center gap-1 rounded-b-lg border border-t-0 border-secondary bg-background p-2 shadow-xl"
+				>
+					{controls}
+				</div>
 			)}
 		</div>
 	);

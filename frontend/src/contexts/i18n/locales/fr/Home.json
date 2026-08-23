@@ -1,8 +1,25 @@
 {
-	"greeting": "Hello world!",
-	"name": "Je suis Marin Becker.",
-	"description": {
-		"role": "Développeur full-stack, spécialisé DevOps.",
-		"quality": "Je crée des services <reliable>fiables</reliable> grâce à un code <clean>propre</clean> et <accessible>accessible</accessible>."
-	}
+  "greeting": "Hello world!",
+  "name": "Je suis Marin Becker.",
+  "description": {
+    "role": "Ingénieur DevOps avec une approche full-stack."
+  },
+  "statements": {
+    "work": {
+      "title": "Je construis des choses qui tournent vraiment",
+      "subtitle": "J'aime être responsable de ce qui se passe après <git>git push</git>.",
+      "cta": "Voir ce qui tourne"
+    },
+    "about": {
+      "title": "Il y a plus ici que sur un CV",
+      "subtitle": "Le code prend pas mal de place dans ma vie, mais il y a beaucoup d'autres choses à côté.",
+      "cta": "Voir le reste"
+    },
+    "contact": {
+      "eyebrow": "Travaillons ensemble",
+      "title": "Besoin de quelqu’un pour gérer ce qui se passe après git push ?",
+      "subtitle": "DevOps avant tout, full-stack quand le produit en a besoin.",
+      "cta": "Me contacter"
+    }
+  }
 }

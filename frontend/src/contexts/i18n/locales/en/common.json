@@ -1,15 +1,25 @@
 {
 	"header": {
+		"home": "Home",
 		"about": "About",
 		"work": "Work",
-		"contact": "Contact"
+		"contact": "Contact",
+		"openMenu": "Open menu",
+		"closeMenu": "Close menu"
+	},
+	"settings": {
+		"title": "Settings",
+		"open": "Open settings",
+		"lightMode": "Switch to light mode",
+		"darkMode": "Switch to dark mode",
+		"language": "Switch to French"
 	},
 	"footer": {
-		"description": "Crafted in <vs>VS Code</vs> with help from <copilot>GitHub Copilot</copilot>. Built with <react>React</react>, <ts>TypeScript</ts>, and <tailwind>Tailwind CSS</tailwind>, served by <vite>Vite</vite>, deployed via <docker>Docker Compose</docker> — all imagined, designed, and wired together by <brain>my own brain</brain>."
+		"description": "Built with <react>React</react>, <ts>TypeScript</ts>, and <tailwind>Tailwind CSS</tailwind>; shipped with <docker>Docker</docker>, <nginx>NGINX</nginx>, and <actions>GitHub Actions</actions> — all imagined, designed, and wired together by <brain>my own brain</brain>, with a little help from <codex>Codex</codex> ;)"
 	},
 	"notFound": {
 		"title": "Page not found",
-		"description": "Are you lost? It seems you've wandered off the beaten path. Let's help you find your way back.",
+		"description": "Oops, this page doesn't exist. Let's get you back on track.",
 		"backToHome": "Back to Home"
 	},
 	"comingSoon": "Coming Soon"

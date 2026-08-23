@@ -1,47 +1,72 @@
 {
-  "featuredTitle": "Featured Works",
-  "aboutTitle": "About this Experience",
-  "responsibilitiesTitle": "Key Responsibilities",
+  "pageTitle": "My work",
+  "pageDescription": "Experience, projects, and systems I've worked on, from product to infrastructure.",
+  "timelineLabel": "Timeline of my work and experience",
+  "timelineUndated": "Date not specified",
+  "details": {
+    "expand": "More",
+    "collapse": "Hide"
+  },
+  "featuredTitle": "Experience & projects",
+  "aboutTitle": "About",
+  "journeyTitle": "My progression",
+  "responsibilitiesTitle": "What I've done in production",
   "projectsTitle": "Notable Projects",
+  "accessibility": {
+    "viewTask": "View {{title}} details",
+    "viewProject": "View the {{title}} project",
+    "openDetails": "Open {{title}} details",
+    "summaryAlert": "{{title}}\n\nTechnologies: {{tags}}\n\nDescription: {{summary}}"
+  },
   "experience": [
     {
       "name": "finovox",
-      "title": "DevOps/Data Engineer Internship",
+      "title": "DevOps & Full-stack Engineer",
       "organization": "Finovox",
+      "period": "Jul. 2025 — present",
       "tags": {
-        "technical": ["Python", "React", "GCP"],
-        "thematical": ["Fullstack", "DevOps"]
+        "technical": ["Kubernetes", "GCP", "Python"],
+        "thematical": ["DevOps", "Full-stack", "MLOps"]
       },
-      "summary": "DevOps/Data Engineer internship at a startup specializing in anti-fraud analysis and document compliance.",
-      "description": "As part of a small tech team, I contributed to infrastructure automation, backend API development, and frontend documentation. This internship strengthened my technical skills (Python, specialized libraries, CI/CD) and improved my collaborative project organization abilities.",
+      "summary": "DevOps and full-stack work on a document-analysis and fraud-detection SaaS: self-hosted GPU infrastructure for AI inference, APIs, CI/CD, testing, and technical documentation.",
+      "description": "Production scope across Kubernetes, cloud infrastructure, backend contracts, validation tooling, and developer workflows.",
       "link": "https://finovox.com",
+      "milestones": [
+        {
+          "period": "Since Jan. 2026",
+          "title": "Permanent DevOps Engineer"
+        },
+        {
+          "period": "Jul. — Dec. 2025",
+          "title": "DevOps / Data Engineer internship"
+        }
+      ],
+      "tasksTitle": "What I've done in production",
       "tasks": [
         {
-          "title": "API management",
-          "summary": "Schematized, reorganized and improved the API architecture.",
-          "link": null,
-          "media": {
-            "image": "/media/api.png",
-            "alt": "API management illustration"
-          }
+          "title": "GPU inference platform — OCR & LLM",
+          "summary": "Designed and operated decoupled inference services with multi-cluster Kubernetes, routing, queues, autoscaling, observability, load testing, and cost optimization.",
+          "link": null
         },
         {
-          "title": "Documentation",
-          "summary": "Maintained internal technical documentation with Docusaurus.",
-          "link": null,
-          "media": {
-            "image": "/media/docs.png",
-            "alt": "Documentation management illustration"
-          }
+          "title": "Developer experience and CI/CD",
+          "summary": "Built internal tools to track validation and deployments, surface QA in pull requests, and make build, merge, and delivery workflows more reliable.",
+          "link": null
         },
         {
-          "title": "Testing",
-          "summary": "Set up automated unit, integration, and e2e test suites with Pytest.",
-          "link": null,
-          "media": {
-            "image": "/media/tests.png",
-            "alt": "Testing illustration"
-          }
+          "title": "Technical and product documentation",
+          "summary": "Set up developer and product documentation with Docusaurus: generated API references, onboarding paths, improved search, and content adapted for different audiences.",
+          "link": null
+        },
+        {
+          "title": "Document analysis and business rules",
+          "summary": "Built compliance, data extraction, and document classification rules, backed by validation datasets and end-to-end scenarios to avoid regressions.",
+          "link": null
+        },
+        {
+          "title": "APIs and service contracts",
+          "summary": "Progressively modernized routes with OpenAPI and Pydantic, shared typed contracts across backend and frontend, systematic request validation, and integration tests.",
+          "link": null
         }
       ]
     },
@@ -49,12 +74,13 @@
       "name": "42",
       "title": "Curriculum at 42",
       "organization": "42",
+      "period": "Since 2023",
       "tags": {
-        "technical": ["C / C++", "Bash", "Git"],
-        "thematical": ["Algorithms", "Systems", "Networks"]
+        "technical": ["C / C++", "Bash"],
+        "thematical": ["Systems", "Networks"]
       },
-      "summary": "Immersive practice-based program covering systems, networking, algorithms, and web development.",
-      "description": "42's pedagogy is entirely based on practice, autonomy, and peer evaluation: no classes, no teachers, only projects. This continuous rhythm taught me to work efficiently with complete autonomy, maintain clean code, and quickly progress on new technical topics. It provided me with solid foundations to specialize in any field of computer science.",
+      "summary": "A practice-based program built around projects in systems, networking, algorithms, and web development.",
+      "description": "At 42, there are no classes or teachers: learning happens through projects, autonomy, and peer evaluation. This pace taught me to research, experiment, and move quickly on subjects I don't know yet, while getting used to working independently.",
       "link": "https://www.42network.org/",
       "projects": [
         {
@@ -104,7 +130,7 @@
         },
         {
           "title": "cub3D",
-          "summary": "Raycasting 3D engine inspired by Wolfenstein 3D.",
+          "summary": "3D raycasting engine inspired by Wolfenstein 3D.",
           "link": "https://github.com/42mates/cub3D",
           "media": {
             "image": "/media/cub3d.png",
@@ -116,16 +142,17 @@
     {
       "name": "perso",
       "title": "Personal Projects",
+      "period": "Along the way",
       "tags": {
-        "technical": ["React", "Typescript", "Linux"],
-        "thematical": ["Web", "SysAdmin"]
+        "technical": ["React", "TypeScript", "Linux"],
+        "thematical": []
       },
-      "summary": "Personal projects developed in parallel.",
+      "summary": "Projects developed alongside everything else, usually because an idea makes me want to try something.",
       "link": "https://www.github.com/marinsucks",
       "projects": [
         {
           "title": "MyWebsite",
-          "summary": "Personal website in React/Typescript hosted on a Debian VPS.",
+          "summary": "This personal website, built with React and TypeScript and hosted on a Debian VPS.",
           "link": "https://github.com/marinsucks/MyWebsite",
           "media": {
             "image": "/media/mywebsite.png",

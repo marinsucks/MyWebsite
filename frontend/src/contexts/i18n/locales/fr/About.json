@@ -1,16 +1,55 @@
 {
-  "title": "Enchanté !",
-  "intro": {
-    "title": "Je suis Marin.",
-    "content": "Je suis un développeur full-stack spécialisé en DevOps, avec une formation en Relations Internationales. Je livre tout type d'application avec du code propre, une architecture solide et une expérience utilisateur fluide.",
-    "current": "Actuellement, je travaille en tant qu'Ingénieur DevOps chez Finovox."
+  "title": "Puisque vous demandez…",
+  "chat": {
+    "label": "Conversation avec Marin",
+    "messages": [
+      {
+        "question": "salut !",
+        "answers": [
+          "salut ! enchanté :)"
+        ]
+      },
+      {
+        "question": "tu peux te décrire ?",
+        "answers": [
+          "Carrément !",
+          "Je suis Marin. Vous savez déjà que je bosse comme dev, mais c’est pas tout ce qui me définit. Je m’intéresse à plein de trucs random, j’aime juste me balader et essayer des trucs qui ont l’air cool"
+        ]
+      },
+      {
+        "question": "dis-m’en plus",
+        "answers": [
+          "J’adore les sports de combat !! Je fais du jiu jitsu brésilien depuis 2 ans et 11 mois et j’ai commencé le Muay Thai en mai 2026.",
+          "Je peux aussi pas passer une journée sans soit jouer de la musique soit en écouter. Je suis un gros fan de tout ce qui est alternatif, de la pop au hardcore",
+          "Je kiffe aussi jouer de la basse !"
+        ]
+      },
+      {
+        "question": "qu’est-ce qui t’a donné envie de coder ?",
+        "answers": [
+          "Je cherchais un boulot dans lequel je peux exprimer ma créativité avec un cadre plus strict que l’art. Il semblerait que la programmation soit le match parfait pour mon cerveau maniaque lol",
+          "En plus je suis sincèrement juste curieux de la technologie, et je veux faire partie de ceux qui la construisent.",
+          "Donc c’est pour ça que je suis dev ;)"
+        ]
+      },
+      {
+        "question": "tu veux ajouter quelque chose ?",
+        "answers": [
+          "Si vous êtes un employeur, hésitez pas à me contacter ! Si t’es un pote, balance-moi juste un shitpost.",
+          "À plus !!"
+        ]
+      }
+    ]
   },
-  "approach": {
-    "title": "De l'idée à l'exécution",
-    "content": "Je code en réfléchissant d'abord, en construisant ensuite. Je navigue entre frontend, backend et DevOps pour maintenir la cohérence du système. Code propre, structure claire, et des choses qui n'ont pas besoin d'être réparées deux fois."
+  "easterEgg": {
+    "cta": "Ça te dit, un donut ?"
   },
-  "philosophy": {
-    "title": "Pourquoi c'est important pour moi",
-    "content": "Le code est le seul artisanat où tout s'imbrique parfaitement pour moi. J'aime créer des choses qui sont claires, fonctionnelles et réellement agréables à utiliser. C'est là où se rencontrent logique, esthétique et curiosité 💡"
+  "donut": {
+    "eyebrow": "La roadmap peut attendre",
+    "title": "Un détour parfaitement raisonnable.",
+    "close": "Fermer le donut",
+    "animationLabel": "Un donut en ASCII qui tourne",
+    "credit": "Inspiré du classique donut.c ↗",
+    "dismiss": "Retour au travail"
   }
 }

@@ -1,47 +1,80 @@
 {
-  "featuredTitle": "À la Une",
-  "aboutTitle": "À propos de cette expérience",
-  "responsibilitiesTitle": "Responsabilités clés",
+  "pageTitle": "Mon parcours",
+  "pageDescription": "Expériences, projets et systèmes sur lesquels j'ai travaillé, du produit jusqu'à l'infrastructure.",
+  "timelineLabel": "Chronologie de mon parcours",
+  "timelineUndated": "Période non précisée",
+  "details": {
+    "expand": "Plus",
+    "collapse": "Masquer"
+  },
+  "featuredTitle": "Expérience & projets",
+  "aboutTitle": "À propos",
+  "journeyTitle": "Mon évolution",
+  "responsibilitiesTitle": "Ce que j'ai fait en production",
   "projectsTitle": "Projets notables",
+  "accessibility": {
+    "viewTask": "Voir les détails de {{title}}",
+    "viewProject": "Voir le projet {{title}}",
+    "openDetails": "Ouvrir les détails de {{title}}",
+    "summaryAlert": "{{title}}\n\nTechnologies : {{tags}}\n\nDescription : {{summary}}"
+  },
   "experience": [
     {
       "name": "finovox",
-      "title": "Stage DevOps/Data Engineer",
+      "title": "Ingénieur DevOps & Full-stack",
       "organization": "Finovox",
+      "period": "Juil. 2025 — aujourd'hui",
       "tags": {
-        "technical": ["Python", "React", "GCP"],
-        "thematical": ["Fullstack", "DevOps"]
+        "technical": [
+          "Kubernetes",
+          "GCP",
+          "Python"
+        ],
+        "thematical": [
+          "DevOps",
+          "Full-stack",
+          "MLOps"
+        ]
       },
-      "summary": "Stage DevOps/Data Engineer dans une startup spécialisée en analyse anti-fraude et conformité documentaire.",
-      "description": "Au sein d'une petite équipe tech, j'ai participé à l'automatisation de l'infrastructure, au développement d'API backend et à la documentation frontend. Ce stage a été l'occasion de renforcer mes compétences techniques (Python, bibliothèques spécialisées, CI/CD) et de progresser dans l'organisation de projets collaboratifs." ,
+      "summary": "Travail DevOps et full-stack sur un SaaS d’analyse documentaire et de détection de fraude : infrastructure GPU auto-hébergée pour l’inférence IA, API, CI/CD, tests et documentation technique.",
+      "description": "Périmètre de production couvrant Kubernetes, l’infrastructure cloud, les contrats backend, les outils de validation et les workflows développeur.",
       "link": "https://finovox.com",
+      "milestones": [
+        {
+          "period": "Depuis janv. 2026",
+          "title": "CDI — Ingénieur DevOps & Full-stack"
+        },
+        {
+          "period": "Juil. — déc. 2025",
+          "title": "Stage DevOps / Data Engineer"
+        }
+      ],
+      "tasksTitle": "Ce que j'ai fait en production",
       "tasks": [
         {
-          "title": "Gestion d'API",
-          "summary": "Schématisation, réorganisation et amélioration de l'architecture API.",
-          "link": null,
-          "media": {
-        "image": "/media/api.png",
-        "alt": "Illustration de gestion d'API"
-          }
+          "title": "Plateforme d'inférence GPU — OCR & LLM",
+          "summary": "Conception et exploitation de services d'inférence découplés : Kubernetes multi-cluster, routage, files d'attente, autoscaling, observabilité, tests de charge et optimisation des coûts.",
+          "link": null
         },
         {
-          "title": "Documentation",
-          "summary": "Maintenance de la documentation technique interne avec Docusaurus.",
-          "link": null,
-          "media": {
-        "image": "/media/docs.png",
-        "alt": "Illustration de gestion de documentation"
-          }
+          "title": "Expérience développeur et CI/CD",
+          "summary": "Création d'outils internes pour suivre les validations et les déploiements, intégrer la QA aux pull requests et fiabiliser les workflows de build, de merge et de livraison.",
+          "link": null
         },
         {
-          "title": "Tests",
-          "summary": "Mise en place de suites de tests automatisés unitaires, d'intégration et e2e avec Pytest.",
-          "link": null,
-          "media": {
-        "image": "/media/tests.png",
-        "alt": "Illustration des tests"
-          }
+          "title": "Documentation technique et produit",
+          "summary": "Mise en place avec Docusaurus d'une documentation développeur et produit : référence API générée, parcours d'onboarding, recherche améliorée et contenus adaptés à différents publics.",
+          "link": null
+        },
+        {
+          "title": "Analyse documentaire et règles métier",
+          "summary": "Développement de règles de conformité, d'extraction de données et de classification de documents, avec des jeux de validation et des scénarios de bout en bout pour éviter les régressions.",
+          "link": null
+        },
+        {
+          "title": "API et contrats entre services",
+          "summary": "Modernisation progressive des routes avec OpenAPI et Pydantic, contrats typés partagés entre backend et frontend, validation systématique des requêtes et tests d'intégration.",
+          "link": null
         }
       ]
     },
@@ -49,17 +82,24 @@
       "name": "42",
       "title": "Cursus à 42",
       "organization": "42",
+      "period": "Depuis 2023",
       "tags": {
-        "technical": ["C / C++", "Bash", "Git"],
-        "thematical": ["Algorithmes", "Systèmes", "Réseaux"]
+        "technical": [
+          "C / C++",
+          "Bash"
+        ],
+        "thematical": [
+          "Systèmes",
+          "Réseaux"
+        ]
       },
-      "summary": "Programme immersif basé sur la pratique couvrant systèmes, réseau, algorithmique et développement web.",
-      "description": "La pédagogie de 42 repose entièrement sur la pratique, l'autonomie et l'évaluation par les pairs : pas de cours, pas de professeurs, uniquement des projets. Ce rythme continu m'a appris à travailler efficacement en autonomie totale, à maintenir un code soigné et à progresser rapidement sur de nouveaux sujets techniques. Elle m'a donné des bases solides pour me spécialiser dans n'importe quel domaine de l'informatique.",
+      "summary": "Une formation basée sur la pratique, avec des projets en systèmes, réseau, algorithmique et développement web.",
+      "description": "À 42, pas de cours ni de professeurs : l'apprentissage passe par les projets, l'autonomie et l'évaluation par les pairs. Ce rythme m'a appris à chercher, expérimenter et avancer rapidement sur des sujets que je ne connais pas encore, tout en prenant l'habitude de travailler de manière autonome.",
       "link": "https://www.42network.org/",
       "projects": [
         {
           "title": "transcendence",
-          "summary": "App web fullstack en microservices: Fastify, Docker, ELK.",
+          "summary": "Application web full-stack en microservices : Fastify, Docker, ELK.",
           "link": "https://github.com/42mates/transcendence",
           "media": {
             "image": "/media/transcendence.png",
@@ -104,7 +144,7 @@
         },
         {
           "title": "cub3D",
-          "summary": "Moteur 3D raycasting inspiré de Wolfenstein 3D.",
+          "summary": "Moteur 3D en raycasting inspiré de Wolfenstein 3D.",
           "link": "https://github.com/42mates/cub3D",
           "media": {
             "image": "/media/cub3d.png",
@@ -116,16 +156,21 @@
     {
       "name": "perso",
       "title": "Projets personnels",
+      "period": "En parallèle",
       "tags": {
-        "technical": ["React", "Typescript", "Linux"],
-        "thematical": ["Web", "SysAdmin"]
+        "technical": [
+          "React",
+          "TypeScript",
+          "Linux"
+        ],
+        "thematical": []
       },
-      "summary": "Projets personnels réalisés en parallèle.",
+      "summary": "Des projets développés en parallèle, généralement parce qu'une idée me donne envie d'essayer quelque chose.",
       "link": "https://www.github.com/marinsucks",
       "projects": [
         {
           "title": "MyWebsite",
-          "summary": "Site web personnel en React/Typescript hébergé sur un VPS Debian.",
+          "summary": "Mon site personnel, développé avec React et TypeScript et hébergé sur un VPS Debian.",
           "link": "https://github.com/marinsucks/MyWebsite",
           "media": {
             "image": "/media/mywebsite.png",

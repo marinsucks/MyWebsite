@@ -59,7 +59,7 @@ const DevBackground: React.FC = () => {
 
       context.clearRect(0, 0, width, height);
       context.fillStyle = foreground;
-      context.globalAlpha = darkMode ? 0.9 : 0.75;
+      context.globalAlpha = darkMode ? 0.09 : 0.07;
 
       for (let row = 0; row < rows; row++) {
         let line = '';
@@ -102,7 +102,7 @@ const DevBackground: React.FC = () => {
 
     startFrame = window.requestAnimationFrame(() => {
       foreground = getComputedStyle(document.documentElement)
-        .getPropertyValue('--background-dark')
+        .getPropertyValue('--primary')
         .trim();
       resize();
       draw(0);

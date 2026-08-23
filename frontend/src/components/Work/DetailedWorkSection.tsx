@@ -1,5 +1,4 @@
-import React from "react";
-import Section from "@components/Layout/Section";
+import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 
 export interface Task {
@@ -22,19 +21,26 @@ export interface Project {
     };
 }
 
+export interface Milestone {
+    period: string;
+    title: string;
+}
+
 export interface WorkExperience {
     name: string;
     title: string;
     organization?: string;
+    period?: string;
     tags: {
         technical: string[];
         thematical: string[];
     };
     summary: string;
-    description: string;
-    link: string;
+    description?: string;
+    link?: string;
     tasksTitle?: string;
     tasks?: Task[];
+    milestones?: Milestone[];
     projectsTitle?: string;
     projects?: Project[];
 }
@@ -43,238 +49,210 @@ interface DetailedWorkSectionProps {
     work: WorkExperience;
 }
 
-// Composant pour afficher les tasks en disposition tree
+const ExternalLinkIcon: React.FC = () => (
+    <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+    </svg>
+);
+
 const WorkTasks: React.FC<{ tasks: Task[] }> = ({ tasks }) => {
-    const { t } = useTranslation();
+    const { t } = useTranslation("work");
+
     return (
-        <div className="space-y-4">
-            {tasks.map((task, index) => {
-                const isLast = index === tasks.length - 1;
-                const treeChar = isLast ? "└──" : "├──";
-                
-                return (
-                    <div key={index} className="flex items-start">
-                        {/* Caractère tree */}
-                        <div className="flex-shrink-0 mr-4 mt-1">
-                            <span className="text-accent font-mono text-lg font-medium">
-                                {treeChar}
-                            </span>
-                        </div>
-                        
-                        {/* Contenu de la task */}
-                        <div className="flex-1 bg-background/50 transition-colors">
-                            <div className="flex items-start justify-between">
-                                <h4 className="text-xl font-title font-medium text-text">
-                                    {task.title}
-                                </h4>
-                                {task.link && (
-                                    <a
-                                        href={task.link}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="text-accent hover:text-accent/80 transition-colors flex-shrink-0 ml-2"
-                                        aria-label={`View ${task.title} details`}
-                                    >
-                                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                                        </svg>
-                                    </a>
-                                )}
-                            </div>
-                            
-                            {task.summary && task.summary !== "TODO" ? (
-                                <p className="text-primary leading-relaxed">
-                                    {task.summary}
-                                </p>
-                            ) : (
-                                <p className="text-secondary/60 italic">
-                                    {t("common:comingSoon")}
-                                </p>
+        <div className="space-y-5">
+            {tasks.map((task) => (
+                <div key={task.title} className="flex items-start gap-4">
+                    <span className="mt-2 h-2 w-2 flex-none rounded-full bg-accent" aria-hidden="true" />
+                    <div className="min-w-0 flex-1">
+                        <div className="flex items-start justify-between gap-3">
+                            <h4 className="font-title text-lg font-semibold text-text sm:text-xl">
+                                {task.title}
+                            </h4>
+                            {task.link && (
+                                <a
+                                    href={task.link}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="mt-1 flex-none text-accent transition-colors hover:text-accent/70"
+                                    aria-label={t("accessibility.viewTask", { title: task.title })}
+                                >
+                                    <ExternalLinkIcon />
+                                </a>
                             )}
                         </div>
+                        {task.summary && task.summary !== "TODO" ? (
+                            <p className="mt-1 leading-relaxed text-primary">{task.summary}</p>
+                        ) : (
+                            <p className="mt-1 italic text-secondary/60">{t("common:comingSoon")}</p>
+                        )}
                     </div>
-                );
-            })}
+                </div>
+            ))}
         </div>
     );
 };
 
-// Composant pour afficher les projets en disposition grid/cards
 const WorkProjects: React.FC<{ projects: Project[] }> = ({ projects }) => {
-    const { t } = useTranslation();
+    const { t } = useTranslation("work");
+
     return (
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {projects.map((project, index) => {
-                const ProjectCard = (
-                    <div
-                        className="
-                            bg-background/50 
-                            border border-secondary/50 
-                            rounded-lg p-6
-                            hover:border-accent/30
-                            hover:shadow-lg
-                            transition-all
-                            group
-                            cursor-pointer
-                        "
-                    >
-                        <div className="flex items-start justify-between mb-3">
-                            <h4 className="text-xl font-title font-medium text-text group-hover:text-accent transition-colors">
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {projects.map((project) => {
+                const card = (
+                    <div className="group h-full rounded-lg border border-secondary/50 bg-background/50 p-5 transition-all hover:border-accent/40 hover:shadow-lg">
+                        <div className="mb-2 flex items-start justify-between gap-3">
+                            <h4 className="font-title text-lg font-semibold text-text transition-colors group-hover:text-accent">
                                 {project.title}
                             </h4>
-                            {project.link && (
-                                <div className="text-accent flex-shrink-0 ml-2">
-                                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                                    </svg>
-                                </div>
-                            )}
+                            {project.link && <ExternalLinkIcon />}
                         </div>
-                        
                         {project.summary && project.summary !== "TODO" ? (
-                            <p className="text-primary text-sm leading-relaxed">
-                                {project.summary}
-                            </p>
+                            <p className="text-sm leading-relaxed text-primary">{project.summary}</p>
                         ) : (
-                            <p className="text-secondary/60 text-sm italic">
-                                {t("common:comingSoon")}
-                            </p>
+                            <p className="text-sm italic text-secondary/60">{t("common:comingSoon")}</p>
                         )}
                     </div>
                 );
 
                 return project.link ? (
                     <a
-                        key={index}
+                        key={project.title}
                         href={project.link}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="block"
-                        aria-label={`View ${project.title} project`}
+                        aria-label={t("accessibility.viewProject", { title: project.title })}
                     >
-                        {ProjectCard}
+                        {card}
                     </a>
                 ) : (
-                    <div key={index}>
-                        {ProjectCard}
-                    </div>
+                    <div key={project.title}>{card}</div>
                 );
             })}
         </div>
     );
 };
 
-// Composant principal
+const WorkMilestones: React.FC<{ milestones: Milestone[] }> = ({ milestones }) => (
+    <div className="space-y-4">
+        {milestones.map((milestone) => (
+            <div
+                key={`${milestone.period}-${milestone.title}`}
+                className="rounded-r-lg border-l-2 border-accent bg-secondary/10 px-4 py-3"
+            >
+                <p className="font-mono text-xs font-semibold text-accent sm:text-sm">{milestone.period}</p>
+                <h4 className="mt-1 font-title text-base font-semibold text-text sm:text-lg">{milestone.title}</h4>
+            </div>
+        ))}
+    </div>
+);
+
+const WorkTags: React.FC<{ work: WorkExperience }> = ({ work }) => (
+    <div className="flex flex-wrap gap-2">
+        {work.tags.technical.map((tag) => (
+            <span
+                key={tag}
+                className="rounded-full border border-accent/20 bg-accent/10 px-3 py-1 text-xs font-medium text-accent sm:text-sm"
+            >
+                {tag}
+            </span>
+        ))}
+        {work.tags.thematical.map((tag) => (
+            <span
+                key={tag}
+                className="rounded-full border border-secondary/30 bg-secondary/10 px-3 py-1 text-xs font-medium text-primary sm:text-sm"
+            >
+                {tag}
+            </span>
+        ))}
+    </div>
+);
+
 export const DetailedWorkSection: React.FC<DetailedWorkSectionProps> = ({ work }) => {
+    const [expanded, setExpanded] = useState(false);
     const { t } = useTranslation("work");
-    const aboutTitle = t("aboutTitle");
-    const responsibilitiesTitle = t("responsibilitiesTitle");
-    const projectsTitle = t("projectsTitle");
-    
+    const hasDescription = work.description && work.description !== "TODO";
+    const hasDetails = hasDescription || Boolean(work.tasks?.length) || Boolean(work.projects?.length);
+
     return (
-        <Section>
-            <div className="bg-background border border-secondary rounded-lg p-8">
-                {/* Header avec titre et lien */}
-                <div className="mb-8 flex flex-col">
-                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-4">
-                        <div className="flex items-center gap-3">
-                            <h2 className="text-4xl font-title font-bold text-text mb-2">
-                                {work.title}
-                            </h2>
-                        </div>
-                        {work.link && work.organization && (
-                            <a
-                                href={work.link}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="
-                                    px-4 py-2 
-                                    bg-accent/10 text-accent 
-                                    rounded-lg border border-accent/20
-                                    hover:bg-accent/20 
-                                    transition-colors
-                                    font-medium
-                                    w-fit
-                                "
-                            >
-                                📍 {work.organization}
-                            </a>
-                        )}
-                    </div>
-                    
-                    {/* Tags */}
-                    <div className="flex flex-wrap gap-2 mb-6">
-                        {work.tags.technical.map((tag) => (
-                            <span
-                                key={tag}
-                                className="
-                                    text-accent
-                                    bg-accent/10
-                                    text-sm font-medium 
-                                    px-3 py-1 
-                                    rounded-full
-                                    border border-accent/20
-                                "
-                            >
-                                {tag}
-                            </span>
-                        ))}
-                        {work.tags.thematical.map((tag) => (
-                            <span
-                                key={tag}
-                                className="
-                                    text-secondary
-                                    bg-secondary/10
-                                    text-sm font-medium 
-                                    px-3 py-1 
-                                    rounded-full
-                                    border border-secondary/20
-                                "
-                            >
-                                {tag}
-                            </span>
-                        ))}
-                    </div>
-
-                    {/* Summary */}
-                    <p className="text-lg text-primary leading-relaxed">
-                        {work.summary}
-                    </p>
-                </div>
-
-                {/* Description */}
-                {work.description && work.description !== "TODO" && (
-                    <div className="mb-8">
-                        <h3 className="text-2xl font-title font-semibold text-text mb-4">
-                            {aboutTitle}
-                        </h3>
-                        <p className="text-primary leading-relaxed">
-                            {work.description}
-                        </p>
-                    </div>
-                )}
-
-                {/* Tasks Section */}
-                {work.tasks && work.tasks.length > 0 && (
-                    <div>
-                        <h3 className="text-2xl font-title font-semibold text-text mb-6">
-                            {work.tasksTitle || responsibilitiesTitle}
-                        </h3>
-                        <WorkTasks tasks={work.tasks} />
-                    </div>
-                )}
-
-                {/* Projects Section */}
-                {work.projects && work.projects.length > 0 && (
-                    <div>
-                        <h3 className="text-2xl font-title font-semibold text-text mb-6">
-                            {projectsTitle}
-                        </h3>
-                        <WorkProjects projects={work.projects} />
-                    </div>
+        <article className="rounded-xl border border-secondary bg-background/90 p-6 shadow-sm backdrop-blur-sm sm:p-8">
+			<div className="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between">
+                <h2 className="font-title text-2xl font-bold leading-tight text-text sm:text-3xl">
+                    {work.title}
+                </h2>
+                {work.link && work.organization && (
+                    <a
+                        href={work.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex w-fit items-center gap-2 rounded-lg border border-accent/20 bg-accent/10 px-3 py-2 text-sm font-semibold text-accent transition-colors hover:bg-accent/20"
+                    >
+                        {work.organization}
+                        <ExternalLinkIcon />
+                    </a>
                 )}
             </div>
-        </Section>
+
+            <p className="mt-5 max-w-4xl text-base leading-relaxed text-primary sm:text-lg">{work.summary}</p>
+
+            <div className="mt-6">
+                <WorkTags work={work} />
+            </div>
+
+            {work.milestones && work.milestones.length > 0 && (
+                <div className="mt-8">
+					<h3 className="mb-4 font-title text-lg font-semibold text-text">{t("journeyTitle")}</h3>
+                    <WorkMilestones milestones={work.milestones} />
+                </div>
+            )}
+
+            {hasDetails && (
+                <details
+                    className="group/details mt-8 border-t border-secondary/60 pt-2"
+                    onToggle={(event) => setExpanded(event.currentTarget.open)}
+                >
+                    <summary className="flex cursor-pointer list-none items-center justify-between gap-4 rounded-lg px-1 py-4 font-title font-semibold text-accent transition-colors hover:text-accent-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent [&::-webkit-details-marker]:hidden">
+                        <span>{t(expanded ? "details.collapse" : "details.expand")}</span>
+                        <svg
+                            className={`h-5 w-5 flex-none transition-transform duration-200 ${expanded ? "rotate-180" : ""}`}
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            aria-hidden="true"
+                        >
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 9l6 6 6-6" />
+                        </svg>
+                    </summary>
+
+					<div className="space-y-10 pb-2 pt-4">
+                        {hasDescription && (
+                            <section>
+                                <h3 className="mb-3 font-title text-xl font-semibold text-text">{t("aboutTitle")}</h3>
+                                <p className="max-w-4xl leading-relaxed text-primary">{work.description}</p>
+                            </section>
+                        )}
+
+                        {work.tasks && work.tasks.length > 0 && (
+                            <section>
+                                <h3 className="mb-5 font-title text-xl font-semibold text-text">
+                                    {work.tasksTitle || t("responsibilitiesTitle")}
+                                </h3>
+                                <WorkTasks tasks={work.tasks} />
+                            </section>
+                        )}
+
+                        {work.projects && work.projects.length > 0 && (
+                            <section>
+                                <h3 className="mb-5 font-title text-xl font-semibold text-text">
+                                    {work.projectsTitle || t("projectsTitle")}
+                                </h3>
+                                <WorkProjects projects={work.projects} />
+                            </section>
+                        )}
+                    </div>
+                </details>
+            )}
+        </article>
     );
 };
 
