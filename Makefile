@@ -1,5 +1,5 @@
 # Docker Compose file
-DC_FILE = docker-compose.yml
+DC_FILE = compose.yml
 
 # Default target
 all: check-env deploy
