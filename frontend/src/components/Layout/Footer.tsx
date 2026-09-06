@@ -33,7 +33,7 @@ const toolsUrls = {
 	ts: "https://www.typescriptlang.org/",
 	tailwind: "https://tailwindcss.com/",
 	docker: "https://docs.docker.com/compose/",
-	nginx: "https://nginx.org/",
+	caddy: "https://caddyserver.com/",
 	actions: "https://github.com/features/actions",
 	brain: "https://neurotorium.org/tool/brain-atlas/",
 };

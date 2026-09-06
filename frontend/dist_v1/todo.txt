@@ -1,6 +1,0 @@
-About page:
-	- On repeat spotify
-
-imdb-like carrousel
-
-Change the whole site to a SPA, using react.

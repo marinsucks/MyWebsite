@@ -1,0 +1,63 @@
+{
+	email {$EMAIL}
+}
+
+(security_headers) {
+	header {
+		-Server
+		Permissions-Policy "camera=(), geolocation=(), microphone=()"
+		Referrer-Policy "strict-origin-when-cross-origin"
+		X-Content-Type-Options "nosniff"
+		X-Frame-Options "SAMEORIGIN"
+	}
+}
+
+{$DOMAIN}, www.{$DOMAIN}, v2.{$DOMAIN} {
+	import security_headers
+	encode zstd gzip
+
+	log {
+		output stdout
+		format console
+	}
+
+	handle /health {
+		respond "healthy" 200
+	}
+
+	handle {
+		root * /srv/v2
+		try_files {path} /index.html
+		file_server
+	}
+}
+
+v1.{$DOMAIN} {
+	import security_headers
+	encode zstd gzip
+
+	log {
+		output stdout
+		format console
+	}
+
+	handle /health {
+		respond "healthy" 200
+	}
+
+	@html_extension path_regexp html_extension ^/(.*)\.html$
+	handle @html_extension {
+		redir * /{re.html_extension.1} 302
+	}
+
+	handle {
+		root * /srv/v1
+		try_files {path} {path}.html
+		file_server
+	}
+}
+
+# Private endpoint used only by the Caddy container healthcheck.
+:8080 {
+	respond /health "healthy" 200
+}

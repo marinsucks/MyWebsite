@@ -9,6 +9,5 @@ dist
 build
 certs
 *-debug.log*
-package-lock.json
 yarn.lock
 *.tsbuildinfo

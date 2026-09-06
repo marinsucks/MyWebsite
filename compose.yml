@@ -1,47 +1,40 @@
 services:
-  nginx-proxy:
-    image: nginxproxy/nginx-proxy:latest
-    container_name: nginx-proxy
+  frontend-build:
+    image: ghcr.io/marinsucks/mywebsite:latest
+    pull_policy: always
+    volumes:
+      - frontend_assets:/output
+    restart: "no"
+
+  proxy:
+    image: caddy:2.11.4-alpine
     ports:
       - "80:80"
       - "443:443"
+      - "443:443/udp"
     volumes:
-      - /var/run/docker.sock:/tmp/docker.sock:ro
-      - /opt/ssl-certs/certs:/etc/nginx/certs:ro
-      - /var/lib/MyWebsite/vhost.d:/etc/nginx/vhost.d
-      - /var/lib/MyWebsite/html:/usr/share/nginx/html
-    labels:
-      - "com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy"
+      - ./proxy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - frontend_assets:/srv:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    environment:
+      - DOMAIN=${DOMAIN}
+      - EMAIL=${EMAIL}
+    depends_on:
+      frontend-build:
+        condition: service_completed_successfully
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://127.0.0.1:8080/health"]
+      interval: 30s
+      timeout: 5s
+      start_period: 5s
+      retries: 3
     restart: unless-stopped
 
-  acme-companion:
-    image: nginxproxy/acme-companion:latest
-    container_name: acme-companion
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro
-      - /opt/ssl-certs/certs:/etc/nginx/certs:rw
-      - /var/lib/MyWebsite/vhost.d:/etc/nginx/vhost.d:rw
-      - /var/lib/MyWebsite/html:/usr/share/nginx/html:rw
-      - /opt/ssl-certs/acme:/etc/acme.sh
-    environment:
-      - DEFAULT_EMAIL=${EMAIL}
-    depends_on:
-      - nginx-proxy
-    restart: unless-stopped
-
-  site:
-    container_name: site-container
-    image: ghcr.io/marinsucks/mywebsite:latest
-    pull_policy: always
-    expose:
-      - "8080"
-    volumes:
-      - /var/log/MyWebsite:/var/log/nginx
-    environment:
-      - VIRTUAL_HOST=${DOMAIN},www.${DOMAIN},v1.${DOMAIN},v2.${DOMAIN}
-      - VIRTUAL_PORT=8080
-      - LETSENCRYPT_HOST=${DOMAIN},www.${DOMAIN},v1.${DOMAIN},v2.${DOMAIN}
-      - LETSENCRYPT_EMAIL=${EMAIL}
-    depends_on:
-      - nginx-proxy
-    restart: unless-stopped
+volumes:
+  frontend_assets:
+    name: mywebsite-frontend-assets
+  caddy_data:
+    name: mywebsite-caddy-data
+  caddy_config:
+    name: mywebsite-caddy-config

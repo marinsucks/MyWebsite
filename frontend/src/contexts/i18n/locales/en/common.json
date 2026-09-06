@@ -15,7 +15,7 @@
 		"language": "Switch to French"
 	},
 	"footer": {
-		"description": "Built with <react>React</react>, <ts>TypeScript</ts>, and <tailwind>Tailwind CSS</tailwind>; shipped with <docker>Docker</docker>, <nginx>NGINX</nginx>, and <actions>GitHub Actions</actions> — all imagined, designed, and wired together by <brain>my own brain</brain>, with a little help from <codex>Codex</codex> ;)"
+		"description": "Built with <react>React</react>, <ts>TypeScript</ts>, and <tailwind>Tailwind CSS</tailwind>; shipped with <docker>Docker</docker>, <caddy>Caddy</caddy>, and <actions>GitHub Actions</actions> — all imagined, designed, and wired together by <brain>my own brain</brain>, with a little help from <codex>Codex</codex> ;)"
 	},
 	"notFound": {
 		"title": "Page not found",

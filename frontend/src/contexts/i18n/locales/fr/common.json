@@ -15,7 +15,7 @@
     "language": "Passer en anglais"
   },
   "footer": {
-    "description": "Développé avec <react>React</react>, <ts>TypeScript</ts> et <tailwind>Tailwind CSS</tailwind> ; déployé avec <docker>Docker</docker>, <nginx>NGINX</nginx> et <actions>GitHub Actions</actions> — entièrement imaginé, designé et assemblé par <brain>mon propre cerveau</brain>, avec un petit coup de main de <codex>Codex</codex> ;)"
+    "description": "Développé avec <react>React</react>, <ts>TypeScript</ts> et <tailwind>Tailwind CSS</tailwind> ; déployé avec <docker>Docker</docker>, <caddy>Caddy</caddy> et <actions>GitHub Actions</actions> — entièrement imaginé, designé et assemblé par <brain>mon propre cerveau</brain>, avec un petit coup de main de <codex>Codex</codex> ;)"
   },
   "notFound": {
     "title": "Page introuvable",
