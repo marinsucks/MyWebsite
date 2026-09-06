@@ -13,16 +13,10 @@
         "question": "tu peux te décrire ?",
         "answers": [
           "Carrément !",
-          "Je suis Marin. Vous savez déjà que je bosse comme dev, mais c’est pas tout ce qui me définit. Je m’intéresse à plein de trucs random, j’aime juste me balader et essayer des trucs qui ont l’air cool"
-        ]
-      },
-      {
-        "question": "dis-m’en plus",
-        "answers": [
-          "J’adore les sports de combat !! Je fais du jiu jitsu brésilien depuis 2 ans et 11 mois et j’ai commencé le Muay Thai en mai 2026.",
+          "Je suis Marin. Je vis actuellement à Paris. Vous savez déjà que je bosse comme dev, mais c’est pas tout ce qui me définit.",
+          "J’adore les sports de combat 💥 Je fais du jiu-jitsu brésilien depuis 2 ans et 11 mois et j’ai commencé le muay-thaï en mai 2026.",
           "Je peux aussi pas passer une journée sans soit jouer de la musique soit en écouter. Je suis un gros fan de tout ce qui est alternatif, de la pop au hardcore",
-          "Je kiffe aussi jouer de la basse !"
-        ]
+          "Je kiffe aussi jouer de la basse !"        ]
       },
       {
         "question": "qu’est-ce qui t’a donné envie de coder ?",
@@ -30,6 +24,13 @@
           "Je cherchais un boulot dans lequel je peux exprimer ma créativité avec un cadre plus strict que l’art. Il semblerait que la programmation soit le match parfait pour mon cerveau maniaque lol",
           "En plus je suis sincèrement juste curieux de la technologie, et je veux faire partie de ceux qui la construisent.",
           "Donc c’est pour ça que je suis dev ;)"
+        ]
+      },
+      {
+        "question": "quel est ton objectif en ce moment ?",
+        "answers": [
+          "Côté carrière, j’ai surtout besoin d’un environnement positif, où je me sens apprécié et où je m’ennuie pas. Pour le moment, j’ai pas de plan de carrière précis en tête.",
+          "Sinon, mon objectif principal est simplement de profiter de la vie et de faire en sorte d’être une personne agréable avec qui passer du temps. C’est à peu près tout !"
         ]
       },
       {

@@ -13,13 +13,8 @@
         "question": "can you tell me a bit about yourself ?",
         "answers": [
           "Absolutely !",
-          "I’m Marin. You already know I work as a dev, but that’s not all I’m about. I’m into a bunch of random stuff, I just enjoy roaming around and try stuff that looks cool"
-        ]
-      },
-      {
-        "question": "tell me more",
-        "answers": [
-          "I love combat sports !! I’ve been doing Brazilian jiu jitsu for 2 years and 11 months and I started Muay Thai in May 2026.",
+          "I’m Marin. I'm currently based in Paris. You already know I work as a dev, but that’s not all I’m about.",
+          "I love combat sports 💥 I’ve been doing Brazilian jiu jitsu for 2 years and 11 months and I started Muay Thai in May 2026.",
           "I also can’t spend a day without either playing or listening to music. I’m a big fan of anything alternative, from pop to hardcore",
           "Also I like to play along at the bass !"
         ]
@@ -30,6 +25,13 @@
           "I was looking for a job in which I can express my creativity under a stricter guidance than arts. It seems like programming was the perfect match for my fussy brain lol",
           "Besides I’m genuinely just curious about technology, and I want to be part of those who build it.",
           "So that’s why I’m a dev ;)"
+        ]
+      },
+      {
+        "question": "what’s your current goal?",
+        "answers": [
+          "Career-wise, I just need a positive environment where I feel appreciated and where I don’t get bored. I don’t have a specific career plan in mind at the moment.",
+          "Otherwise, my main goal is simply to enjoy life and make sure I’m a fun person to be around. That’s pretty much everything!"
         ]
       },
       {

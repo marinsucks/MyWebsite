@@ -1,12 +1,12 @@
 {
 	"greeting": "Hello world!",
-	"name": "I'm Marin Becker.",
+	"name": "I'm Marin Becker ✌️",
 	"description": {
-		"role": "DevOps engineer with a full-stack mindset."
+		"role": "DevOps handyman"
 	},
 	"statements": {
 		"work": {
-			"title": "I build things that actually run",
+			"title": "I build things that actually run.",
 			"subtitle": "I like being responsible for what happens after <git>git push</git>.",
 			"cta": "See what runs"
 		},

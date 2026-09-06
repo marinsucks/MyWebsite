@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import { Trans, useTranslation } from "react-i18next";
 import Section from "@components/Layout/Section";
 import aboutSprite from "@assets/sprites/about.png";
-import workingSprite from "@assets/sprites/working.png";
+
+const workingSprite = "/assets/working.png";
 
 interface StatementProps {
 	title: string;
@@ -76,7 +77,7 @@ const Home: React.FC = () => {
 					<h1 className="max-w-5xl p-2 font-title text-6xl font-extrabold tracking-tight text-text sm:text-7xl md:text-8xl">
 						{t("name")}
 					</h1>
-					<p className="mt-6 max-w-3xl p-2 text-xl text-primary md:text-2xl">
+					<p className="mt-6 max-w-3xl p-2 text-xl italic text-primary md:text-2xl">
 						{t("description.role")}
 					</p>
 				</div>
