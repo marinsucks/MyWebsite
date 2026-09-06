@@ -21,6 +21,10 @@
 		format console
 	}
 
+	handle_path /api/* {
+		reverse_proxy api:4000
+	}
+
 	handle /health {
 		respond "healthy" 200
 	}

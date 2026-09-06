@@ -4,6 +4,8 @@ import fs from 'fs';
 import path from 'path';
 import svgr from 'vite-plugin-svgr';
 
+const apiProxyTarget = process.env.API_PROXY_TARGET ?? 'http://127.0.0.1:4000';
+
 export default defineConfig({
 	plugins: [
 		react(),
@@ -12,10 +14,16 @@ export default defineConfig({
 	server: {
 		host: '0.0.0.0',
 		port: 443,
-        https: process.env.NODE_ENV !== 'production' && fs.existsSync('./certs/ssl_main.key') ? {
-            key: fs.readFileSync('./certs/ssl_main.key'),
-            cert: fs.readFileSync('./certs/ssl_main.crt'),
-        } : undefined
+		proxy: {
+			'/api': {
+				target: apiProxyTarget,
+				rewrite: path => path.replace(/^\/api(?=\/|$)/, '') || '/',
+			},
+		},
+		https: process.env.NODE_ENV !== 'production' && fs.existsSync('./certs/ssl_main.key') ? {
+			key: fs.readFileSync('./certs/ssl_main.key'),
+			cert: fs.readFileSync('./certs/ssl_main.crt'),
+		} : undefined
 	},
 	resolve: {
 		alias: {

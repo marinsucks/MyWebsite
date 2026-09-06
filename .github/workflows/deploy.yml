@@ -102,7 +102,8 @@ jobs:
       run: |
         sleep 15
         for i in {1..10}; do
-          if curl -f https://marinbecker.me; then
+          if curl -f https://marinbecker.me && \
+             curl -f https://marinbecker.me/api/health; then
           echo "Health check passed on attempt $i"
           exit 0
           fi

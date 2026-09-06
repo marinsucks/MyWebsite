@@ -1,0 +1,23 @@
+{
+	"name": "mywebsite-api",
+	"version": "1.0.0",
+	"private": true,
+	"type": "module",
+	"engines": {
+		"node": ">=24"
+	},
+	"scripts": {
+		"dev": "tsx watch src/server.ts",
+		"build": "tsc --project tsconfig.json",
+		"start": "node dist/server.js",
+		"type-check": "tsc --project tsconfig.json --noEmit"
+	},
+	"dependencies": {
+		"fastify": "^5.12.1"
+	},
+	"devDependencies": {
+		"@types/node": "^24.13.3",
+		"tsx": "^4.23.12",
+		"typescript": "^5.9.3"
+	}
+}

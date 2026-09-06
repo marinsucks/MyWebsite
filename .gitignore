@@ -33,6 +33,9 @@ yarn.lock
 # Production builds use the frontend lockfile for reproducibility.
 !frontend/package-lock.json
 
+# Keep the API dependency graph reproducible in production.
+!api/package-lock.json
+
 ##### TYPESCRIPT #####
 *.tsbuildinfo
 
