@@ -15,7 +15,7 @@ const validPayload = {
 	name: "Ada Lovelace",
 	email: "ada@example.com",
 	subject: "A portfolio project",
-	message: "I would like to discuss a project with you.",
+	message: "Bonjour !",
 	locale: "en",
 	turnstileToken: "valid-token",
 	submissionId: "7c38e7a5-2eb3-4f5b-9e47-9d2dc26c57a0",
@@ -60,7 +60,7 @@ test("POST /contact rejects an invalid payload before the service", async (t) =>
 	const response = await app.inject({
 		method: "POST",
 		url: "/contact",
-		payload: { ...validPayload, message: "too short" },
+		payload: { ...validPayload, message: "" },
 	});
 
 	assert.equal(response.statusCode, 400);

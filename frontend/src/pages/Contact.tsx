@@ -35,6 +35,7 @@ const Contact: React.FC = () => {
 	const [darkMode] = useDarkMode();
 	const [form, setForm] = useState<FormState>(initialForm);
 	const [turnstileToken, setTurnstileToken] = useState("");
+	const [challengeLoadError, setChallengeLoadError] = useState(false);
 	const [submissionId, setSubmissionId] = useState(() => crypto.randomUUID());
 	const [status, setStatus] = useState<SubmissionStatus>("idle");
 	const [errorKey, setErrorKey] = useState("errors.generic");
@@ -107,7 +108,7 @@ const Contact: React.FC = () => {
 	};
 
 	return (
-		<Section className="pb-16 pt-12 sm:pb-24 sm:pt-16">
+		<Section className="pb-16 pt-12 sm:pb-24 sm:pt-16 lg:pb-8">
 			<div className="mx-auto grid w-full max-w-6xl gap-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-16">
 				<div className="lg:pt-8">
 					<p className="font-mono text-sm font-semibold uppercase tracking-widest text-accent">
@@ -199,7 +200,6 @@ const Contact: React.FC = () => {
 						<textarea
 							name="message"
 							required
-							minLength={20}
 							maxLength={5_000}
 							rows={8}
 							value={form.message}
@@ -235,15 +235,12 @@ const Contact: React.FC = () => {
 								siteKey={siteKey}
 								onSuccess={(token) => {
 									setTurnstileToken(token);
-									setStatus((current) =>
-										current === "submitting" ? current : "idle",
-									);
+									setChallengeLoadError(false);
 								}}
 								onExpire={() => setTurnstileToken("")}
 								onError={() => {
 									setTurnstileToken("");
-									setErrorKey("errors.challengeLoad");
-									setStatus("error");
+									setChallengeLoadError(true);
 								}}
 								options={{
 									action: "contact",
@@ -259,7 +256,7 @@ const Contact: React.FC = () => {
 						)}
 					</div>
 
-					{(status === "success" || status === "error") && (
+					{(status === "success" || status === "error" || challengeLoadError) && (
 						<div aria-live="polite" className="mt-4">
 							{status === "success" && (
 								<div className="rounded-lg border border-primary/40 bg-primary/10 px-4 py-3 text-primary" role="status">
@@ -270,6 +267,11 @@ const Contact: React.FC = () => {
 							{status === "error" && (
 								<p className="rounded-lg border border-accent/50 bg-accent/10 px-4 py-3 text-sm text-text" role="alert">
 									{t(errorKey)}
+								</p>
+							)}
+							{challengeLoadError && status === "idle" && (
+								<p className="text-sm text-accent" role="alert">
+									{t("errors.challengeLoad")}
 								</p>
 							)}
 						</div>

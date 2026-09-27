@@ -31,7 +31,7 @@ export const createContactService = (): ContactService => {
 			if (
 				normalizedSubmission.name.length < 2 ||
 				normalizedSubmission.subject.length < 3 ||
-				normalizedSubmission.message.length < 20
+				normalizedSubmission.message.length === 0
 			) {
 				throw new InvalidContactPayloadError();
 			}

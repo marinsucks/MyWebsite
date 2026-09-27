@@ -20,7 +20,7 @@ const contactBodySchema = {
 		name: { type: "string", minLength: 2, maxLength: 80 },
 		email: { type: "string", format: "email", maxLength: 254 },
 		subject: { type: "string", minLength: 3, maxLength: 120 },
-		message: { type: "string", minLength: 20, maxLength: 5_000 },
+		message: { type: "string", minLength: 1, maxLength: 5_000 },
 		locale: { type: "string", enum: ["en", "fr"] },
 		turnstileToken: { type: "string", minLength: 1, maxLength: 2_048 },
 		submissionId: {
