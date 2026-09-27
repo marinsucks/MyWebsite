@@ -1,6 +1,8 @@
 ############ REPOS ############
 **/.git
 test/
+!api/test/
+!api/test/**/*.ts
 media/MediaArchive/
 archive/
 

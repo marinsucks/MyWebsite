@@ -1,0 +1,132 @@
+name: 🧪 Tests
+
+on:
+  workflow_call:
+  pull_request:
+    branches: [ master ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: tests-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  api-tests:
+    name: API tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: api
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 24
+        cache: npm
+        cache-dependency-path: api/package-lock.json
+
+    - name: Install locked dependencies
+      run: npm ci
+
+    - name: Run tests with coverage gates
+      run: npm run test:coverage
+
+    - name: Type-check API
+      run: npm run type-check
+
+    - name: Compile API
+      run: npm run build
+
+    - name: Audit API dependencies
+      run: npm audit --audit-level=high
+
+  frontend-quality:
+    name: Frontend quality
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: frontend
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 24
+        cache: npm
+        cache-dependency-path: frontend/package-lock.json
+
+    - name: Install locked dependencies
+      run: npm ci
+
+    - name: Type-check frontend
+      run: npm run type-check
+
+    - name: Lint frontend
+      run: npm run lint
+
+    - name: Build frontend
+      env:
+        VITE_TURNSTILE_SITE_KEY: 1x00000000000000000000AA
+      run: npm run build
+
+    - name: Audit frontend dependencies
+      run: npm audit --audit-level=high
+
+  infrastructure-validation:
+    name: Infrastructure validation
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Validate Compose model
+      env:
+        DOMAIN: example.com
+        EMAIL: admin@example.com
+        RESEND_API_KEY: re_ci_placeholder
+        TURNSTILE_SECRET_KEY: turnstile_ci_placeholder
+      run: docker compose -f compose.yml config --quiet
+
+    - name: Validate Caddy configuration
+      run: >-
+        docker run --rm
+        --env DOMAIN=example.com
+        --env EMAIL=admin@example.com
+        --volume "${{ github.workspace }}/proxy/Caddyfile:/etc/caddy/Caddyfile:ro"
+        caddy:2.11.4-alpine
+        caddy validate --config /etc/caddy/Caddyfile
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+
+    - name: Validate API image build
+      uses: docker/build-push-action@v5
+      with:
+        context: ./api
+        push: false
+        cache-from: type=gha,scope=api-ci
+        cache-to: type=gha,mode=max,scope=api-ci
+
+    - name: Validate frontend image build
+      uses: docker/build-push-action@v5
+      with:
+        context: ./frontend
+        push: false
+        build-args: |
+          TURNSTILE_SITE_ID=1x00000000000000000000AA
+        cache-from: type=gha,scope=frontend-ci
+        cache-to: type=gha,mode=max,scope=frontend-ci

@@ -1,0 +1,42 @@
+{
+	"eyebrow": "Contact",
+	"title": "Discutons.",
+	"intro": "Un projet, une opportunité ou simplement une bonne question ? Envoyez-moi un message et je vous répondrai dès que possible.",
+	"addressLabel": "Adresse de contact publique",
+	"formLabel": "Formulaire de contact",
+	"fields": {
+		"name": {
+			"label": "Nom",
+			"placeholder": "Votre nom"
+		},
+		"email": {
+			"label": "E-mail",
+			"placeholder": "vous@exemple.fr"
+		},
+		"subject": {
+			"label": "Objet",
+			"placeholder": "De quoi souhaitez-vous parler ?"
+		},
+		"message": {
+			"label": "Message",
+			"placeholder": "Dites-m'en un peu plus..."
+		}
+	},
+	"submit": "Envoyer le message",
+	"submitting": "Envoi en cours...",
+	"privacy": "Protégé par Cloudflare Turnstile. Vos informations sont uniquement utilisées pour traiter votre message et vous répondre.",
+	"success": {
+		"title": "Message envoyé.",
+		"body": "Un e-mail de confirmation vous a été envoyé. Je vous répondrai bientôt."
+	},
+	"errors": {
+		"generic": "Une erreur est survenue. Veuillez réessayer.",
+		"network": "Le service est inaccessible. Vérifiez votre connexion puis réessayez.",
+		"validation": "Vérifiez les champs du formulaire puis réessayez.",
+		"challenge": "La vérification anti-bot a expiré ou échoué. Veuillez la refaire.",
+		"challengeLoad": "La vérification anti-bot n'a pas pu se charger. Rechargez la page ou désactivez votre bloqueur de contenu pour ce site.",
+		"challengeConfig": "Le formulaire de contact n'est pas encore configuré.",
+		"rateLimit": "Trop de messages ont été envoyés depuis cette connexion. Veuillez réessayer plus tard.",
+		"unavailable": "Le service d'e-mail est temporairement indisponible. Veuillez réessayer dans quelques minutes."
+	}
+}

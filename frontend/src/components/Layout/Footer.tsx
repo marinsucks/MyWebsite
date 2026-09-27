@@ -1,6 +1,7 @@
 import React from "react";
 import { useDarkMode } from "@hooks/useDarkMode";
 import { Trans, useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 
 import EmailIconDark from '@assets/icons/dark/email.svg?react';
 import EmailIconLight from '@assets/icons/light/email.svg?react';
@@ -53,10 +54,11 @@ const Footer: React.FC = () => {
 
 	const links = [
 		{
-			href: "mailto:hello@marinbecker.me",
-			title: "hello@marinbecker.me",
+			href: "/contact",
+			title: "contact@marinbecker.me",
 			alt: "email icon",
 			Icon: email[modePath],
+			internal: true,
 		},
 		{
 			href: "https://github.com/marinsucks",
@@ -89,19 +91,20 @@ const Footer: React.FC = () => {
 			<div className="max-w-7xl mx-auto py-4 bg-background/90 backdrop-blur-sm border border-b-0 border-secondary rounded-t-lg">
 				<div className="flex flex-col sm:flex-row justify-between items-center px-2 sm:px-4 gap-4 sm:gap-8">
 				<div className="flex justify-between w-full sm:w-auto gap-0 sm:gap-8 mb-2 sm:mb-0 px-4 sm:px-0">
-					{links.map((link, idx) => (
-						<a
-							key={idx}
-							href={link.href}
-							title={link.title}
-							target={link.target}
-							rel={link.rel}
-							className="transition-transform duration-200 hover:scale-125 active:scale-110 flex-1 sm:flex-none flex justify-center sm:justify-start"
-							style={{ transitionProperty: 'transform' }}
-						>
-							<link.Icon className="footer-icon w-10 h-10 sm:w-8 sm:h-8" aria-label={link.title} />
-						</a>
-					))}
+					{links.map((link, idx) => {
+						const content = <link.Icon className="footer-icon w-10 h-10 sm:w-8 sm:h-8" aria-label={link.title} />;
+						const className = "transition-transform duration-200 hover:scale-125 active:scale-110 flex-1 sm:flex-none flex justify-center sm:justify-start";
+
+						return link.internal ? (
+							<Link key={idx} to={link.href} title={link.title} className={className} style={{ transitionProperty: 'transform' }}>
+								{content}
+							</Link>
+						) : (
+							<a key={idx} href={link.href} title={link.title} target={link.target} rel={link.rel} className={className} style={{ transitionProperty: 'transform' }}>
+								{content}
+							</a>
+						);
+					})}
 				</div>
 				<div className="px-1 text-center text-xs opacity-80 sm:p-2 sm:text-left sm:text-sm">
 					<Trans

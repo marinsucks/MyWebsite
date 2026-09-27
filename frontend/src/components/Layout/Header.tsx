@@ -75,12 +75,12 @@ const Header: React.FC = () => {
 								</NavLink>
 							</li>
 							<li>
-								<a
-									href="mailto:contact@marinbecker.me"
-									className="rounded-lg border border-accent px-4 py-2 text-accent transition-colors duration-200 hover:bg-accent hover:text-background"
+								<NavLink
+									to="/contact"
+									className={({ isActive }) => `rounded-lg border border-accent px-4 py-2 transition-colors duration-200 hover:bg-accent hover:text-background ${isActive ? "bg-accent text-background" : "text-accent"}`}
 								>
 									{t("header.contact")}
-								</a>
+								</NavLink>
 							</li>
 						</ul>
 						<Options className="ml-5 h-full border-l border-secondary px-5" />
@@ -113,12 +113,12 @@ const Header: React.FC = () => {
 							<NavLink to="/about" className={mobileNavLinkClass}>
 								{t("header.about")}
 							</NavLink>
-							<a
-								href="mailto:contact@marinbecker.me"
-								className="rounded-lg px-3 py-3 font-title text-accent/80 transition-colors hover:bg-secondary/20 hover:text-accent"
+							<NavLink
+								to="/contact"
+								className={mobileNavLinkClass}
 							>
 								{t("header.contact")}
-							</a>
+							</NavLink>
 						</div>
 						<Options inline className="mt-2 w-full border-t border-secondary/70 px-3 pt-3" />
 					</div>

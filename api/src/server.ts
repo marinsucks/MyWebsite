@@ -1,7 +1,7 @@
 import { buildApp } from "./app.js";
 import { env } from "./config/env.js";
 
-const app = buildApp();
+const app = await buildApp();
 
 const shutdown = async (signal: NodeJS.Signals): Promise<void> => {
 	app.log.info({ signal }, "Shutting down API");

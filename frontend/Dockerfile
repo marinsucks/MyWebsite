@@ -6,7 +6,8 @@ COPY package*.json ./
 RUN npm ci
 
 COPY . .
-RUN npm run build
+ARG TURNSTILE_SITE_ID
+RUN test -n "$TURNSTILE_SITE_ID" && VITE_TURNSTILE_SITE_KEY="$TURNSTILE_SITE_ID" npm run build
 
 
 FROM alpine:3.24.1 AS artifacts

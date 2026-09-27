@@ -17,8 +17,10 @@
 			"@utils/*": ["utils/*"],
 		},
 
-		"module": "commonjs",
+		"module": "ESNext",
+		"moduleResolution": "Bundler",
 		"target": "es2017",
+		"types": ["vite/client"],
 		"strict": true,
 		"esModuleInterop": true,
 		"emitDecoratorMetadata": true,

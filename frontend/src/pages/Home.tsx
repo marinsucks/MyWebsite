@@ -158,8 +158,8 @@ const Home: React.FC = () => {
 
 					<SectionDivider className="my-8 sm:my-12" />
 
-					<a
-						href="mailto:contact@marinbecker.me"
+					<Link
+						to="/contact"
 						className="group my-8 rounded-2xl border-2 border-accent/70 bg-accent/[0.04] px-6 py-10 transition-all duration-300 hover:border-accent hover:bg-accent/10 hover:shadow-[0_0_28px_rgb(from_var(--accent)_r_g_b_/_0.12)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-4 focus-visible:ring-offset-background sm:my-12 sm:px-10 sm:py-14 lg:px-14 lg:py-16"
 					>
 						<p className="font-mono text-sm font-semibold uppercase tracking-widest text-accent sm:text-base">
@@ -179,7 +179,7 @@ const Home: React.FC = () => {
 								<span aria-hidden="true">→</span>
 							</span>
 						</div>
-					</a>
+					</Link>
 				</div>
 			</Section>
 	);

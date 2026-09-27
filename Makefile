@@ -6,24 +6,34 @@ all: check-env deploy
 
 # Check if required environment variables are set
 check-env:
-	@if [ ! -f ./.env ] && [ -f ../.env ]; then \
-		echo "📋 Copying .env from parent directory..."; \
-		cp ../.env ./; \
-	fi
+	@test -f ./.env || { echo "❌ Missing .env: use example.env locally; GitHub Actions generates it during deployment."; exit 1; }
 	@set -a; . ./.env; set +a; \
-	if [ -z "$$DOMAIN" ] || [ -z "$$EMAIL" ]; then \
-		echo "❌ Error: Please set DOMAIN and EMAIL in your .env file"; \
+	missing=""; \
+	for variable in DOMAIN EMAIL RESEND_API_KEY TURNSTILE_SECRET_KEY; do \
+		eval "value=\$$$${variable}"; \
+		if [ -z "$$value" ]; then missing="$$missing $$variable"; fi; \
+	done; \
+	if [ -n "$$missing" ]; then \
+		echo "❌ Error: missing required variables:$$missing"; \
 		echo "Example:"; \
-		echo "DOMAIN=marinbecker.me"; \
-		echo "EMAIL=admin@marinbecker.me"; \
+		echo "cp example.env .env"; \
 		exit 1; \
 	fi
 	@echo "✅ Environment variables OK"
 
+# The public Turnstile site key is only needed while building the frontend.
+check-build-env: check-env
+	@set -a; . ./.env; set +a; \
+	if [ -z "$$TURNSTILE_SITE_KEY" ]; then \
+		echo "❌ Error: TURNSTILE_SITE_KEY is required to build the frontend"; \
+		exit 1; \
+	fi
+
 # Build the site container (for local development)
-build: check-env
+build: check-build-env
 	@echo "🏗️  Building containers locally..."
-	@docker build -t ghcr.io/marinsucks/mywebsite:latest ./frontend
+	@set -a; . ./.env; set +a; \
+	docker build --build-arg TURNSTILE_SITE_ID="$$TURNSTILE_SITE_KEY" -t ghcr.io/marinsucks/mywebsite:latest ./frontend
 	@docker compose -f $(DC_FILE) build api
 	@echo "✅ Build complete!"
 
@@ -96,4 +106,4 @@ dev-frontend:
 dev-api:
 	@cd api && npm run dev
 
-.PHONY: all check-env build deploy down logs logs-all logs-api status clean rebuild restart-proxy restart-api dev-setup dev-frontend dev-api
+.PHONY: all check-env check-build-env build deploy down logs logs-all logs-api status clean rebuild restart-proxy restart-api dev-setup dev-frontend dev-api

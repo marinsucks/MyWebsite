@@ -10,10 +10,14 @@
 		"dev": "tsx watch src/server.ts",
 		"build": "tsc --project tsconfig.json",
 		"start": "node dist/server.js",
+		"test": "tsx --test test/**/*.test.ts",
+		"test:coverage": "tsx --test --experimental-test-coverage --test-coverage-lines=70 --test-coverage-branches=60 --test-coverage-functions=80 test/**/*.test.ts",
 		"type-check": "tsc --project tsconfig.json --noEmit"
 	},
 	"dependencies": {
-		"fastify": "^5.12.1"
+		"@fastify/rate-limit": "^11.2.0",
+		"fastify": "^5.12.1",
+		"resend": "^6.26.0"
 	},
 	"devDependencies": {
 		"@types/node": "^24.13.3",

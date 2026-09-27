@@ -9,6 +9,8 @@ import enWork 		from './locales/en/Work.json';
 import frWork 		from './locales/fr/Work.json';
 import enAbout 		from './locales/en/About.json';
 import frAbout 		from './locales/fr/About.json';
+import enContact 	from './locales/en/Contact.json';
+import frContact 	from './locales/fr/Contact.json';
 
 i18n.use(initReactI18next).init({
   resources: {
@@ -16,13 +18,15 @@ i18n.use(initReactI18next).init({
       common: enCommon,
 			home: enHome,
 			work: enWork,
-			about: enAbout
+			about: enAbout,
+			contact: enContact
     },
     fr: {
       common: frCommon,
 			home: frHome,
 			work: frWork,
-			about: frAbout
+			about: frAbout,
+			contact: frContact
     }
   },
   lng: localStorage.getItem('language') || "en", // Lire la langue depuis localStorage

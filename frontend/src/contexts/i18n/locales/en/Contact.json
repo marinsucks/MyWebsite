@@ -1,0 +1,42 @@
+{
+	"eyebrow": "Contact",
+	"title": "Let's talk.",
+	"intro": "Have a project, an opportunity, or just a good question? Send me a message and I'll get back to you as soon as I can.",
+	"addressLabel": "Public contact address",
+	"formLabel": "Contact form",
+	"fields": {
+		"name": {
+			"label": "Name",
+			"placeholder": "Your name"
+		},
+		"email": {
+			"label": "Email",
+			"placeholder": "you@example.com"
+		},
+		"subject": {
+			"label": "Subject",
+			"placeholder": "What would you like to discuss?"
+		},
+		"message": {
+			"label": "Message",
+			"placeholder": "Tell me a little more..."
+		}
+	},
+	"submit": "Send message",
+	"submitting": "Sending...",
+	"privacy": "Protected by Cloudflare Turnstile. Your details are only used to process and reply to your message.",
+	"success": {
+		"title": "Message sent.",
+		"body": "A confirmation email is on its way to you. I'll get back to you soon."
+	},
+	"errors": {
+		"generic": "Something went wrong. Please try again.",
+		"network": "The service could not be reached. Check your connection and try again.",
+		"validation": "Please check the form fields and try again.",
+		"challenge": "The anti-bot check expired or failed. Please complete it again.",
+		"challengeLoad": "The anti-bot check could not load. Please refresh the page or disable your content blocker for this site.",
+		"challengeConfig": "The contact form is not configured yet.",
+		"rateLimit": "Too many messages were sent from this connection. Please try again later.",
+		"unavailable": "The email service is temporarily unavailable. Please try again in a few minutes."
+	}
+}
