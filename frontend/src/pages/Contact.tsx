@@ -36,7 +36,7 @@ const Contact: React.FC = () => {
 	const [form, setForm] = useState<FormState>(initialForm);
 	const [turnstileToken, setTurnstileToken] = useState("");
 	const [challengeLoadError, setChallengeLoadError] = useState(false);
-	const [submissionId, setSubmissionId] = useState(() => crypto.randomUUID());
+	const submission = useRef<{ id: string; fingerprint: string }>();
 	const [status, setStatus] = useState<SubmissionStatus>("idle");
 	const [errorKey, setErrorKey] = useState("errors.generic");
 	const turnstileRef = useRef<TurnstileInstance>();
@@ -70,6 +70,10 @@ const Contact: React.FC = () => {
 		}
 
 		setStatus("submitting");
+		const fingerprint = JSON.stringify({ ...form, locale });
+		if (submission.current?.fingerprint !== fingerprint) {
+			submission.current = { id: crypto.randomUUID(), fingerprint };
+		}
 
 		try {
 			const response = await fetch("/api/contact", {
@@ -79,7 +83,7 @@ const Contact: React.FC = () => {
 					...form,
 					locale,
 					turnstileToken,
-					submissionId,
+					submissionId: submission.current.id,
 				}),
 			});
 
@@ -96,8 +100,12 @@ const Contact: React.FC = () => {
 				return;
 			}
 
+			const result = await response.json();
+			if (response.status !== 202 || result.status !== "accepted") {
+				throw new Error("Unexpected contact response");
+			}
 			setForm(initialForm);
-			setSubmissionId(crypto.randomUUID());
+			submission.current = undefined;
 			setStatus("success");
 			resetChallenge();
 		} catch {

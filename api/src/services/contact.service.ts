@@ -3,16 +3,19 @@ import {
 	InvalidChallengeError,
 	InvalidContactPayloadError,
 } from "./contact.errors.js";
-import { createContactEmailSender } from "./contact-email.service.js";
+import { createContactEmailSender, type ContactEmailSender } from "./contact-email.service.js";
 import type { ContactService } from "./contact.types.js";
-import { createTurnstileVerifier } from "./turnstile.service.js";
+import { createTurnstileVerifier, type TurnstileVerifier } from "./turnstile.service.js";
 
-export const createContactService = (): ContactService => {
-	const turnstile = createTurnstileVerifier({
+export const createContactService = (dependencies: {
+	turnstile?: TurnstileVerifier;
+	emailSender?: ContactEmailSender;
+} = {}): ContactService => {
+	const turnstile = dependencies.turnstile ?? createTurnstileVerifier({
 		secretKey: env.turnstileSecretKey,
 		allowedHostnames: env.turnstileAllowedHostnames,
 	});
-	const emailSender = createContactEmailSender({
+	const emailSender = dependencies.emailSender ?? createContactEmailSender({
 		apiKey: env.resendApiKey,
 		fromEmail: env.contactFromEmail,
 		toEmail: env.contactToEmail,

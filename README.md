@@ -64,11 +64,12 @@ make logs-api        # Follow API logs
 make rebuild         # Fresh deployment
 ```
 
-The reusable `.github/workflows/tests.yaml` workflow runs three CI jobs in
+The reusable `.github/workflows/tests.yaml` workflow runs four CI jobs in
 parallel on every pull request targeting `master`:
 
 - API tests with coverage thresholds, type-checking and compilation
 - Frontend type-checking, linting and production build
+- Browser E2E tests of FR/EN navigation and the complete contact flow
 - Compose/Caddy validation and reproducible builds of both Docker images
 
 On a push to `master`, `deploy.yml` calls that same workflow through
@@ -103,6 +104,57 @@ the reported vulnerabilities. Dependency/security updates must be deliberate:
 change the requested exact versions and lockfiles, then run all quality gates.
 When updating Node/npm, also update `.nvmrc`, both projects' engine/package
 manager declarations, and the Node image digest in both Dockerfiles.
+
+### Contact tests and live monitoring
+
+The `e2e` project pins Playwright 1.58.2 and its browser image by digest. The
+deployment gates exercise the production frontend build, HTTP proxy, real API,
+contact service and Resend SDK. Only the external Turnstile/Resend network
+boundaries are replaced locally. Cases include both languages and recipients,
+provider outages, invalid credentials, partial responses, retained form content
+and safe retries after a lost response. No real emails or secrets are used in CI.
+
+```bash
+nvm use
+npm ci --prefix e2e --no-audit --no-fund
+cd e2e && npm exec -- playwright install chromium && cd ..
+npm --prefix api run build
+VITE_TURNSTILE_SITE_KEY=1x00000000000000000000AA npm --prefix frontend run build
+node --test e2e/monitor.test.mjs
+npm --prefix e2e test
+```
+
+The separate **Health Check** workflow runs hourly (at minute 17 UTC), after a
+successful deployment, and manually. It checks public pages, the public API,
+production Turnstile rejection/availability, then submits the local monitoring
+form through the real Cloudflare test widget/Siteverify and real Resend API.
+Both emails go exclusively to Resend's official `delivered+...@resend.dev` test
+recipients; the workflow waits for their simulated `delivered` events. It also
+checks the previous 24 hours of this domain's sent emails for rejection,
+suppression, complaints, delivery delays or missing delivery after 30 minutes.
+
+Sending uses the existing `RESEND_API_KEY`. Reading delivery status additionally
+needs a key with read access: set `RESEND_MONITOR_API_KEY` if the sending key is
+restricted. Without it, the monitor fails visibly; it never silently skips
+delivery verification. The domain comes from the existing `DOMAIN` setting.
+Two synthetic emails per hourly run consume sending quota (normally 48/day,
+plus manual and post-deployment runs).
+
+Failures open one GitHub issue assigned to `marinsucks`; repeated failures update
+that issue, and recovery adds a comment and closes it. Notification is independent
+of Resend. Enable email/mobile notifications for assigned issues in GitHub's
+personal notification settings. GitHub schedules can be delayed and GitHub itself
+can be unavailable, so this is hourly monitoring, not an immediate uptime SLA.
+
+These checks do **not** prove final inbox placement or Squarespace forwarding.
+Cloudflare requires test keys for automated successful challenges; the production
+widget/secret pairing still needs a real visitor's valid challenge. Resend's
+`delivered` event means acceptance by the destination mail server, not that a
+human saw the message. There is currently no durable message outbox: failed
+submissions remain in the open form for retry, not in server-side storage. A
+persistent outbox with backups is required before promising recoverability
+after a browser/server failure. Monitoring detects incidents; it does not replace
+that storage.
 
 The edge configuration is versioned in `proxy/Caddyfile`. During deployment,
 the one-shot `frontend-build` container copies the generated v1/v2 assets into

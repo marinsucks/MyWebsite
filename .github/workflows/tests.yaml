@@ -78,6 +78,36 @@ jobs:
         VITE_TURNSTILE_SITE_KEY: 1x00000000000000000000AA
       run: npm run build
 
+  contact-e2e:
+    name: Contact and navigation E2E
+    runs-on: ubuntu-26.04
+    timeout-minutes: 10
+    container:
+      image: mcr.microsoft.com/playwright:v1.58.2-noble@sha256:6446946a1d9fd62d9ae501312a2d76a43ee688542b21622056a372959b65d63d
+      options: --ipc=host
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+    - name: Set up Node.js
+      uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+      with:
+        node-version-file: .nvmrc
+    - name: Install locked dependencies
+      run: |
+        npm ci --prefix api --no-audit --no-fund
+        npm ci --prefix frontend --no-audit --no-fund
+        npm ci --prefix e2e --no-audit --no-fund
+    - name: Build the application
+      env:
+        VITE_TURNSTILE_SITE_KEY: 1x00000000000000000000AA
+      run: |
+        npm --prefix api run build
+        npm --prefix frontend run build
+    - name: Test monitoring failure detection
+      run: node --test e2e/monitor.test.mjs
+    - name: Test the contact flow with isolated providers
+      run: npm --prefix e2e test
+
   infrastructure-validation:
     name: Infrastructure validation
     runs-on: ubuntu-26.04

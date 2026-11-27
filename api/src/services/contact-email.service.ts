@@ -8,7 +8,7 @@ import {
 import type { ContactSubmission } from "./contact.types.js";
 
 export interface ContactEmailSender {
-	send(submission: ContactSubmission): Promise<void>;
+	send(submission: ContactSubmission): Promise<{ notificationId: string; confirmationId: string }>;
 }
 
 interface ContactEmailSenderOptions {
@@ -36,7 +36,13 @@ export const createContactEmailSender = ({
 			try {
 				const notification = renderNotificationEmail(submission);
 				const confirmation = renderConfirmationEmail(submission);
-				const { error } = await resend.batch.send(
+				const options = {
+					idempotencyKey: `contact/${submission.submissionId}`,
+					batchValidation: "strict" as const,
+					// The SDK forwards these options to fetch (including its signal).
+					signal: AbortSignal.timeout(10_000),
+				};
+				const { data, error } = await resend.batch.send(
 					[
 						{
 							from,
@@ -55,10 +61,17 @@ export const createContactEmailSender = ({
 							html: confirmation.html,
 						},
 					],
-					{ idempotencyKey: `contact/${submission.submissionId}` },
+					options,
 				);
 
-				if (!error) return;
+				const notificationId = data?.data?.[0]?.id;
+				const confirmationId = data?.data?.[1]?.id;
+				if (!error && data?.data?.length === 2 &&
+					typeof notificationId === "string" && notificationId.length > 0 &&
+					typeof confirmationId === "string" && confirmationId.length > 0 &&
+					notificationId !== confirmationId) {
+					return { notificationId, confirmationId };
+				}
 
 				throw new ContactServiceUnavailableError(
 					"The email provider rejected the contact submission.",

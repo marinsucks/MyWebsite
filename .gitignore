@@ -37,6 +37,9 @@ yarn.lock
 
 # Keep the API dependency graph reproducible in production.
 !api/package-lock.json
+!e2e/package-lock.json
+e2e/test-results/
+e2e/playwright-report/
 
 ##### TYPESCRIPT #####
 *.tsbuildinfo

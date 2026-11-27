@@ -65,6 +65,11 @@ export const createTurnstileVerifier = ({
 				{ cause: error },
 			);
 		}
+		if (!result || typeof result.success !== "boolean" ||
+			result["error-codes"]?.some((code) =>
+				["missing-input-secret", "invalid-input-secret", "internal-error", "bad-request"].includes(code))) {
+			throw new ContactServiceUnavailableError("Turnstile is unavailable or misconfigured.");
+		}
 		const usesTestSecret = secretKey === TURNSTILE_TEST_SECRET;
 		const hostname = result.hostname?.toLowerCase();
 		const hostnameAllowed =
