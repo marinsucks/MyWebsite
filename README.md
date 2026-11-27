@@ -31,7 +31,7 @@ Your site will be live with automatic HTTPS at `https://yourdomain.com` 🚀
 - Automatic HTTPS and certificate renewal via Caddy
 - Frontend built reproducibly with Docker and `npm ci`
 - Pull-request CI with parallel API, frontend and infrastructure quality gates
-- Enforced API coverage thresholds and dependency audits
+- Enforced API coverage thresholds and separate dependency security audits
 - Docker image, Compose model and Caddy configuration validation
 - No frontend web server in production
 - Only Caddy is exposed publicly
@@ -43,6 +43,8 @@ Your site will be live with automatic HTTPS at `https://yourdomain.com` 🚀
 ## Development
 
 ```bash
+nvm install         # Use the exact Node.js version in .nvmrc (bundles pinned npm)
+nvm use
 make dev-setup       # Install locked frontend and API dependencies
 make dev-frontend    # Start Vite
 make dev-api         # Start Fastify with hot reload (second terminal)
@@ -65,14 +67,42 @@ make rebuild         # Fresh deployment
 The reusable `.github/workflows/tests.yaml` workflow runs three CI jobs in
 parallel on every pull request targeting `master`:
 
-- API tests with coverage thresholds, type-checking, compilation and dependency audit
-- Frontend type-checking, linting, production build and dependency audit
+- API tests with coverage thresholds, type-checking and compilation
+- Frontend type-checking, linting and production build
 - Compose/Caddy validation and reproducible builds of both Docker images
 
 On a push to `master`, `deploy.yml` calls that same workflow through
 `workflow_call`. Publishing to GHCR and the self-hosted production deployment
 only start after the complete called workflow passes. Both workflows can also
 be run manually from the GitHub Actions interface.
+
+### Reproducible dependencies and security audits
+
+Node.js is fixed to `24.22.3` in `.nvmrc` and npm to its bundled `11.19.1`.
+Both projects enforce these exact versions through `engines` and `.npmrc`.
+Direct dependencies use exact versions; the committed `package-lock.json`
+files also lock transitive dependencies and their integrity hashes. Use
+`npm ci`, not `npm install` or `npm update`, to reproduce an existing checkout.
+CI and Docker installations disable the implicit network security audit.
+
+Test and deployment actions are pinned to commit SHAs. Docker base images,
+Caddy and BuildKit are pinned to image digests, Buildx uses an exact version,
+and hosted CI selects Ubuntu 26.04 explicitly. GitHub can still patch its
+hosted runner image, and downloads still require registry availability; this
+does not make the entire build offline or bit-for-bit reproducible.
+
+`dependency-audit.yml` separately checks both lockfiles with
+`npm audit --package-lock-only --audit-level=high` on pushes to `master`, pull
+requests, weekly and on manual dispatch. It fails visibly on high/critical
+findings, but is not a dependency of the test or deployment workflow.
+The advisory database is live: even an unchanged lockfile can acquire new
+findings. Keep this workflow separate from required reproducibility checks.
+
+The CI fix preserves all installed library versions; it does not remediate
+the reported vulnerabilities. Dependency/security updates must be deliberate:
+change the requested exact versions and lockfiles, then run all quality gates.
+When updating Node/npm, also update `.nvmrc`, both projects' engine/package
+manager declarations, and the Node image digest in both Dockerfiles.
 
 The edge configuration is versioned in `proxy/Caddyfile`. During deployment,
 the one-shot `frontend-build` container copies the generated v1/v2 assets into

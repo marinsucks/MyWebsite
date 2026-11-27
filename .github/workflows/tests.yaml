@@ -16,7 +16,7 @@ concurrency:
 jobs:
   api-tests:
     name: API tests
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     timeout-minutes: 10
     defaults:
       run:
@@ -24,17 +24,17 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v4
+      uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
 
     - name: Set up Node.js
-      uses: actions/setup-node@v4
+      uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
       with:
-        node-version: 24
+        node-version-file: .nvmrc
         cache: npm
         cache-dependency-path: api/package-lock.json
 
     - name: Install locked dependencies
-      run: npm ci
+      run: npm ci --no-audit --no-fund
 
     - name: Run tests with coverage gates
       run: npm run test:coverage
@@ -45,12 +45,9 @@ jobs:
     - name: Compile API
       run: npm run build
 
-    - name: Audit API dependencies
-      run: npm audit --audit-level=high
-
   frontend-quality:
     name: Frontend quality
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     timeout-minutes: 10
     defaults:
       run:
@@ -58,17 +55,17 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v4
+      uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
 
     - name: Set up Node.js
-      uses: actions/setup-node@v4
+      uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
       with:
-        node-version: 24
+        node-version-file: .nvmrc
         cache: npm
         cache-dependency-path: frontend/package-lock.json
 
     - name: Install locked dependencies
-      run: npm ci
+      run: npm ci --no-audit --no-fund
 
     - name: Type-check frontend
       run: npm run type-check
@@ -81,17 +78,14 @@ jobs:
         VITE_TURNSTILE_SITE_KEY: 1x00000000000000000000AA
       run: npm run build
 
-    - name: Audit frontend dependencies
-      run: npm audit --audit-level=high
-
   infrastructure-validation:
     name: Infrastructure validation
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     timeout-minutes: 15
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v4
+      uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
 
     - name: Validate Compose model
       env:
@@ -107,14 +101,17 @@ jobs:
         --env DOMAIN=example.com
         --env EMAIL=admin@example.com
         --volume "${{ github.workspace }}/proxy/Caddyfile:/etc/caddy/Caddyfile:ro"
-        caddy:2.11.4-alpine
+        caddy:2.11.4-alpine@sha256:6aeddd44c3078b0f9a35206472a11420648a79c184603ef95957d0a20044cb2b
         caddy validate --config /etc/caddy/Caddyfile
 
     - name: Set up Docker Buildx
-      uses: docker/setup-buildx-action@v3
+      uses: docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f # v3
+      with:
+        version: v0.38.2
+        driver-opts: image=moby/buildkit:v0.34.2@sha256:c5f8862f52499773af85bc07695b2379ef08e8002352b0df2c4864c91d78dabe
 
     - name: Validate API image build
-      uses: docker/build-push-action@v5
+      uses: docker/build-push-action@ca052bb54ab0790a636c9b5f226502c73d547a25 # v5
       with:
         context: ./api
         push: false
@@ -122,7 +119,7 @@ jobs:
         cache-to: type=gha,mode=max,scope=api-ci
 
     - name: Validate frontend image build
-      uses: docker/build-push-action@v5
+      uses: docker/build-push-action@ca052bb54ab0790a636c9b5f226502c73d547a25 # v5
       with:
         context: ./frontend
         push: false
