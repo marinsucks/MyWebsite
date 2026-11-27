@@ -72,7 +72,10 @@ parallel on every pull request targeting `master`:
 - Browser E2E tests of FR/EN navigation and the complete contact flow
 - Compose/Caddy validation and reproducible builds of both Docker images
 
-On a push to `master`, `deploy.yml` calls that same workflow through
+Every push to `master` runs the isolated test workflow. Only production-source
+changes trigger `deploy.yml`; changes limited to tests, monitoring, workflows or
+documentation never restart the site. Deployment can also be requested manually.
+When triggered, `deploy.yml` calls that same workflow through
 `workflow_call`. Publishing to GHCR and the self-hosted production deployment
 only start after the complete called workflow passes. Both workflows can also
 be run manually from the GitHub Actions interface.
@@ -224,8 +227,10 @@ use Docker. Keep ports 80/443 available and DNS pointing at this machine.
 GitHub supplies `GITHUB_TOKEN` automatically for image publication; the current
 public GHCR image can be pulled without a manually configured registry token.
 Only pushes to `master` by `marinsucks` in `marinsucks/MyWebsite` are authorized
-for automatic deployment. Deployment currently stops the stack while pulling
-images/building the API; it is not a zero-downtime or automatic rollback setup.
+for automatic deployment. Images are pulled and the API is built while the
+existing stack stays running, then Compose updates the services. API replacement
+can still interrupt in-flight requests; this is not a zero-downtime or automatic
+rollback setup. Tests and live monitoring never invoke Docker on production.
 
 Squarespace forwarding only covers incoming mail. The automatic confirmation
 is sent from `contact@marinbecker.me` by Resend, but a manual reply from the

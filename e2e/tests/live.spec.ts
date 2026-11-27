@@ -6,12 +6,21 @@ if (!domain || !/^[a-z0-9.-]+$/.test(domain)) throw new Error('MONITOR_DOMAIN mu
 const options = { domain, apiKey: process.env.RESEND_MONITOR_API_KEY || process.env.RESEND_API_KEY };
 
 test('production pages, API and the production Turnstile secret are reachable', async ({ page, request }) => {
+  let turnstileScriptLoaded = false;
+  page.on('response', response => {
+    if (response.url().startsWith('https://challenges.cloudflare.com/turnstile/v0/api.js') && response.ok()) {
+      turnstileScriptLoaded = true;
+    }
+  });
   for (const path of ['/', '/work', '/about', '/contact']) {
     const response = await page.goto(`https://${domain}${path}`);
     expect(response?.status()).toBe(200);
     await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
   }
-  await expect(page.locator('iframe[src*="challenges.cloudflare.com"]')).toBeAttached();
+  // Cloudflare can hide the iframe inside a closed shadow root. Observe its
+  // actual script response and initialized API rather than private widget DOM.
+  await expect.poll(() => turnstileScriptLoaded).toBe(true);
+  await expect.poll(() => page.evaluate(() => typeof window['turnstile']?.render)).toBe('function');
   const health = await request.get(`https://${domain}/api/health`);
   expect(health.status()).toBe(200);
   expect(await health.json()).toMatchObject({ status: 'ok' });

@@ -3,6 +3,21 @@ name: 🚀 Secure Deploy
 on:
   push:
     branches: [ master ]
+    # Test/monitoring/documentation changes must never restart production.
+    paths:
+      - 'api/src/**'
+      - 'api/Dockerfile'
+      - 'api/.npmrc'
+      - 'api/package*.json'
+      - 'api/tsconfig.json'
+      - 'frontend/src/**'
+      - 'frontend/public/**'
+      - 'frontend/dist_v1/**'
+      - 'frontend/*'
+      - 'proxy/**'
+      - 'compose.yml'
+      - 'Makefile'
+      - 'scripts/deployment-env.sh'
   workflow_dispatch:
 
 permissions:
@@ -103,11 +118,6 @@ jobs:
         bash scripts/deployment-env.sh --write
         make check-env
         docker compose -f compose.yml config --quiet
-
-    - name: Stop containers
-      run: |
-        cd "${{ github.workspace }}"
-        make down || true
 
     - name: Check system resources
       run: |
