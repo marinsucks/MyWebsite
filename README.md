@@ -132,14 +132,16 @@ successful deployment, and manually. It checks public pages, the public API,
 production Turnstile rejection/availability, then submits the local monitoring
 form through the real Cloudflare test widget/Siteverify and real Resend API.
 Both emails go exclusively to Resend's official `delivered+...@resend.dev` test
-recipients; the workflow waits for their simulated `delivered` events. It also
-checks the previous 24 hours of this domain's sent emails for rejection,
-suppression, complaints, delivery delays or missing delivery after 30 minutes.
+recipients; the workflow verifies that Resend accepts both emails and returns
+two distinct message IDs.
 
-Sending uses the existing `RESEND_API_KEY`. Reading delivery status additionally
-needs a key with read access: set `RESEND_MONITOR_API_KEY` if the sending key is
-restricted. Without it, the monitor fails visibly; it never silently skips
-delivery verification. The domain comes from the existing `DOMAIN` setting.
+Sending uses the existing `RESEND_API_KEY`. Optional delivery checks require a
+separate `RESEND_MONITOR_API_KEY` with read access. When configured, the workflow
+also waits for simulated `delivered` events and checks the previous 24 hours of
+this domain's sent emails for rejection, suppression, complaints, delivery
+delays or missing delivery after 30 minutes. Without that key, a workflow notice
+and a skipped test make this coverage limit explicit; send acceptance and
+Turnstile checks still run. The domain comes from the existing `DOMAIN` setting.
 Two synthetic emails per hourly run consume sending quota (normally 48/day,
 plus manual and post-deployment runs).
 

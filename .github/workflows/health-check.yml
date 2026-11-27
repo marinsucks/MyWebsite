@@ -50,7 +50,11 @@ jobs:
         MONITOR_DOMAIN: ${{ vars.DOMAIN || secrets.DOMAIN }}
         RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
         RESEND_MONITOR_API_KEY: ${{ secrets.RESEND_MONITOR_API_KEY }}
-      run: npm --prefix e2e run test:live
+      run: |
+        if [ -z "$RESEND_MONITOR_API_KEY" ]; then
+          echo '::notice::Checking real Turnstile verification and Resend send acceptance. Delivery status reading is disabled without a monitoring key.'
+        fi
+        npm --prefix e2e run test:live
 
   notify:
     name: Report incidents and recovery
