@@ -4,15 +4,15 @@ import { useDarkMode } from "@hooks/useDarkMode";
 import { useTranslation } from "react-i18next";
 import Options from "@components/Options";
 
-import YoLogoDark from "@assets/icons/dark/yo-logo.svg?react";
-import YoLogoLight from "@assets/icons/light/yo-logo.svg?react";
+import yoLogoDark from "@assets/icons/dark/yo-logo.webp";
+import yoLogoLight from "@assets/icons/light/yo-logo.webp";
 
 const Header: React.FC = () => {
 	const [darkMode] = useDarkMode();
 	const [menuOpen, setMenuOpen] = useState(false);
 	const headerRef = useRef<HTMLElement>(null);
 	const location = useLocation();
-	const Logo = darkMode ? YoLogoDark : YoLogoLight;
+	const logo = darkMode ? yoLogoDark : yoLogoLight;
 	const { t } = useTranslation("common");
 
 	useEffect(() => {
@@ -56,7 +56,11 @@ const Header: React.FC = () => {
 						className="group flex items-center rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
 						aria-label={t("header.home")}
 					>
-						<Logo
+						<img
+							src={logo}
+							alt=""
+							width="100"
+							height="160"
 							className="h-10 w-10 object-contain transition-[filter] duration-300 group-hover:drop-shadow-[0_0_14px_var(--secondary)]"
 							aria-hidden="true"
 						/>

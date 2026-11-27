@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import DonutDialog from "@components/DonutDialog";
 import Section from "@components/Layout/Section";
-import me from "@assets/photos/me.png";
+import me from "@assets/photos/me-avatar.webp";
 import rotationSprite from "@assets/sprites/rotation.gif";
 
 type ConversationExchange = {
@@ -69,6 +69,9 @@ const ChatMessage: React.FC<ChatMessageProps> = ({
 						<img
 							src={me}
 							alt=""
+							width="108"
+							height="108"
+							decoding="async"
 							className="h-full w-full rounded-full border-2 border-primary-dark object-cover"
 						/>
 					)}

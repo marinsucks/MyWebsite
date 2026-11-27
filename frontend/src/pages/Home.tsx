@@ -2,9 +2,14 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Trans, useTranslation } from "react-i18next";
 import Section from "@components/Layout/Section";
-import aboutSprite from "@assets/sprites/about.png";
+import aboutSprite from "@assets/sprites/about.webp";
+import aboutSpriteSmall from "@assets/sprites/about-768.webp";
+import workingSprite from "@assets/sprites/working.webp";
+import workingSpriteSmall from "@assets/sprites/working-768.webp";
 
-const workingSprite = "/assets/working.png";
+// Include the CSS scale in the rendered width. Keep the preload in index.html in sync.
+// Use srcSet without src: React 18 resets src on mount and can refetch a completed preload.
+const spriteSizes = "(min-width: 1024px) 660px, (min-width: 640px) 840px, calc(110vw - 53px)";
 
 interface StatementProps {
 	title: string;
@@ -92,11 +97,12 @@ const Home: React.FC = () => {
 							className="group mx-auto block w-full max-w-2xl rounded-2xl transition-transform duration-300 hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent lg:mx-0"
 						>
 							<img
-								src={workingSprite}
+								sizes={spriteSizes}
+								srcSet={`${workingSpriteSmall} 768w, ${workingSprite} 1536w`}
 								alt=""
 								width="1536"
 								height="1024"
-								loading="lazy"
+								loading="eager"
 								decoding="async"
 								className="w-full scale-110 object-contain transition-[filter] duration-300 [image-rendering:pixelated] group-hover:drop-shadow-[0_0_14px_var(--secondary)] sm:scale-125"
 								aria-hidden="true"
@@ -132,11 +138,12 @@ const Home: React.FC = () => {
 							className="group mx-auto block w-full max-w-2xl rounded-2xl transition-transform duration-300 hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent lg:order-2 lg:ml-auto lg:mr-0"
 						>
 							<img
-								src={aboutSprite}
+								sizes={spriteSizes}
+								srcSet={`${aboutSpriteSmall} 768w, ${aboutSprite} 1536w`}
 								alt=""
 								width="1536"
 								height="1024"
-								loading="lazy"
+								loading="eager"
 								decoding="async"
 								className="w-full scale-110 object-contain transition-[filter] duration-300 [image-rendering:pixelated] group-hover:drop-shadow-[0_0_14px_var(--secondary)] sm:scale-125"
 								aria-hidden="true"

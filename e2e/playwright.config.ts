@@ -20,7 +20,7 @@ export default defineConfig({
   },
   projects: live
     ? [{ name: 'live', testMatch: '**/live.spec.ts' }]
-    : [{ name: 'offline', testMatch: '**/contact.spec.ts' }],
+    : [{ name: 'offline', testMatch: ['**/contact.spec.ts', '**/images.spec.ts'] }],
   webServer: [
     {
       command: 'node server.mjs',

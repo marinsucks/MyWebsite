@@ -56,6 +56,18 @@ Cloudflare's official always-pass Turnstile test key when no
 if you also want to send real test emails; without it, contact submissions
 return `503` by design.
 
+### Image assets
+
+Homepage illustrations use checked-in, lossless WebP assets at 768px and 1536px.
+The browser selects a size for its viewport and pixel density. The first image
+is preloaded from HTML; both start loading without waiting for scrolling. Keep
+the preload's `imagesizes` and `imagesrcset` consistent with `Home.tsx` to avoid
+duplicate downloads. Originals remain available for editing and social previews.
+Header logos and the About avatar use small WebP derivatives instead of shipping
+the full SVG paths in JavaScript or downloading the original portrait. Conversion
+is not part of installation or CI and adds no application dependency. The offline
+browser tests enforce a 260 KB budget for both homepage images on a 390px, 2x screen.
+
 ## Deployment
 
 ```bash
